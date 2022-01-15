@@ -32,52 +32,47 @@ export default function Home({ homePage }) {
       </div>
 
       {/* Navigation Section */}
-      {buildNavigation(homePage)}
+      <HomeNavigation data={homePage} />
     </div>
   )
 }
 
-function buildNavigation(homePage) {
-  function getRowSpan(index) {
-    if ([0, 3].includes(index)) {
-      return "md:row-span-2"
-    } else {
-      return "md:row-span-1"
-    }
-  }
-
-  function getColumnSpan(index) {
-    if ([0, 4, 5].includes(index)) {
-      return "md:col-span-2"
-    } else {
-      return "md:col-span-1"
-    }
-  }
-
-
-  return <div className="grid grid-cols-1 grid-rows-[repeat(6,20rem)] md:grid-rows-[repeat(4,20rem)] md:grid-cols-3">
-    {homePage.navigation.map((element, index) => {
-      return (
-        <div className={`${getRowSpan(index)} ${getColumnSpan(index)} grid place-items-center relative overflow-hidden group`}
-          key={element.title}
-        >
-
-          <img
-            className="absolute w-full h-full object-cover group-hover:scale-110 transition-transform duration-1000"
-            src={urlForImage(element.richImage.image.asset)}
-          />
-
-          <div
-            className="absolute w-full h-full bg-black opacity-60 group-hover:opacity-10 transition-opacity duration-1000"
-          />
-
-          <h2 className="pointer-events-none z-10 text-white font-bold text-3xl md:text-4xl drop-shadow-2xl">{element.title}</h2>
-
-        </div>
-      )
-    })}
-  </div>
+const HomeNavigation = ({ data }) => {
+  return (
+    <div className="grid grid-cols-1 grid-rows-[repeat(6,20rem)] md:grid-rows-[repeat(4,20rem)] md:grid-cols-3">
+      {data.navigation.map((element, index) =>
+        <HomeNavigationItem index={index} data={element} />
+      )}
+    </div>
+  )
 }
+
+const HomeNavigationItem = ({ data, index }) => {
+  const getRowSpan = (index) =>
+    [0, 4, 5].includes(index) ? "md:row-span-2" : "md:row-span-1"
+
+  const getColumnSpan = (index) =>
+    [0, 3].includes(index) ? "md:col-span-2" : "md:col-span-1"
+
+  return (
+    <div className={`${getRowSpan(index)} ${getColumnSpan(index)} grid place-items-center relative overflow-hidden group`}
+      key={data.title}>
+
+      <img className="absolute w-full h-full object-cover group-hover:scale-110 transition-transform duration-1000"
+        src={urlForImage(data.richImage.image.asset)} />
+
+      <div className="absolute w-full h-full bg-black opacity-60 group-hover:opacity-10 transition-opacity duration-1000" />
+
+      <h2 className="pointer-events-none z-10 text-white font-bold text-3xl md:text-4xl drop-shadow-2xl">
+        {data.title}
+      </h2>
+
+    </div>
+  )
+}
+
+
+
 
 
 export async function getStaticProps(context) {
