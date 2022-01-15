@@ -6,7 +6,7 @@ import React from "react"
 import anime from "animejs"
 import Image from "../components/image"
 
-export default function Home({ homePage, global }) {
+export default function Home({ homePage, global, locale }) {
 
   return (
     <div>
@@ -47,6 +47,8 @@ export default function Home({ homePage, global }) {
 
       {/* Navigation Section */}
       <HomeNavigation data={homePage} />
+
+      <p className="text-3xl">This is the {locale} page</p>
     </div>
   )
 }
@@ -134,7 +136,11 @@ const HomeNavigationItem = ({ data, index }) => {
   )
 }
 
+
 export async function getStaticProps(context) {
+  const locale = context.locale
+  console.log(locale)
+
   const query = groq`
     *[_type == "homePage"][0]{
         _id,
@@ -161,7 +167,8 @@ export async function getStaticProps(context) {
   return {
     props: {
       "homePage": homePage,
-      global
+      global,
+      locale
     }
   }
 }
