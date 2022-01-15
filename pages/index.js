@@ -40,7 +40,7 @@ export default function Home({ homePage, global }) {
             </a>
           </div>
 
-          <img className="w-full max-w-2xl hidden md:block"
+          <img className="h-44 hidden md:block"
             src="/finestSelection.svg" />
         </div>
       </div>
