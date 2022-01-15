@@ -4,17 +4,26 @@ import { getClient, getGlobalData } from '../lib/sanity/sanity.server'
 import Header from "../components/header"
 import React from "react"
 import anime from "animejs"
+import Image from "../components/image"
 
-export default function Home({ homePage,global }) {
+export default function Home({ homePage, global }) {
 
   return (
     <div>
-      <Header logo={global.logo}/>
+      <Header logo={global.logo} />
 
       {/* Landing Section */}
       <div className=" h-screen w-full relative">
-        <img className="absolute w-full h-full object-cover"
-          src={urlForImage(homePage.landingImage.image.asset)}
+
+        <Image
+          className="absolute w-full h-full"
+          objectFit="object-cover"
+          asset={homePage.landingImage.image.asset}
+          placeholder={homePage.landingImage.image.metadata.metadata.lqip}
+          caption={homePage.landingImage.title}
+          alt={homePage.landingImage.alt}
+          sizes={[600,1500,4000]}
+          loading={"eager"}
         />
 
         <div className="absolute bottom-[5vh]  w-full flex flex-col items-center">
@@ -105,12 +114,17 @@ const HomeNavigationItem = ({ data, index }) => {
       onMouseLeave={onMouseLeave}
     >
 
-      <img className="absolute w-full h-full object-cover"
+      <Image className="absolute w-full h-full"
         id={`HomeNavigationItemImage${index}`}
-        src={urlForImage(data.richImage.image.asset)} />
+        asset={data.richImage.image.asset} 
+        sizes={[1000,2000]}
+        loading={"lazy"}
+        objectFit='object-cover'
+      />
 
       <div className="absolute w-full h-full bg-black opacity-60 group-hover:opacity-10"
-        id={`HomeNavigationItemBackground${index}`} />
+        id={`HomeNavigationItemBackground${index}`} 
+      />
 
       <h2 className="pointer-events-none z-10 text-white font-bold text-3xl md:text-4xl drop-shadow-2xl">
         {data.title}
@@ -120,12 +134,7 @@ const HomeNavigationItem = ({ data, index }) => {
   )
 }
 
-
-
-
-
 export async function getStaticProps(context) {
-
   const query = groq`
     *[_type == "homePage"][0]{
         _id,
@@ -134,7 +143,13 @@ export async function getStaticProps(context) {
                 secondary{text, "url": url->slug}
         },
         seo,
-        landingImage,
+        "landingImage" : landingImage {
+          ...,
+          'image' : image {
+            ...,
+            "metadata" : asset->{metadata},
+          }
+        },
         title,
         navigation[]{richImage,title,"url":url->slug},
     }

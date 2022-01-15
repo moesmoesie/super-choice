@@ -2,6 +2,7 @@ import { urlForImage } from "../lib/sanity/sanity"
 import { useState } from 'react';
 import anime from "animejs";
 import Link from "next/link";
+
 export default function Header({ logo }) {
     return (
         <header className="px-4 md:px-12 min-h-[4rem] top-0 z-50 pointer-events-none w-full bg-white absolute flex items-center">
@@ -12,7 +13,7 @@ export default function Header({ logo }) {
     )
 }
 
-const HeaderNavigationLink = ({ slug, title }) => {
+const HeaderNavigationLink = ({slug, title }) => {
     return (
         <Link href={slug}>
             <a className="pointer-events-auto hidden sm:block ml-auto text-primary4 font-bold uppercase">
