@@ -1,5 +1,6 @@
 import groq from "groq"
-import { client,urlFor } from "../lib/client"
+import { urlForImage } from "../lib/sanity/sanity"
+import { sanityClient, getClient, overlayDrafts } from '../lib/sanity/sanity.server'
 
 export default function Home({ homePage }) {
 
@@ -8,7 +9,7 @@ export default function Home({ homePage }) {
 
       <div className=" h-screen w-full relative">
         <img className="absolute w-full h-full object-cover"
-          src={urlFor(homePage.landingImage.image.asset)}
+          src={urlForImage(homePage.landingImage.image.asset)}
         />
 
         <div className="absolute bottom-[5vh]  w-full flex flex-col items-center">
@@ -50,7 +51,8 @@ export async function getStaticProps(context) {
         navigation[]{richImage,title,"url":url->slug},
     }
   `
-  const homePage = await client.fetch(query)
+
+  const homePage = await getClient(context.preview).fetch(query)
 
   return {
     props: {
