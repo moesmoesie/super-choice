@@ -1,13 +1,16 @@
 import groq from "groq"
 import { urlForImage } from "../lib/sanity/sanity"
-import { sanityClient, getClient, overlayDrafts } from '../lib/sanity/sanity.server'
+import { getClient, getGlobalData } from '../lib/sanity/sanity.server'
+import Header from "../components/header"
 import React from "react"
 import anime from "animejs"
 
-export default function Home({ homePage }) {
+export default function Home({ homePage,global }) {
 
   return (
     <div>
+      <Header logo={global.logo}/>
+
       {/* Landing Section */}
       <div className=" h-screen w-full relative">
         <img className="absolute w-full h-full object-cover"
@@ -137,11 +140,13 @@ export async function getStaticProps(context) {
     }
   `
 
-  const homePage = await getClient(context.preview).fetch(query)
+  const homePage = await getClient(context?.preview).fetch(query)
+  const global = await getGlobalData(context?.preview)
 
   return {
     props: {
-      "homePage": homePage
+      "homePage": homePage,
+      global
     }
   }
 }
