@@ -1,5 +1,4 @@
 import groq from "groq"
-import { urlForImage } from "../lib/sanity/sanity"
 import { getClient, getGlobalData } from '../lib/sanity/sanity.server'
 import Header from "../components/header"
 import React from "react"
