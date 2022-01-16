@@ -123,6 +123,7 @@ const HomeNavigationItem = ({ data, index }) => {
         id={`HomeNavigationItemImage${index}`}
         asset={data.image.asset}
         sizes={[1000, 2000]}
+        placeholder={data.image.metadata.lqip}
         loading={"lazy"}
         objectFit='object-cover'
       />
