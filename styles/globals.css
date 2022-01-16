@@ -13,4 +13,8 @@
             @apply  hover:bg-secondary1 hover:-translate-y-1 hover:shadow-2xl
         }
     }
+
+    .wrapper{
+        @apply mx-auto max-w-4xl px-4
+    }
 }
