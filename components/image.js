@@ -13,13 +13,16 @@ export default function Image(props) {
 
     return (
         <div className={`${props.className}`} id={props.id}>
-            <img
-                className={`w-full h-full top-0 left-0 absolute ${props.objectFit}`}
-                src={props.placeholder}
-                alt={props.alt}
-                title={props.caption}
-                aria-hidden="true">
-            </img>
+            {props.placeholder ? (
+                <img
+                    className={`w-full h-full top-0 left-0 absolute ${props.objectFit}`}
+                    src={props.placeholder}
+                    alt={props.alt}
+                    title={props.caption}
+                    aria-hidden="true">
+                </img>
+            ) : ''}
+            
             <img
                 className={`w-full h-full top-0 left-0 absolute ${props.objectFit}`}
                 src={src}

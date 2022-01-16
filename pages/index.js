@@ -6,7 +6,6 @@ import anime from "animejs"
 import Image from "../components/image"
 
 export default function Home({ homePage, global, locale }) {
-
   return (
     <div>
       <Header logo={global.logo} />
@@ -17,8 +16,8 @@ export default function Home({ homePage, global, locale }) {
         <Image
           className="absolute w-full h-full"
           objectFit="object-cover"
-          asset={homePage.landingImage.image.asset}
-          placeholder={homePage.landingImage.image.metadata.metadata.lqip}
+          asset={homePage.landingImage.asset}
+          placeholder={homePage.landingImage.metadata.lqip}
           caption={homePage.landingImage.title}
           alt={homePage.landingImage.alt}
           sizes={[600,1500,4000]}
@@ -32,10 +31,10 @@ export default function Home({ homePage, global, locale }) {
 
           <div className="flex flex-col md:flex-row items-center gap-5 md:mb-3">
             <a href="#" className="bg-primary4 button">
-              {homePage.callToAction.primary.text}
+              Call to Action 1
             </a>
             <a href="#" className="button">
-              {homePage.callToAction.secondary.text}
+              Call to Action 2
             </a>
           </div>
 
@@ -45,7 +44,7 @@ export default function Home({ homePage, global, locale }) {
       </div>
 
       {/* Navigation Section */}
-      <HomeNavigation data={homePage} />
+      <HomeNavigation data={homePage.navigation} />
 
       <p className="text-3xl">This is the {locale} page</p>
     </div>
@@ -55,7 +54,7 @@ export default function Home({ homePage, global, locale }) {
 const HomeNavigation = ({ data }) => {
   return (
     <div className="grid grid-cols-1 grid-rows-[repeat(6,20rem)] md:grid-rows-[repeat(4,20rem)] md:grid-cols-3">
-      {data.navigation.map((element, index) =>
+      {data.map((element, index) =>
         <HomeNavigationItem index={index} data={element} key={`HomeNavigationItem${index}`} />
       )}
     </div>
@@ -117,7 +116,7 @@ const HomeNavigationItem = ({ data, index }) => {
 
       <Image className="absolute w-full h-full"
         id={`HomeNavigationItemImage${index}`}
-        asset={data.richImage.image.asset} 
+        asset={data.image.asset} 
         sizes={[1000,2000]}
         loading={"lazy"}
         objectFit='object-cover'
@@ -138,29 +137,28 @@ const HomeNavigationItem = ({ data, index }) => {
 
 export async function getStaticProps(context) {
   const locale = context.locale
-  console.log(locale)
 
   const query = groq`
-    *[_type == "homePage"][0]{
-        _id,
-        callToAction{
-                primary{text, "url":url->slug},
-                secondary{text, "url": url->slug}
-        },
-        seo,
-        "landingImage" : landingImage {
-          ...,
-          'image' : image {
-            ...,
-            "metadata" : asset->{metadata},
-          }
-        },
-        title,
-        navigation[]{richImage,title,"url":url->slug},
+    *[_type == "homePage" && language->languageCode == '${locale}'][0]{
+      _id,
+      title,
+      'locale' : language->languageCode,
+      'landingImage': landingImage  {
+        ...,
+        'metadata': asset->metadata
+      },
+      'navigation': navigation[] {
+        ...,
+        'image' : image {
+        ...,
+        'metadata': asset->metadata
+        }
+      }
     }
   `
 
   const homePage = await getClient(context?.preview).fetch(query)
+
   const global = await getGlobalData(context?.preview)
 
   return {
