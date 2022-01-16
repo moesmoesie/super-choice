@@ -4,6 +4,7 @@ import Header from "../components/header"
 import React from "react"
 import anime from "animejs"
 import Image from "../components/image"
+import Link from "next/link"
 
 export default function Home({ homePage, global, locale }) {
   return (
@@ -20,7 +21,7 @@ export default function Home({ homePage, global, locale }) {
           placeholder={homePage.landingImage.metadata.lqip}
           caption={homePage.landingImage.title}
           alt={homePage.landingImage.alt}
-          sizes={[600,1500,4000]}
+          sizes={[600, 1500, 4000]}
           loading={"eager"}
         />
 
@@ -30,12 +31,16 @@ export default function Home({ homePage, global, locale }) {
           </h1>
 
           <div className="flex flex-col md:flex-row items-center gap-5 md:mb-3">
-            <a href="#" className="bg-primary4 button">
-              Call to Action 1
-            </a>
-            <a href="#" className="button">
-              Call to Action 2
-            </a>
+            <Link href="#">
+              <a className="bg-primary4 button">
+                {homePage.callToAction1.text}
+              </a>
+            </Link>
+            <Link href="#">
+              <a className="button">
+                {homePage.callToAction2.text}
+              </a>
+            </Link>
           </div>
 
           <img className="h-44 hidden md:block"
@@ -116,14 +121,14 @@ const HomeNavigationItem = ({ data, index }) => {
 
       <Image className="absolute w-full h-full"
         id={`HomeNavigationItemImage${index}`}
-        asset={data.image.asset} 
-        sizes={[1000,2000]}
+        asset={data.image.asset}
+        sizes={[1000, 2000]}
         loading={"lazy"}
         objectFit='object-cover'
       />
 
       <div className="absolute w-full h-full bg-black opacity-60 group-hover:opacity-10"
-        id={`HomeNavigationItemBackground${index}`} 
+        id={`HomeNavigationItemBackground${index}`}
       />
 
       <h2 className="pointer-events-none z-10 text-white font-bold text-3xl md:text-4xl drop-shadow-2xl">
@@ -147,6 +152,8 @@ export async function getStaticProps(context) {
         ...,
         'metadata': asset->metadata
       },
+      callToAction1,
+      callToAction2,
       'navigation': navigation[] {
         ...,
         'image' : image {
