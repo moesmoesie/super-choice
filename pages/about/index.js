@@ -11,10 +11,10 @@ export default function Home({ aboutPage, global, locale }) {
         <div>
             <Header logo={global.logo} />
             <div className="grid grid-cols-1 mt-16 mb-16">
-                <h1 className="text-primary4 font-black text-4xl mt-14 mb-12">
+                <h1 className="wrapper w-full text-primary4 font-black text-4xl mt-14 mb-12">
                     {aboutPage.title}
                 </h1>
-                <p>
+                <p className="wrapper">
                     {aboutPage.landingText}
                 </p>
                 <div className="relative row-start-1 aspect-[4/3]">
