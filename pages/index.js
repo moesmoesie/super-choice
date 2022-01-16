@@ -50,8 +50,6 @@ export default function Home({ homePage, global, locale }) {
 
       {/* Navigation Section */}
       <HomeNavigation data={homePage.navigation} />
-
-      <p className="text-3xl">This is the {locale} page</p>
     </div>
   )
 }
