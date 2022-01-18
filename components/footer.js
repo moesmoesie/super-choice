@@ -47,7 +47,7 @@ export default function Footer({ data }) {
                         <ul className="w-full flex  text-white gap-1 lg:gap-x-2 flex-col">
                             <li className="flex gap-4">
                                 {data.socialMedia.map((element) => {
-                                    return <SocialMediaLink data={element}/>
+                                    return <SocialMediaLink key={element._key} data={element}/>
                                 })}
                             </li>
                             <li className="flex items-center gap-2">
@@ -69,19 +69,19 @@ export default function Footer({ data }) {
 const SocialMediaLink = ({data}) => {
     if(data.type == "instagram"){
         return (
-            <a href={data.url} target="_blank">
+            <a href={data.url} rel="noreferrer" target="_blank">
                 <AiOutlineInstagram className="text-primary2" size={20}/>
             </a>
         )
     }else if(data.type == 'linkedin'){
         return (
-            <a href={data.url} target="_blank">
+            <a href={data.url} rel="noreferrer" target="_blank">
                 <AiOutlineLinkedin className="text-primary2" size={20}/>
             </a>
         )
     }else if(data.type == 'facebook'){
         return (
-            <a href={data.url} target="_blank">
+            <a href={data.url} rel="noreferrer" target="_blank">
                 <AiOutlineFacebook className="text-primary2" size={20}/>
             </a>
         )
