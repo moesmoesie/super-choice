@@ -100,7 +100,7 @@ const HomeNavigationItem = ({ data, index }) => {
   //ANIMATION
   const DURATION = 1000
   const SCALE = { FROM: 1, TO: 1.2 }
-  const OPACITY = { FROM: 0.6, TO: 0.2 }
+  const OPACITY = { FROM: 0.4, TO: 0.2 }
   const EASING = "easeInOutSine"
 
   const onMouseEnter = () => {
@@ -151,7 +151,7 @@ const HomeNavigationItem = ({ data, index }) => {
         objectFit='object-cover'
       />
 
-      <div className="absolute w-full h-full bg-black opacity-60 group-hover:opacity-10"
+      <div className="absolute w-full h-full bg-black opacity-40 group-hover:opacity-10"
         id={`HomeNavigationItemBackground${index}`}
       />
 
