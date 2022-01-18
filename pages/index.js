@@ -56,7 +56,7 @@ export default function Home({ homePage, global, locale }) {
 
 const HomeNavigation = ({ data }) => {
   return (
-    <div className="grid grid-cols-1 grid-rows-[repeat(6,20rem)] md:grid-rows-[repeat(4,20rem)] md:grid-cols-3">
+    <div className="grid grid-cols-12 grid-rows-[repeat(6,20rem)] md:grid-rows-[repeat(4,22rem)] lg:grid-rows-[repeat(4,25rem)]">
       {data.map((element, index) =>
         <HomeNavigationItem index={index} data={element} key={`HomeNavigationItem${index}`} />
       )}
@@ -65,14 +65,39 @@ const HomeNavigation = ({ data }) => {
 }
 
 const HomeNavigationItem = ({ data, index }) => {
-  const getRowSpan = (index) =>
-    [0, 3].includes(index) ? "md:row-span-2" : "md:row-span-1"
+  const getColumnSpan = (index) => {
+    if(index == 0){
+      return "col-span-full lg:col-span-8"
+    }else if(index == 1){
+      return "col-span-full md:col-span-6 lg:col-span-4"
+    } else if (index == 2){
+      return "col-span-full md:col-span-6 lg:col-span-4"
+    } else if (index == 3){
+      return "col-span-full md:col-span-5 lg:col-span-5"
+    } else if (index == 4){
+      return "col-span-full md:col-span-7"
+    } else if (index == 5){
+      return "col-span-full lg:col-span-7"
+    }
+  }
 
-  const getColumnSpan = (index) =>
-    [0, 4, 5].includes(index) ? "md:col-span-2" : "md:col-span-1"
+  const  getRowSpan = (index) => {
+    if(index == 0){
+      return "lg:row-span-2"
+    }else if(index == 1){
+      return ""
+    } else if (index == 2){
+      return ""
+    } else if (index == 3){
+      return "lg:row-span-2"
+    } else if (index == 4){
+      return ""
+    } else if (index == 5){
+      return ""
+    }
+  }
 
   //ANIMATION
-
   const DURATION = 1000
   const SCALE = { FROM: 1, TO: 1.2 }
   const OPACITY = { FROM: 0.6, TO: 0.2 }
