@@ -5,6 +5,7 @@ import React from "react"
 import anime from "animejs"
 import Image from "../components/image"
 import Link from "next/link"
+import Footer from "../components/footer"
 
 export default function Home({ homePage, global, locale }) {
   return (
@@ -50,6 +51,7 @@ export default function Home({ homePage, global, locale }) {
 
       {/* Navigation Section */}
       <HomeNavigation data={homePage.navigation} />
+      <Footer data={global} />
     </div>
   )
 }

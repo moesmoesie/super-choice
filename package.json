@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@react-icons/all-files": "^4.1.0",
     "animejs": "^3.2.1",
     "autoprefixer": "^10.4.2",
     "groq": "^2.15.0",
