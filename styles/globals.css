@@ -2,6 +2,163 @@
 @tailwind components;
 @tailwind utilities;
 
+
+/* Load Fonts */
+@font-face {
+    font-family: "Montserrat";
+    src: url("/fonts/montserrat/montserrat-100.woff2");
+    font-style: normal;
+    font-weight: 100;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: "Montserrat";
+    src: url("/fonts/montserrat/montserrat-200.woff2");
+    font-style: normal;
+    font-weight: 200;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: "Montserrat";
+    src: url("/fonts/montserrat/montserrat-100.woff2");
+    font-style: normal;
+    font-weight: 100;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: "Montserrat";
+    src: url("/fonts/montserrat/montserrat-300.woff2");
+    font-style: normal;
+    font-weight: 300;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: "Montserrat";
+    src: url("/fonts/montserrat/montserrat-400.woff2");
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: "Montserrat";
+    src: url("/fonts/montserrat/montserrat-500.woff2");
+    font-style: normal;
+    font-weight: 500;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: "Montserrat";
+    src: url("/fonts/montserrat/montserrat-600.woff2");
+    font-style: normal;
+    font-weight: 600;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: "Montserrat";
+    src: url("/fonts/montserrat/montserrat-700.woff2");
+    font-style: normal;
+    font-weight: 700;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: "Montserrat";
+    src: url("/fonts/montserrat/montserrat-800.woff2");
+    font-style: normal;
+    font-weight: 800;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: "Montserrat";
+    src: url("/fonts/montserrat/montserrat-900.woff2");
+    font-style: normal;
+    font-weight: 900;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: "Mulish";
+    src: url("/fonts/mulish/mulish-100.woff2");
+    font-style: normal;
+    font-weight: 100;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: "Mulish";
+    src: url("/fonts/mulish/mulish-200.woff2");
+    font-style: normal;
+    font-weight: 200;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: "Mulish";
+    src: url("/fonts/mulish/mulish-300.woff2");
+    font-style: normal;
+    font-weight: 300;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: "Mulish";
+    src: url("/fonts/mulish/mulish-400.woff2");
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: "Mulish";
+    src: url("/fonts/mulish/mulish-500.woff2");
+    font-style: normal;
+    font-weight: 500;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: "Mulish";
+    src: url("/fonts/mulish/mulish-600.woff2");
+    font-style: normal;
+    font-weight: 600;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: "Mulish";
+    src: url("/fonts/mulish/mulish-700.woff2");
+    font-style: normal;
+    font-weight: 700;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: "Mulish";
+    src: url("/fonts/mulish/mulish-800.woff2");
+    font-style: normal;
+    font-weight: 800;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: "Mulish";
+    src: url("/fonts/mulish/mulish-900.woff2");
+    font-style: normal;
+    font-weight: 900;
+    font-display: swap;
+}
+
+/* End Load Fonts */
+
+
 @layer components {
     .button{
         @apply  bg-primary2 text-white px-10 py-2 rounded-3xl
