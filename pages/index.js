@@ -26,7 +26,7 @@ export default function Home({ homePage, global, locale }) {
         />
 
         <div className="absolute bottom-[5vh]  w-full flex flex-col items-center">
-          <h1 className="text-center text-white text-6xl md:text-9xl font-black mb-5 md:mb-12">
+          <h1 className="font-header text-6xl md:text-9xl font-black text-center text-white mb-5 md:mb-12">
             {homePage.title}
           </h1>
 
@@ -155,7 +155,7 @@ const HomeNavigationItem = ({ data, index }) => {
         id={`HomeNavigationItemBackground${index}`}
       />
 
-      <h2 className="pointer-events-none z-10 text-white font-bold text-3xl md:text-4xl drop-shadow-2xl">
+      <h2 className="font-header font-bold text-3xl md:text-4xl text-white pointer-events-none z-10 drop-shadow-2xl">
         {data.title}
       </h2>
 

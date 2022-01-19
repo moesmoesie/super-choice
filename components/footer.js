@@ -15,7 +15,7 @@ export default function Footer({ data }) {
                     <Image className="w-16 aspect-square relative mb-4" asset={data.logo.asset} sizes={[300]}/>
 
                     <p className="text-white mb-4 lg:col-start-1 lg:mb-0 lg:self-end">
-                        © 2021 Super Choice. <br/> All rights reserved
+                        © 2021 <span className="font-bold">Super Choice.</span> <br/> All rights reserved
                     </p>
 
                     <p className="text-white lg:col-start-2 lg:row-start-1 lg:self-center uppercase mb-1 pb-0 font-bold">

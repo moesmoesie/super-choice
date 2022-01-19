@@ -13,6 +13,10 @@ module.exports = {
         "primary5": "#142C4B",
         "secondary1": "#FFB01F"
       },
+      fontFamily: {
+        'header': ['Mulish', 'sans-serif'],
+        'body': ['Montserrat', 'sans-serif']
+      }
     },
   },
   plugins: [],
