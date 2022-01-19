@@ -4,12 +4,11 @@ import Header from "../../components/header"
 import React from "react"
 import Image from "../../components/image"
 import Highlight from "../../components/highlight"
-
+import Layout from "../../components/layout"
 
 export default function Home({ aboutPage, global, locale }) {
     return (
-        <div>
-            <Header logo={global.logo} />
+        <Layout data={global}>
             <div className="grid grid-cols-1 mt-16 mb-16">
                 <h1 className="wrapper w-full text-primary4 font-black text-4xl mt-14 mb-12">
                     {aboutPage.title}
@@ -41,10 +40,7 @@ export default function Home({ aboutPage, global, locale }) {
             <Highlight
                 highlight = {aboutPage.highlight}
             />
-
-
-            
-        </div>
+        </Layout>
     )
 }
 
