@@ -73,7 +73,8 @@ export async function getStaticProps(context) {
         aboutPage = await getClient(context?.preview).fetch(getQuery(defaultLocale))
     }
 
-    const global = await getGlobalData(context?.preview)
+    const global = await getGlobalData(context?.preview, locale, defaultLocale)
+    
     return {
         props: {
             "aboutPage": aboutPage,

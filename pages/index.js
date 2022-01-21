@@ -165,8 +165,8 @@ const HomeNavigationItem = ({ data, index }) => {
 
 
 export async function getStaticProps(context) {
-  const locale = context.locale
-
+  const {locale,defaultLocale} = context
+  
   const query = groq`
     *[_type == "homePage" && language->languageCode == '${locale}'][0]{
       _id,
@@ -189,8 +189,7 @@ export async function getStaticProps(context) {
   `
 
   const homePage = await getClient(context?.preview).fetch(query)
-
-  const global = await getGlobalData(context?.preview)
+  const global = await getGlobalData(context?.preview, locale, defaultLocale)
 
   return {
     props: {
