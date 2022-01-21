@@ -56,7 +56,7 @@ export default function Home({ homePage, global, locale }) {
 
 const HomeNavigation = ({ data }) => {
   return (
-    <div className="grid grid-cols-12 grid-rows-[repeat(6,20rem)] md:grid-rows-[repeat(4,22rem)] lg:grid-rows-[repeat(4,25rem)]">
+    <div className="grid grid-cols-12 grid-rows-[repeat(6,20rem)] pointer-events-none md:grid-rows-[repeat(4,22rem)] lg:grid-rows-[repeat(4,25rem)]">
       {data.map((element, index) =>
         <HomeNavigationItem index={index} data={element} key={`HomeNavigationItem${index}`} />
       )}
@@ -137,7 +137,8 @@ const HomeNavigationItem = ({ data, index }) => {
 
 
   return (
-    <div className={`${getRowSpan(index)} ${getColumnSpan(index)} grid place-items-center relative overflow-hidden`}
+    <Link href={data.slug}>
+    <a className={`${getRowSpan(index)} ${getColumnSpan(index)} pointer-events-auto grid place-items-center relative overflow-hidden`}
       onMouseEnter={onMouseEnter}
       onMouseLeave={onMouseLeave}
     >
@@ -156,10 +157,10 @@ const HomeNavigationItem = ({ data, index }) => {
       />
 
       <h2 className="font-header font-bold text-3xl md:text-4xl text-white pointer-events-none z-10 drop-shadow-2xl">
-        {data.title}
+        {data.text}
       </h2>
-
-    </div>
+    </a>
+    </Link>
   )
 }
 
@@ -185,7 +186,9 @@ export async function getStaticProps(context) {
         "slug" : "/" + internalPage->slug
       },
       'navigation': navigation[] {
-        ...,
+        _key,
+        'text': link.text,
+        'slug': "/" + link.internalPage->slug,
         'image' : image {
         ...,
         'metadata': asset->metadata
