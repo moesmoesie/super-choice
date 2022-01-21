@@ -6,7 +6,7 @@ import groq from 'groq'
 export default function Home({ contactPage, global, locale }) {
     return (
         <Layout data={global}>
-            <div className="min-h-screen  w-full grid place-items-center">
+            <div className="h-full w-full grid place-items-center">
                 <h1 className="text-black">{contactPage.title}</h1>
             </div>
         </Layout>

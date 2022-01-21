@@ -6,7 +6,7 @@ import groq from 'groq'
 export default function Home({ sustainabilityPage, global, locale }) {
     return (
         <Layout data={global}>
-            <div className="min-h-screen  w-full grid place-items-center">
+            <div className="h-full w-full grid place-items-center">
                 <h1 className="text-black">{sustainabilityPage.title}</h1>
             </div>
         </Layout>
@@ -23,7 +23,7 @@ export async function getStaticProps(context) {
             'locale' : language->languageCode
         }
     `
-    
+
     var sustainabilityPage = await getClient(context?.preview).fetch(getQuery(locale))
 
     if(!sustainabilityPage){

@@ -7,7 +7,7 @@ import { FaFax } from "@react-icons/all-files/fa/FaFax";
 
 export default function Footer({ data }) {
     return (
-        <footer className="grid lg:grid-cols-2">
+        <footer className="grid lg:grid-cols-2 mt-auto">
             <div className="bg-primary4 px-6">
                 <div className="grid lg:grid-cols-2 py-12 max-w-xl lg:mx-auto">
 
