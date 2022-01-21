@@ -31,12 +31,12 @@ export default function Home({ homePage, global, locale }) {
           </h1>
 
           <div className="flex flex-col md:flex-row items-center gap-5 md:mb-3">
-            <Link href="#">
+            <Link href={homePage.callToAction1.slug}>
               <a className="bg-primary4 button">
                 {homePage.callToAction1.text}
               </a>
             </Link>
-            <Link href="#">
+            <Link href={homePage.callToAction2.slug}>
               <a className="button">
                 {homePage.callToAction2.text}
               </a>
@@ -176,8 +176,14 @@ export async function getStaticProps(context) {
         ...,
         'metadata': asset->metadata
       },
-      callToAction1,
-      callToAction2,
+      callToAction1{
+        text,
+        "slug" : "/" + internalPage->slug
+      },
+      callToAction2{
+        text,
+        "slug" : "/" + internalPage->slug
+      },
       'navigation': navigation[] {
         ...,
         'image' : image {
