@@ -4,6 +4,7 @@ import { AiOutlineLinkedin } from "@react-icons/all-files/ai/AiOutlineLinkedin";
 import { AiOutlineFacebook } from "@react-icons/all-files/ai/AiOutlineFacebook";
 import { AiTwotonePhone } from "@react-icons/all-files/ai/AiTwotonePhone";
 import { FaFax } from "@react-icons/all-files/fa/FaFax";
+import Link from "next/link";
 
 export default function Footer({ data }) {
     return (
@@ -23,8 +24,16 @@ export default function Footer({ data }) {
                     </p>
 
                     <ul className="w-full flex lg:grid lg:grid-cols-2 text-white gap-1 gap-x-3 lg:gap-x-4 flex-wrap">
-                        {data.footerLinks.map((link, index) => {
-                            return <li key={index}>{link}</li>
+                        {data.footerLinks.map((link) => {
+                            return (
+                                <li key={link._key}>
+                                    <Link href={link.slug}>
+                                    <a>
+                                        {link.text}
+                                    </a>
+                                    </Link>
+                                </li>
+                            )
                         })}
                     </ul>
                 </div>

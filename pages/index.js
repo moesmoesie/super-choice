@@ -196,15 +196,11 @@ export async function getStaticProps(context) {
       }
     }
   `
-
   var homePage = await getClient(context?.preview).fetch(getQuery(locale))
-
   if(!homePage){
     homePage = await getClient(context?.preview).fetch(getQuery(defaultLocale))
   }
-
   const global = await getGlobalData(context?.preview, locale, defaultLocale)
-
   return {
     props: {
       "homePage": homePage,
