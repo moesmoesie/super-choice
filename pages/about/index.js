@@ -10,43 +10,40 @@ export default function Home({ aboutPage, global, locale }) {
     return (
         <Layout data={global}>
             <div className="grid grid-cols-1 mt-16 mb-16">
-                <h1 className="wrapper w-full text-primary4 font-black text-4xl mt-14 mb-12">
+                <h1 className="wrapper w-full text-primary4 font-black text-4xl md:text-6xl mt-14 mb-12">
                     {aboutPage.title}
                 </h1>
                 <p className="wrapper">
                     {aboutPage.landingText}
                 </p>
-                <div className="relative row-start-1 aspect-[4/3]">
-                    <Image
-                        className='absolute w-full h-full'
-                        asset={aboutPage.landingImage.asset}
-                        objectFit='object-cover'
-                        placeholder={aboutPage.landingImage.metadata.lqip}
-                        sizes={[600,1200,1800,2400]}
-                    />
-                </div>
-            </div>
-
-            <div className='relative w-full aspect-square'>
                 <Image
-                    className='absolute w-full h-full'
+                    className='relative row-start-1 overflow-hidden wrapper rounded-md h-96 w-full'
                     asset={aboutPage.landingImage.asset}
                     objectFit='object-cover'
                     placeholder={aboutPage.landingImage.metadata.lqip}
-                    sizes={[600,1200,1800,2400]}
+                    sizes={[600, 1200, 1800, 2400]}
                 />
             </div>
 
+            <Image
+                className='relative wrapper overflow-hidden rounded-md h-96 mb-16 w-full'
+                asset={aboutPage.landingImage.asset}
+                objectFit='object-cover'
+                placeholder={aboutPage.landingImage.metadata.lqip}
+                sizes={[600, 1200, 1800, 2400]}
+            />
+
             <Highlight
-                highlight = {aboutPage.highlight}
+                className="mb-12"
+                highlight={aboutPage.highlight}
             />
         </Layout>
     )
 }
 
 export async function getStaticProps(context) {
-    const {locale,defaultLocale} = context
-    
+    const { locale, defaultLocale } = context
+
     const getQuery = (locale) => groq`
         *[_type == "aboutPage" && language->languageCode == '${locale}'][0]{
             _id,
@@ -69,12 +66,12 @@ export async function getStaticProps(context) {
     `
     var aboutPage = await getClient(context?.preview).fetch(getQuery(locale))
 
-    if(!aboutPage){
+    if (!aboutPage) {
         aboutPage = await getClient(context?.preview).fetch(getQuery(defaultLocale))
     }
 
     const global = await getGlobalData(context?.preview, locale, defaultLocale)
-    
+
     return {
         props: {
             "aboutPage": aboutPage,
