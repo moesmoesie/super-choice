@@ -41,31 +41,31 @@ export default function Home({ aboutPage, global, locale }) {
                 highlight={aboutPage.highlight}
             />
 
-            <div className="wrapper hidden rounded-md h-[70rem] lg:grid grid-cols-2 grid-rows-6 mb-16">
+            <div className="wrapper hidden rounded-md h-[55rem] lg:grid grid-cols-2 grid-rows-6 mb-16">
                 <div className="relative row-span-6 py-8 pr-6 ">
                     <Image
                         className='relative h-full rounded-md w-full md:rounded-md overflow-hidden'
-                        asset={aboutPage.landingImage.asset}
+                        asset={aboutPage.gallary.image1.asset}
                         objectFit='object-cover'
-                        placeholder={aboutPage.landingImage.metadata.lqip}
+                        placeholder={aboutPage.gallary.image1.asset}
                         sizes={[600, 1200, 1800, 2400]}
                     />
                 </div>
                 <div className="relative rounded-md row-span-4 pl-6 pb-12">
                     <Image
                         className='relative h-full w-full md:rounded-md overflow-hidden'
-                        asset={aboutPage.landingImage.asset}
+                        asset={aboutPage.gallary.image2.asset}
                         objectFit='object-cover'
-                        placeholder={aboutPage.landingImage.metadata.lqip}
+                        placeholder={aboutPage.gallary.image2.asset}
                         sizes={[600, 1200, 1800, 2400]}
                     />
                 </div>
                 <div className="relative row-span-2 pl-6 ">
                     <Image
                         className='relative h-full w-full md:rounded-md overflow-hidden'
-                        asset={aboutPage.landingImage.asset}
+                        asset={aboutPage.gallary.image3.asset}
                         objectFit='object-cover'
-                        placeholder={aboutPage.landingImage.metadata.lqip}
+                        asset={aboutPage.gallary.image3.asset}
                         sizes={[600, 1200, 1800, 2400]}
                     />
                 </div>
@@ -80,7 +80,7 @@ export async function getStaticProps(context) {
     const { locale, defaultLocale } = context
 
     const getQuery = (locale) => groq`
-        *[_type == "aboutPage" && language->languageCode == '${locale}'][0]{
+     *[_type == "aboutPage" && language->languageCode == '${locale}'][0]{
             _id,
             title,
             'locale' : language->languageCode,
@@ -97,6 +97,20 @@ export async function getStaticProps(context) {
                     'metadata': asset->metadata
                 }
             },
+            gallary{
+                'image1' : image1{
+                    ...,
+                    'metadata': asset->metadata,
+                },
+                'image2' : image2{
+                    ...,
+                    'metadata': asset->metadata,
+                },
+                'image3' : image3{
+                    ...,
+                    'metadata': asset->metadata,
+                },
+            }
         }
     `
     var aboutPage = await getClient(context?.preview).fetch(getQuery(locale))
@@ -106,7 +120,7 @@ export async function getStaticProps(context) {
     }
 
     const global = await getGlobalData(context?.preview, locale, defaultLocale)
-
+    console.log(aboutPage)
     return {
         props: {
             "aboutPage": aboutPage,
