@@ -65,7 +65,6 @@ export default function Home({ aboutPage, global, locale }) {
                         className='relative h-full w-full md:rounded-md overflow-hidden'
                         asset={aboutPage.gallary.image3.asset}
                         objectFit='object-cover'
-                        asset={aboutPage.gallary.image3.asset}
                         sizes={[600, 1200, 1800, 2400]}
                     />
                 </div>
@@ -120,7 +119,6 @@ export async function getStaticProps(context) {
     }
 
     const global = await getGlobalData(context?.preview, locale, defaultLocale)
-    console.log(aboutPage)
     return {
         props: {
             "aboutPage": aboutPage,
