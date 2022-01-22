@@ -9,15 +9,26 @@ import Layout from "../../components/layout"
 export default function Home({ aboutPage, global, locale }) {
     return (
         <Layout data={global}>
-            <div className="grid grid-cols-1 mt-16 mb-16">
-                <h1 className="wrapper w-full text-primary4 font-black text-4xl md:text-6xl mt-14 mb-12">
+            <div className="grid grid-cols-1 lg:grid-rows-[min-content,auto] lg:wrapper lg:grid-cols-2 mt-16 mb-16">
+                <h1 className="wrapper mt-16 mb-14 w-full text-4xl md:text-6xl lg:max-w-none lg:px-0 text-primary4 font-black">
                     {aboutPage.title}
                 </h1>
-                <p className="wrapper">
+                <p className="wrapper lg:max-w-none lg:px-0">
                     {aboutPage.landingText}
                 </p>
+                <div className="relative w-full lg:pr-0 row-start-1 col-start-2 row-span-3 wrapper h-96 lg:h-auto">
+                    <Image
+                        className='relative h-full w-full rounded-md overflow-hidden'
+                        asset={aboutPage.landingImage.asset}
+                        objectFit='object-cover'
+                        placeholder={aboutPage.landingImage.metadata.lqip}
+                        sizes={[600, 1200, 1800, 2400]}
+                    />
+                </div>
+            </div>
+            <div className="relative w-full md:wrapper h-96 md:mb-16 lg:hidden">
                 <Image
-                    className='relative row-start-1 overflow-hidden wrapper rounded-md h-96 w-full'
+                    className='relative h-full w-full md:rounded-md overflow-hidden'
                     asset={aboutPage.landingImage.asset}
                     objectFit='object-cover'
                     placeholder={aboutPage.landingImage.metadata.lqip}
@@ -25,18 +36,42 @@ export default function Home({ aboutPage, global, locale }) {
                 />
             </div>
 
-            <Image
-                className='relative wrapper overflow-hidden rounded-md h-96 mb-16 w-full'
-                asset={aboutPage.landingImage.asset}
-                objectFit='object-cover'
-                placeholder={aboutPage.landingImage.metadata.lqip}
-                sizes={[600, 1200, 1800, 2400]}
-            />
-
             <Highlight
-                className="mb-12"
+                className="md:mb-16"
                 highlight={aboutPage.highlight}
             />
+
+            <div className="wrapper hidden rounded-md h-[70rem] lg:grid grid-cols-2 grid-rows-6 mb-16">
+                <div className="relative row-span-6 py-8 pr-6 ">
+                    <Image
+                        className='relative h-full rounded-md w-full md:rounded-md overflow-hidden'
+                        asset={aboutPage.landingImage.asset}
+                        objectFit='object-cover'
+                        placeholder={aboutPage.landingImage.metadata.lqip}
+                        sizes={[600, 1200, 1800, 2400]}
+                    />
+                </div>
+                <div className="relative rounded-md row-span-4 pl-6 pb-12">
+                    <Image
+                        className='relative h-full w-full md:rounded-md overflow-hidden'
+                        asset={aboutPage.landingImage.asset}
+                        objectFit='object-cover'
+                        placeholder={aboutPage.landingImage.metadata.lqip}
+                        sizes={[600, 1200, 1800, 2400]}
+                    />
+                </div>
+                <div className="relative row-span-2 pl-6 ">
+                    <Image
+                        className='relative h-full w-full md:rounded-md overflow-hidden'
+                        asset={aboutPage.landingImage.asset}
+                        objectFit='object-cover'
+                        placeholder={aboutPage.landingImage.metadata.lqip}
+                        sizes={[600, 1200, 1800, 2400]}
+                    />
+                </div>
+            </div>
+
+
         </Layout>
     )
 }
