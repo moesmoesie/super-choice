@@ -5,10 +5,13 @@ import Image from "./image";
 
 export default function Header({data}) {
     return (
-        <header className="px-4 md:px-12 min-h-[4rem] top-0 z-50 pointer-events-none w-full bg-white absolute flex items-center">
-            <Image className="w-12 aspect-square relative" asset={data.logo.asset} sizes={[300]}/>
-            <HamburgerMenu className='ml-auto sm:ml-12' />
-            <HeaderNavigationLink slug="/" title="contact" />
+        <header className="top-0 z-50 pointer-events-none w-full bg-white absolute ">
+            <div className='flex items-center wrapper min-h-[4rem]'>
+                <Image className="w-12 aspect-square relative" asset={data.logo.asset} sizes={[300]}/>
+                <HamburgerMenu className='ml-auto sm:ml-12' />
+                <HeaderNavigationLink slug="/" title="contact" />
+            </div>
+
         </header>
     )
 }
