@@ -78,19 +78,19 @@ export default function Footer({ data }) {
 const SocialMediaLink = ({data}) => {
     if(data.type == "instagram"){
         return (
-            <a href={data.url} rel="noreferrer" target="_blank">
+            <a aria-label="Instagram profile" href={data.url} rel="noreferrer" target="_blank">
                 <AiOutlineInstagram className="text-primary2" size={20}/>
             </a>
         )
     }else if(data.type == 'linkedin'){
         return (
-            <a href={data.url} rel="noreferrer" target="_blank">
+            <a aria-label="Linkedin profile" href={data.url} rel="noreferrer" target="_blank">
                 <AiOutlineLinkedin className="text-primary2" size={20}/>
             </a>
         )
     }else if(data.type == 'facebook'){
         return (
-            <a href={data.url} rel="noreferrer" target="_blank">
+            <a aria-label="Facebook profile" href={data.url} rel="noreferrer" target="_blank">
                 <AiOutlineFacebook className="text-primary2" size={20}/>
             </a>
         )
