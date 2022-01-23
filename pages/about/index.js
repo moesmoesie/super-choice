@@ -11,69 +11,104 @@ import { Headline1 } from "../../components/headlines"
 export default function Home({ aboutPage, global, locale }) {
     return (
         <Layout data={global}>
-            <div className="grid grid-cols-1 lg:grid-rows-[min-content,auto] lg:wrapper lg:grid-cols-2 mt-16 mb-16">
+            {/* Landing Section */}
+            <div className="grid grid-cols-1 mt-16 mb-16 lg:grid-rows-[min-content,auto] lg:wrapper lg:grid-cols-2">
                 <Headline1 className="wrapper mt-16 mb-14 w-full lg:max-w-none lg:px-0">
                     {aboutPage.title}
                 </Headline1>
-                <p className="wrapper lg:max-w-none lg:px-0">
+
+                <LandingText className="wrapper lg:max-w-none lg:px-0">
                     {aboutPage.landingText}
-                </p>
-                <div className="relative w-full lg:pr-0 row-start-1 col-start-2 row-span-3 wrapper h-96 lg:h-auto">
-                    <Image
-                        className='relative h-full w-full rounded-md overflow-hidden'
-                        asset={aboutPage.landingImage.asset}
-                        objectFit='object-cover'
-                        placeholder={aboutPage.landingImage.metadata.lqip}
-                        sizes={[600, 1200, 1800, 2400]}
-                    />
-                </div>
-            </div>
-            <div className="relative w-full md:wrapper h-96 md:mb-16 lg:hidden">
-                <Image
-                    className='relative h-full w-full md:rounded-md overflow-hidden'
-                    asset={aboutPage.landingImage.asset}
-                    objectFit='object-cover'
-                    placeholder={aboutPage.landingImage.metadata.lqip}
-                    sizes={[600, 1200, 1800, 2400]}
+                </LandingText>
+
+                <LandingImage className="w-full row-start-1 col-start-2 row-span-3 wrapper h-96 lg:h-auto lg:pr-0"
+                    image={aboutPage.landingImage}
                 />
             </div>
+
+            <SmallScreenImage className="relative w-full h-96 md:wrapper md:mb-16"
+                image={aboutPage.gallary.image3}
+            />
 
             <Highlight
                 className="md:mb-16"
                 highlight={aboutPage.highlight}
             />
 
+            {/* Gallary */}
             <div className="wrapper hidden rounded-md h-[55rem] lg:grid grid-cols-2 grid-rows-6 mb-16">
-                <div className="relative row-span-6 py-8 pr-6 ">
-                    <Image
-                        className='relative h-full rounded-md w-full md:rounded-md overflow-hidden'
-                        asset={aboutPage.gallary.image1.asset}
-                        objectFit='object-cover'
-                        placeholder={aboutPage.gallary.image1.asset}
-                        sizes={[600, 1200, 1800, 2400]}
-                    />
-                </div>
-                <div className="relative rounded-md row-span-4 pl-6 pb-12">
-                    <Image
-                        className='relative h-full w-full md:rounded-md overflow-hidden'
-                        asset={aboutPage.gallary.image2.asset}
-                        objectFit='object-cover'
-                        placeholder={aboutPage.gallary.image2.asset}
-                        sizes={[600, 1200, 1800, 2400]}
-                    />
-                </div>
-                <div className="relative row-span-2 pl-6 ">
-                    <Image
-                        className='relative h-full w-full md:rounded-md overflow-hidden'
-                        asset={aboutPage.gallary.image3.asset}
-                        objectFit='object-cover'
-                        sizes={[600, 1200, 1800, 2400]}
-                    />
-                </div>
+
+                <GallaryImage className="row-span-6 py-8 pr-6"
+                    image={aboutPage.gallary.image1}
+                />
+
+                <GallaryImage className="row-span-4 pl-6 pb-12"
+                    image={aboutPage.gallary.image2}
+                />
+
+                <GallaryImage className="row-span-2 pl-6"
+                    image={aboutPage.gallary.image3}
+                />
             </div>
-
-
         </Layout>
+    )
+}
+
+const SmallScreenImage = ({ className, image }) => {
+    return (
+        <>
+            <div className={`relative lg:hidden ${className}`}>
+                <Image
+                    className='relative h-full w-full md:rounded-md overflow-hidden'
+                    asset={image.asset}
+                    objectFit='object-cover'
+                    placeholder={image.metadata.lqip}
+                    sizes={[600, 1200, 1800, 2400]}
+                />
+            </div>
+        </>
+    )
+}
+
+const LandingText = ({ children, className }) => {
+    return (
+        <>
+            <p className={`${className}`}>
+                {children}
+            </p>
+        </>
+    )
+}
+
+const LandingImage = ({ className, image }) => {
+    return (
+        <>
+            <div className={`relative ${className}`}>
+                <Image
+                    className='relative h-full w-full rounded-md overflow-hidden'
+                    asset={image.asset}
+                    objectFit='object-cover'
+                    placeholder={image.metadata.lqip}
+                    sizes={[600, 1200, 1800, 2400]}
+                />
+            </div>
+        </>
+    )
+}
+
+const GallaryImage = ({ className, image }) => {
+    return (
+        <>
+            <div className={`relative ${className}`}>
+                <Image
+                    className='relative h-full w-full md:rounded-md overflow-hidden'
+                    asset={image.asset}
+                    objectFit='object-cover'
+                    placeholder={image.metadata.lqip}
+                    sizes={[600, 1200, 1800, 2400]}
+                />
+            </div>
+        </>
     )
 }
 
