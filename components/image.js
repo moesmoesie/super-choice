@@ -1,6 +1,6 @@
 import { urlForImage } from "../lib/sanity/sanity"
 
-export default function Image({id,image,className,objectFit,loading="lazy",sizes=[]}) {
+export default function Image({id,image,className,objectFit,withPlaceholder=true,loading="lazy",sizes=[]}) {
     const sources = []
 
     sizes.forEach((size) => {
@@ -13,7 +13,7 @@ export default function Image({id,image,className,objectFit,loading="lazy",sizes
 
     return (
         <div className={className} id={id}>
-            {image.metadata.lqip ? (
+            {image.metadata.lqip && withPlaceholder ? (
                 <img
                     className={`w-full h-full top-0 left-0 absolute ${objectFit}`}
                     src={image.metadata.lqip}

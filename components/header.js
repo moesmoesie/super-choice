@@ -7,11 +7,10 @@ export default function Header({data}) {
     return (
         <header className="top-0 z-50 pointer-events-none w-full bg-white absolute ">
             <div className='flex items-center wrapper min-h-[4rem]'>
-                <Image className="w-12 aspect-square relative" image={data.logo} sizes={[300]}/>
+                <Image className="w-12 aspect-square relative" loading='eager' withPlaceholder={false} image={data.logo} sizes={[48]}/>
                 <HamburgerMenu className='ml-auto sm:ml-12' />
                 <HeaderNavigationLink slug="/" title="contact" />
             </div>
-
         </header>
     )
 }
