@@ -36,7 +36,7 @@ export default function Home({ aboutPage, global, locale }) {
             />
 
             {/* Gallary */}
-            <div className="wrapper hidden rounded-md h-[55rem] lg:grid grid-cols-2 grid-rows-6 mb-16">
+            <div className="wrapper hidden rounded-md h-[55rem] lg:grid lg:grid-cols-2 lg:grid-rows-6 lg:mb-16">
 
                 <GallaryImage className="row-span-6 py-8 pr-6"
                     image={aboutPage.gallary.image1}
