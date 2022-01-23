@@ -5,14 +5,16 @@ import React from "react"
 import Image from "../../components/image"
 import Highlight from "../../components/highlight"
 import Layout from "../../components/layout"
+import { Headline1 } from "../../components/headlines"
+
 
 export default function Home({ aboutPage, global, locale }) {
     return (
         <Layout data={global}>
             <div className="grid grid-cols-1 lg:grid-rows-[min-content,auto] lg:wrapper lg:grid-cols-2 mt-16 mb-16">
-                <h1 className="wrapper mt-16 mb-14 w-full text-4xl md:text-6xl lg:max-w-none lg:px-0 text-primary4 font-black">
+                <Headline1 className="wrapper mt-16 mb-14 w-full lg:max-w-none lg:px-0">
                     {aboutPage.title}
-                </h1>
+                </Headline1>
                 <p className="wrapper lg:max-w-none lg:px-0">
                     {aboutPage.landingText}
                 </p>

@@ -4,7 +4,7 @@ import Layout from "../../components/layout"
 import groq from 'groq'
 import Image from '../../components/image'
 import Highlight from '../../components/highlight'
-
+import { Headline1 } from '../../components/headlines'
 export default function Home({ sustainabilityPage, global, locale }) {
     return (
         <Layout data={global}>
@@ -18,9 +18,9 @@ export default function Home({ sustainabilityPage, global, locale }) {
                     />
                 </div>
 
-                <h1 className="wrapper mt-12 mb-12 w-full text-4xl md:text-6xl lg:text-7xl text-primary4 font-black">
+                <Headline1 className='wrapper mt-12 mb-12 w-full'>
                     {sustainabilityPage.title}
-                </h1>
+                </Headline1>
 
                 <p className='wrapper mb-12 lg:columns-2'>
                     {sustainabilityPage.landingText}
