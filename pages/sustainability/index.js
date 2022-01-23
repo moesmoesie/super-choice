@@ -5,32 +5,54 @@ import groq from 'groq'
 import Image from '../../components/image'
 import Highlight from '../../components/highlight'
 import { Headline1 } from '../../components/headlines'
+
 export default function Home({ sustainabilityPage, global, locale }) {
     return (
         <Layout data={global}>
-                <div className="relative w-full md:wrapper mt-20 mb-12 h-96 overflow-hidden">
-                    <Image
-                        className='relative h-full w-full md:rounded-md overflow-hidden'
-                        asset={sustainabilityPage.landingImage.asset}
-                        objectFit='object-cover'
-                        placeholder={sustainabilityPage.landingImage.metadata.lqip}
-                        sizes={[600, 1200, 1800, 2400]}
-                    />
-                </div>
+            <LandingImage className="w-full mt-20 mb-12 h-96 md:wrapper"
+                image={sustainabilityPage.landingImage}
+            />
 
-                <Headline1 className='wrapper mt-12 mb-12 w-full'>
-                    {sustainabilityPage.title}
-                </Headline1>
+            <Headline1 className='wrapper mt-12 mb-12 w-full'>
+                {sustainabilityPage.title}
+            </Headline1>
 
-                <p className='wrapper mb-12 lg:columns-2'>
-                    {sustainabilityPage.landingText}
-                </p>
+            <LandingText className="wrapper mb-12">
+                {sustainabilityPage.landingText}
+            </LandingText>
 
-                <Highlight
-                    className="md:mb-16"
-                    highlight={sustainabilityPage.highlight}
-                />
+            <Highlight
+                className="md:mb-16"
+                highlight={sustainabilityPage.highlight}
+            />
         </Layout>
+    )
+}
+
+const LandingText = ({ className, children }) => {
+    return (
+        <>
+            <p className={`${className} lg:columns-2`}>
+                {children}
+            </p>
+        </>
+    )
+}
+
+
+const LandingImage = ({ className, image }) => {
+    return (
+        <>
+            <div className={`relative overflow-hidden ${className}`}>
+                <Image
+                    className='relative h-full w-full overflow-hidden md:rounded-md'
+                    asset={image.asset}
+                    objectFit='object-cover'
+                    placeholder={image.metadata.lqip}
+                    sizes={[600, 1200, 1800, 2400]}
+                />
+            </div>
+        </>
     )
 }
 
