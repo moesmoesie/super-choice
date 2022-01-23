@@ -13,7 +13,7 @@ export default function Footer({ data }) {
                 <div className="grid lg:grid-cols-2 py-12 max-w-xl lg:mx-auto">
 
                     {/* Logo */}
-                    <Image className="w-16 aspect-square relative mb-4" asset={data.logo.asset} sizes={[300]}/>
+                    <Image className="w-16 aspect-square relative mb-4" image={data.logo} sizes={[300]}/>
 
                     <p className="text-white mb-4 lg:col-start-1 lg:mb-0 lg:self-end">
                         © 2021 <span className="font-bold">Super Choice.</span> <br/> All rights reserved

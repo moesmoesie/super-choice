@@ -65,12 +65,9 @@ const LandingImage = ({ className, image }) => {
     <Image
       className={`${className}`}
       objectFit="object-cover"
-      asset={image.asset}
-      placeholder={image.metadata.lqip}
-      caption={image.title}
-      alt={image.alt}
+      image={image}
       sizes={[600, 1500, 4000]}
-      loading={"eager"}
+      loading="eager"
     />
   )
 }
@@ -166,10 +163,8 @@ const HomeNavigationItem = ({ data, index }) => {
 
         <Image className="absolute w-full h-full"
           id={`HomeNavigationItemImage${index}`}
-          asset={data.image.asset}
+          image={data.image}
           sizes={[1000, 2000]}
-          placeholder={data.image.metadata.lqip}
-          loading={"lazy"}
           objectFit='object-cover'
         />
 

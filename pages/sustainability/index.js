@@ -45,10 +45,10 @@ const LandingImage = ({ className, image }) => {
         <>
             <div className={`relative overflow-hidden ${className}`}>
                 <Image
+                    loading='eager'
                     className='relative h-full w-full overflow-hidden md:rounded-md'
-                    asset={image.asset}
+                    image={image}
                     objectFit='object-cover'
-                    placeholder={image.metadata.lqip}
                     sizes={[600, 1200, 1800, 2400]}
                 />
             </div>

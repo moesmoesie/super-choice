@@ -1,34 +1,34 @@
 import { urlForImage } from "../lib/sanity/sanity"
 
-export default function Image(props) {
+export default function Image({id,image,className,objectFit,loading="lazy",sizes=[]}) {
     const sources = []
 
-    props.sizes?.forEach((size) => {
-        const src = urlForImage(props.asset).width(size).format("webp")
+    sizes.forEach((size) => {
+        const src = urlForImage(image.asset).width(size).format("webp")
         sources.push(`${src} ${size}w`)
     })
 
     const srcset = sources.join(",")
-    const src = urlForImage(props.asset).format("webp")
+    const src = urlForImage(image.asset).format("webp")
 
     return (
-        <div className={`${props.className}`} id={props.id}>
-            {props.placeholder ? (
+        <div className={className} id={id}>
+            {image.metadata.lqip ? (
                 <img
-                    className={`w-full h-full top-0 left-0 absolute ${props.objectFit}`}
-                    src={props.placeholder}
-                    alt={props.alt}
-                    title={props.caption}
+                    className={`w-full h-full top-0 left-0 absolute ${objectFit}`}
+                    src={image.metadata.lqip}
+                    alt={image?.alt}
+                    title={image?.caption}
                     aria-hidden="true">
                 </img>
             ) : ''}
             
             <img
-                className={`w-full h-full top-0 left-0 absolute ${props.objectFit}`}
+                className={`w-full h-full top-0 left-0 absolute ${objectFit}`}
                 src={src}
-                loading={props.loading}
-                alt={props.alt}
-                title={props.caption}
+                loading={loading}
+                alt={image.alt}
+                title={image.caption}
                 sizes="100vw"
                 srcSet={srcset}
                 aria-hidden="true">

@@ -7,7 +7,6 @@ import Highlight from "../../components/highlight"
 import Layout from "../../components/layout"
 import { Headline1 } from "../../components/headlines"
 
-
 export default function Home({ aboutPage, global, locale }) {
     return (
         <Layout data={global}>
@@ -60,9 +59,8 @@ const SmallScreenImage = ({ className, image }) => {
             <div className={`relative lg:hidden ${className}`}>
                 <Image
                     className='relative h-full w-full md:rounded-md overflow-hidden'
-                    asset={image.asset}
+                    image={image}
                     objectFit='object-cover'
-                    placeholder={image.metadata.lqip}
                     sizes={[600, 1200, 1800, 2400]}
                 />
             </div>
@@ -85,10 +83,10 @@ const LandingImage = ({ className, image }) => {
         <>
             <div className={`relative ${className}`}>
                 <Image
+                    loading="eager"
                     className='relative h-full w-full rounded-md overflow-hidden'
-                    asset={image.asset}
+                    image={image}
                     objectFit='object-cover'
-                    placeholder={image.metadata.lqip}
                     sizes={[600, 1200, 1800, 2400]}
                 />
             </div>
@@ -102,9 +100,8 @@ const GallaryImage = ({ className, image }) => {
             <div className={`relative ${className}`}>
                 <Image
                     className='relative h-full w-full md:rounded-md overflow-hidden'
-                    asset={image.asset}
+                    image={image}
                     objectFit='object-cover'
-                    placeholder={image.metadata.lqip}
                     sizes={[600, 1200, 1800, 2400]}
                 />
             </div>

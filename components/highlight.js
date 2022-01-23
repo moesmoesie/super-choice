@@ -73,7 +73,7 @@ const HighlightImage = ({ className, image }) => {
             <div className={`relative hidden md:block rounded-full overflow-hidden bg-red-300 ${className}`}>
                 <Image
                     className='relative h-full w-full md:rounded-md overflow-hidden'
-                    asset={image.asset}
+                    image={image}
                     objectFit='object-cover'
                     sizes={[600]}
                 />
