@@ -6,6 +6,35 @@ import Image from "../../components/image"
 import Highlight from "../../components/highlight"
 import Layout from "../../components/layout"
 import { Headline1 } from "../../components/headlines"
+import SanityBlockContent from "@sanity/block-content-to-react"
+import Link from "next/link"
+
+const serializers = {
+    types: {
+        code: (props) => (
+            <pre data-language={props.node.language}>
+                <code>{props.node.code}</code>
+            </pre>
+        ),
+        block: (props) => {
+            if (props.node.style == 'h1') {
+                return <Headline1>{props.children}</Headline1>
+            }
+            return SanityBlockContent.defaultSerializers.types.block(props)
+        }
+    },
+    marks: {
+        link: (props) => {
+            return <Link href="/"><a className="text-primary3 hover:underline">{props.children}</a></Link>
+        },
+        strong: (props) => {
+            return <span className="font-bold">{props.children}</span>
+        },
+        em: (props) => {
+            return <span className="italic">{props.children}</span>
+        }
+    }
+}
 
 export default function Home({ aboutPage, global, locale }) {
     return (
@@ -16,9 +45,9 @@ export default function Home({ aboutPage, global, locale }) {
                     {aboutPage.title}
                 </Headline1>
 
-                <LandingText className="wrapper lg:max-w-none lg:px-0">
-                    {aboutPage.landingText}
-                </LandingText>
+                <SanityBlockContent className="wrapper lg:max-w-none lg:px-0"
+                    blocks={aboutPage.textEditor} serializers={serializers} />
+
 
                 <LandingImage className="w-full row-start-1 col-start-2 row-span-3 wrapper h-96 lg:h-auto lg:pr-0"
                     image={aboutPage.landingImage}
@@ -122,6 +151,7 @@ export async function getStaticProps(context) {
                 'metadata': asset->metadata
             },
             landingText,
+            textEditor,
             language,
             'highlight' : highlight{
                 ...,
