@@ -48,7 +48,7 @@ const HighlightText = ({ className, children, hasImage }) => {
 const HighlightCta = ({ className, cta }) => {
     return (
         <>
-            <Link href='#'>
+            <Link href={cta.slug}>
                 <a className={`button bg-primary5 text-xs ${className}`}>
                     {cta.text}
                 </a>

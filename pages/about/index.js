@@ -125,6 +125,10 @@ export async function getStaticProps(context) {
             language,
             'highlight' : highlight{
                 ...,
+                'callToAction': callToAction{
+                    text,
+                    'slug': "/" + internalPage->slug
+                },
                 'image' : image{
                     ...,
                     'metadata': asset->metadata
