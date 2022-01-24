@@ -17,7 +17,7 @@ export default function Home({ aboutPage, global, locale }) {
                     {aboutPage.title}
                 </Headline1>
 
-                <div className="wrapper !mx-0 !max-w-prose lg:max-w-none lg:px-0">
+                <div className="wrapper !mx-0 !max-w-prose lg:max-w-none lg:row-start-2 lg:px-0">
                     <SanityBlockContent
                         blocks={aboutPage.landingContent} serializers={serializers} />
                 </div>
