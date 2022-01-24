@@ -5,6 +5,8 @@ import groq from 'groq'
 import Image from '../../components/image'
 import Highlight from '../../components/highlight'
 import { Headline1 } from '../../components/headlines'
+import SanityBlockContent from '@sanity/block-content-to-react'
+import serializers from '../../lib/serializers'
 
 export default function Home({ sustainabilityPage, global, locale }) {
     return (
@@ -17,9 +19,10 @@ export default function Home({ sustainabilityPage, global, locale }) {
                 {sustainabilityPage.title}
             </Headline1>
 
-            <LandingText className="wrapper mb-12">
-                {sustainabilityPage.landingText}
-            </LandingText>
+            <div className="wrapper mb-12">
+                <SanityBlockContent
+                    blocks={sustainabilityPage.landingContent} serializers={serializers} />
+            </div>
 
             <Highlight
                 className="md:mb-16"
@@ -63,6 +66,7 @@ export async function getStaticProps(context) {
         *[_type == "sustainabilityPage" && language->languageCode == '${locale}'][0]{
             _id,
             title,
+            landingContent,
             'locale' : language->languageCode,
             'highlight' : highlight{
             ...,
@@ -75,7 +79,6 @@ export async function getStaticProps(context) {
             ...,
             'metadata': asset->metadata
             },
-            landingText
         }
     `
 
