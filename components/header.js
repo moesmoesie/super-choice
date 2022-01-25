@@ -4,6 +4,7 @@ import Link from "next/link";
 import Image from "./image";
 import AppContext from '../lib/contexts/AppContext';
 import { useContext, useEffect} from 'react';
+import { playOpenMenuAnimation, playCloseMenuAnimation } from '../lib/animations/MenuAnimations';
 
 export default function Header({data}) {
     return (
@@ -48,84 +49,19 @@ const HeaderNavigationLink = ({slug, title }) => {
 const HamburgerMenu = (props) => {
     const {isMenuOpen, setIsMenuOpen} = useContext(AppContext);
 
-
-    const openHamburger = () => {
+    const openMenu = () => {
         setIsMenuOpen(true)
-        anime({
-            targets: ".HamburgerMenuTopLine",
-            y2: 80,
-            duration: 500,
-            stroke: '#ffffff'
-        });
-
-        anime({
-            targets: ".HamburgerMenuMiddelLine",
-            opacity: 0,
-            duration: 500,
-            stroke: '#ffffff'
-        });
-
-        anime({
-            targets: ".HamburgerMenuBottomLine",
-            y2: 20,
-            duration: 500,
-            stroke: '#ffffff'
-        });
-
-        anime({
-            targets: ".hamburgerOpenText",
-            opacity: 0,
-            duration: 500
-        });
-
-        anime({
-            targets: ".hamburgerCloseText",
-            translateY: [-10, 0],
-            opacity: [0, 1],
-            duration: 500
-        });
+        playOpenMenuAnimation()
     }
 
-    const closeHamburger = () => {
+    const closeMenu = () => {
         setIsMenuOpen(false)
-        anime({
-            targets: ".HamburgerMenuTopLine",
-            y2: 20,
-            duration: 500,
-            stroke: "#66C3FF"
-        });
-
-        anime({
-            targets: ".HamburgerMenuMiddelLine",
-            opacity: 1,
-            duration: 500,
-            stroke: "#66C3FF"
-        });
-
-        anime({
-            targets: ".HamburgerMenuBottomLine",
-            y2: 80,
-            duration: 500,
-            stroke: "#66C3FF"
-        });
-
-        anime({
-            targets: ".hamburgerCloseText",
-            opacity: 0,
-            duration: 500
-        });
-
-        anime({
-            targets: ".hamburgerOpenText",
-            translateY: [-10, 0],
-            opacity: [0, 1],
-            duration: 500
-        });
+        playCloseMenuAnimation()
     }
 
     return (
         <button className={`pointer-events-auto flex items-center gap-2 ${props.className}`}
-            onClick={isMenuOpen ? closeHamburger : openHamburger}>
+            onClick={isMenuOpen ? closeMenu : openMenu}>
             <svg viewBox="0 0 100 100" className="w-8 stroke-primary2">
                 <line className="HamburgerMenuTopLine origin-left" x1="20" y1="20" x2="80" y2="20" strokeWidth={"10"} />
                 <line className="HamburgerMenuMiddelLine" x1="20" y1="50" x2="80" y2="50" strokeWidth={"10"} />
