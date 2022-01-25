@@ -1,5 +1,7 @@
 import Link from "next/link"
 import Image from "./image"
+import serializers from '../lib/serializers'
+import SanityBlockContent from "@sanity/block-content-to-react"
 
 export default function Highlight(props) {
     const { highlight } = props
@@ -8,6 +10,7 @@ export default function Highlight(props) {
 
     return (
         <div className={`md:wrapper lg:max-w-none ${props.className}`}>
+
             <div className="wrapper py-12 bg-primary3 md:rounded-md">
                 <div className="flex gap-7 items-center">
                     <div className="flex-1">
@@ -16,7 +19,8 @@ export default function Highlight(props) {
                         </HeadlineTitle>
 
                         <HighlightText hasImage={hasImage}>
-                            {highlight?.text}
+                            <SanityBlockContent
+                                blocks={highlight.content} serializers={serializers} />
                         </HighlightText>
 
                         {hasCta && (
