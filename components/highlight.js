@@ -24,7 +24,7 @@ export default function Highlight(props) {
                         </HighlightText>
 
                         {hasCta && (
-                            <div className="pt-8">
+                            <div className="mt-7">
                                 <HighlightCta cta={highlight.callToAction} />
                             </div>
                         )}
