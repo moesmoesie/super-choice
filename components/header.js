@@ -31,19 +31,19 @@ const HamburgerMenu = (props) => {
         setIsOpen(true)
         anime({
             targets: ".HamburgerMenuTopLine",
-            y2: "80",
+            y2: 80,
             duration: 500
         });
 
         anime({
             targets: ".HamburgerMenuMiddelLine",
-            opacity: "0",
+            opacity: 0,
             duration: 500
         });
 
         anime({
             targets: ".HamburgerMenuBottomLine",
-            y2: "20",
+            y2: 20,
             duration: 500
         });
     }
@@ -52,20 +52,19 @@ const HamburgerMenu = (props) => {
         setIsOpen(false)
         anime({
             targets: ".HamburgerMenuTopLine",
-            y2: "20",
-
+            y2: 20,
             duration: 500
         });
 
         anime({
             targets: ".HamburgerMenuMiddelLine",
-            opacity: "1",
+            opacity: 1,
             duration: 500
         });
 
         anime({
             targets: ".HamburgerMenuBottomLine",
-            y2: "80",
+            y2: 80,
             duration: 500
         });
     }
