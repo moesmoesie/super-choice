@@ -1,0 +1,10 @@
+{
+    "root": true,
+    "project": {
+      "name": "Super Choice"
+    },
+    "api": {
+      "projectId": "xd02umkk",
+      "dataset": "production"
+    }
+}
