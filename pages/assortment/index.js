@@ -11,10 +11,70 @@ export default function Assortment({ pageData, global, locale }) {
     return (
         <Layout data={global}>
             <LandingImage className="mt-20" image={pageData.landingImage} />
-            <LandingSectionMain pageData={pageData}/>
+            <LandingSectionMain pageData={pageData} />
+            <Main pageData={pageData} />
         </Layout>
     )
 }
+
+const Main = ({ pageData }) => {
+    return (
+        <>
+            <div className='w-full drop-shadow-md bg-white pb-6'>
+                <div className='w-full gap-6 wrapper flex flex-wrap items-center justify-center'>
+                    {pageData.productFilters.map((el) => {
+                        return (
+                            <button className='py-2 px-6 bg-white border-2 rounded-lg border-primary3 text-primary3'>
+                                {el}
+                            </button>
+                        )
+                    })}
+                </div>
+            </div>
+            <ProductSections products={pageData.productFilters} pageData={pageData }/>
+        </>
+    )
+}
+
+const ProductSections = ({ products, pageData }) => {
+    return (
+        <div className='bg-[#E0F3FF]'>
+            <div className='wrapper w-full grid grid-cols-1 md:grid-cols-2 place-items-center lg:grid-cols-3 py-8 gap-8'>
+                {products.map((el) => {
+                    return (
+                        <ProductCard image={pageData.landingProductImage} />
+                    )
+                })}
+            </div>
+        </div>
+    )
+}
+
+const ProductCard = ({ image }) => {
+    return (
+        <div className='w-full flex flex-col bg-white rounded-md max-w-sm md:max-w-md drop-shadow-lg aspect-[3/5]'>
+            <div className='flex-1'>
+                <div className='h-full p-8'>
+                    <Image
+                        className="relative w-full h-full"
+                        image={image}
+                        objectFit='object-contain'
+                    />
+                </div>
+            </div>
+
+            <div className='flex flex-1 flex-col pl-6 pr-6 pb-6'>
+                <p className='text-primary3 text-2xl mb-4'>Dim Sum Shrimpers</p>
+                <p>Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit.</p>
+                <button className='py-2 mt-auto px-6 bg-white border-2 rounded-lg border-primary3 text-primary3'>
+                    Zie Product
+                </button>
+            </div>
+        </div>
+    )
+}
+
+
 
 const LandingSectionMain = ({ pageData }) => {
     return (
