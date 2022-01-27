@@ -21,7 +21,7 @@ const AssortmentMain = ({ pageData }) => {
     return (
         <>
             <FilterButtonRow filters={pageData.productFilters} />
-            <ProductSections products={pageData.productFilters} pageData={pageData} />
+            <ProductSections products={pageData.products} pageData={pageData} />
         </>
     )
 }
@@ -49,31 +49,31 @@ const ProductSections = ({ products, pageData }) => {
         <div className='bg-[#E0F3FF]'>
             <div className='wrapper w-full grid grid-cols-1 md:grid-cols-2 place-items-center lg:grid-cols-3 py-8 gap-8'>
                 {products.map((el,index) => 
-                    <ProductCard key={index} image={pageData.landingProductImage}/>
+                    <ProductCard key={index} cta={pageData.productCtaText} product={el} image={pageData.landingProductImage}/>
                 )}
             </div>
         </div>
     )
 }
 
-const ProductCard = ({ image }) => {
+const ProductCard = ({ product,cta }) => {
     return (
-        <div className='w-full flex flex-col bg-white rounded-md max-w-sm md:max-w-md drop-shadow-lg aspect-[3/5]'>
+        <div className='w-full flex flex-col bg-white rounded-md max-w-sm md:max-w-md aspect-[3/5]'>
             <div className='flex-1'>
                 <div className='h-full p-8'>
                     <Image
                         className="relative w-full h-full"
-                        image={image}
+                        image={product.image}
                         objectFit='object-contain'
                     />
                 </div>
             </div>
 
             <div className='flex flex-1 flex-col pl-6 pr-6 pb-6'>
-                <p className='text-primary3 text-2xl mb-4'>Dim Sum Shrimpers</p>
-                <p>Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit.</p>
+                <p className='text-primary3 text-2xl mb-4'>{product.title}</p>
+                <p>{product.summary}</p>
                 <button className='py-2 mt-auto px-6 bg-white border-2 rounded-lg border-primary3 text-primary3'>
-                    Zie Product
+                    {cta}
                 </button>
             </div>
         </div>
