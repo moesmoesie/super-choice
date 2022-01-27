@@ -1,6 +1,16 @@
 import { urlForImage } from "../lib/sanity/sanity"
+import { useRef, useEffect, useState } from "react";
 
-export default function Image({id,image,className,objectFit,withPlaceholder=true,loading="lazy",sizes=[]}) {
+export default function Image({ id, image, className, objectFit, withPlaceholder = true, loading = "lazy", sizes = [] }) {
+    const [isLoaded, setLoaded] = useState(false);
+    const imgRef = useRef(null);
+    useEffect(() => {
+        if (imgRef.current?.complete) {
+            setLoaded(true)
+        }
+    }, []);
+
+
     const sources = []
 
     sizes.forEach((size) => {
@@ -15,17 +25,20 @@ export default function Image({id,image,className,objectFit,withPlaceholder=true
         <div className={className} id={id}>
             {image.metadata.lqip && withPlaceholder ? (
                 <img
-                    className={`w-full h-full top-0 left-0 absolute ${objectFit}`}
+                    className={`w-full h-full top-0 left-0 absolute ${objectFit} ${isLoaded ? "hidden" : ''}`}
                     src={image.metadata.lqip}
+                    onLoad={(e) => console.log("Loaded Placeholder")}
                     alt={image?.alt}
                     title={image?.caption}
                     aria-hidden="true">
                 </img>
             ) : ''}
-            
+
             <img
                 className={`w-full h-full top-0 left-0 absolute ${objectFit}`}
                 src={src}
+                ref={imgRef}
+                onLoad={(e) => setLoaded(true)}
                 loading={loading}
                 alt={image.alt}
                 title={image.caption}
