@@ -58,7 +58,7 @@ const ProductSections = ({ products, pageData }) => {
 
 const ProductCard = ({ product,cta }) => {
     return (
-        <div className='w-full flex flex-col bg-white rounded-md max-w-sm md:max-w-md aspect-[3/5]'>
+        <div className='w-full flex flex-col bg-white rounded-md max-w-sm md:max-w-md aspect-[3/5] cardShadow'>
             <div className='flex-1'>
                 <div className='h-full p-8'>
                     <Image
