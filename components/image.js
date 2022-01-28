@@ -5,7 +5,6 @@ export default function Image({ id, aspectRatio, image, className, objectFit, wi
     const [isLoaded, setLoaded] = useState(false);
     const imgRef = useRef(null);
     useEffect(() => {
-        console.log(aspectRatio)
         if (imgRef.current?.complete) {
             setLoaded(true)
         }
