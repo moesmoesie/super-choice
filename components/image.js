@@ -27,7 +27,6 @@ export default function Image({ id, aspectRatio, image, className, objectFit, wi
                 <img
                     className={`w-full h-full top-0 left-0 absolute ${objectFit} ${isLoaded ? "hidden" : ''}`}
                     src={image.metadata.lqip}
-                    onLoad={(e) => console.log("Loaded Placeholder")}
                     alt={image?.alt}
                     title={image?.caption}
                     aria-hidden="true">

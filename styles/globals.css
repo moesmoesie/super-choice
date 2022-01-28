@@ -165,6 +165,10 @@
                 uppercase font-bold transition duration-150 ease-in-out;
     }
 
+    .button2{
+        @apply py-2 px-6 bg-white border-2 rounded-lg border-primary3 text-primary3
+    }
+
     @media (hover: hover) and (pointer: fine) {
         .button{
             @apply  hover:bg-secondary1 hover:-translate-y-1 hover:shadow-2xl
