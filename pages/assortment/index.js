@@ -87,16 +87,16 @@ const ProductSections = ({ products, pageData }) => {
 const ProductCard = ({ product, cta }) => {
     return (
         <Link href="#">
-            <a className='w-full flex min-h-[32rem] flex-col bg-white rounded-md cardShadow group'>
+            <a className='w-full h-full flex min-h-[32rem] flex-col bg-white rounded-md cardShadow group'>
                 <Image
                     className="relative w-full h-64 mt-6 mb-4"
                     image={product.image}
                     objectFit='object-contain'
                 />
                 <div className='flex flex-1 flex-col pl-6 pr-6 pb-6'>
-                    <p className='text-primary3 font-medium font-header text-2xl mb-6'>{product.title}</p>
+                    <p className='text-primary3 font-medium font-header text-2xl mb-6 truncate'>{product.title}</p>
                     <p className='mb-8'>{product.summary}</p>
-                    <button className={`button2 duration-300 group-hover:text-white group-hover:bg-primary3`}>
+                    <button className={`button2 duration-300 mt-auto group-hover:text-white group-hover:bg-primary3`}>
                         {cta}
                     </button>
                 </div>
