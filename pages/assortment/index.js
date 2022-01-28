@@ -9,6 +9,7 @@ import serializers from '../../lib/serializers'
 import { useState, useContext, useEffect } from 'react'
 import Link from 'next/link'
 const PageContext = React.createContext();
+import FilterRow from '../../components/FilterRow'
 
 export default function Assortment({ pageData, global, locale }) {
     return (
@@ -23,40 +24,18 @@ export default function Assortment({ pageData, global, locale }) {
 const AssortmentMain = ({ pageData }) => {
     const [selectedFilter, setSelectedFilter] = useState(null);
 
+    function onFilterClick(value){
+        setSelectedFilter(selectedFilter == value ? null : value)
+    }
+
     return (
         <PageContext.Provider value={{ selectedFilter, setSelectedFilter }}>
-            <FilterButtonRow filters={pageData.productFilters} />
+            <FilterRow onClick={onFilterClick} currentFilter={selectedFilter} filters={pageData.productFilters} />
             <ProductSections products={pageData.products} pageData={pageData} />
         </PageContext.Provider>
     )
 }
 
-const FilterButtonRow = ({ filters }) => {
-    return (
-        <div className='w-full drop-shadow-md bg-white pb-6'>
-            <div className='w-full gap-6 wrapper flex flex-wrap items-center justify-center'>
-                {filters.map((filter, index) => <FilterButton key={index} filter={filter} />)}
-            </div>
-        </div>
-    )
-}
-
-const FilterButton = ({ filter }) => {
-    const { selectedFilter, setSelectedFilter } = useContext(PageContext);
-
-    const onClick = (e) => {
-        setSelectedFilter(selectedFilter == filter.value ? null : filter.value)
-    }
-
-    return (
-        <button className={`button2 duration-300
-            ${selectedFilter == filter.value ? "!bg-primary3 !text-white" : ''}`}
-            onClick={onClick}
-        >
-            {filter.title}
-        </button>
-    )
-}
 
 const ProductSections = ({ products, pageData }) => {
     const [currentProducts, setCurrentProducts] = useState(products);
