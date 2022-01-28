@@ -11,7 +11,8 @@ module.exports = {
         "primary3": "#18A0FB",
         "primary4": "#007ACC",
         "primary5": "#142C4B",
-        "secondary1": "#FFB01F"
+        "secondary1": "#FFB01F",
+        "bodyColor": "#444444"
       },
       fontFamily: {
         'header': ['Mulish', 'sans-serif'],
