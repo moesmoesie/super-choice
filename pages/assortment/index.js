@@ -47,31 +47,27 @@ const FilterButton = ({ filter, value }) => {
 const ProductSections = ({ products, pageData }) => {
     return (
         <div className='bg-[#E0F3FF]'>
-            <div className='wrapper w-full grid grid-cols-1 md:grid-cols-2 place-items-center lg:grid-cols-3 py-8 gap-8'>
-                {products.map((el,index) => 
-                    <ProductCard key={index} cta={pageData.productCtaText} product={el} image={pageData.landingProductImage}/>
+            <div className='wrapper w-full grid py-8 gap-y-8 grid-cols-[minmax(auto,22rem)] md:grid-cols-[repeat(2,minmax(auto,22rem))] lg:grid-cols-[repeat(3,minmax(auto,22rem))] gap-8 justify-center place-items-center'>
+                {products.map((el, index) =>
+                    <ProductCard key={index} cta={pageData.productCtaText} product={el} image={pageData.landingProductImage} />
                 )}
             </div>
         </div>
     )
 }
 
-const ProductCard = ({ product,cta }) => {
+const ProductCard = ({ product, cta }) => {
     return (
-        <div className='w-full flex flex-col bg-white rounded-md max-w-sm md:max-w-md aspect-[3/5] cardShadow'>
-            <div className='flex-1'>
-                <div className='h-full p-8'>
-                    <Image
-                        className="relative w-full h-full"
-                        image={product.image}
-                        objectFit='object-contain'
-                    />
-                </div>
-            </div>
+        <div className='w-full flex min-h-[32rem] flex-col bg-white rounded-md cardShadow'>
+            <Image
+                className="relative w-full h-64 mt-6 mb-4"
+                image={product.image}
+                objectFit='object-contain'
+            />
 
             <div className='flex flex-1 flex-col pl-6 pr-6 pb-6'>
-                <p className='text-primary3 text-2xl mb-4'>{product.title}</p>
-                <p>{product.summary}</p>
+                <p className='text-primary3 font-medium font-header text-2xl mb-6'>{product.title}</p>
+                <p className='mb-8'>{product.summary}</p>
                 <button className='py-2 mt-auto px-6 bg-white border-2 rounded-lg border-primary3 text-primary3'>
                     {cta}
                 </button>
