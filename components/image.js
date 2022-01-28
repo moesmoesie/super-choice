@@ -1,10 +1,11 @@
 import { urlForImage } from "../lib/sanity/sanity"
 import { useRef, useEffect, useState } from "react";
 
-export default function Image({ id, image, className, objectFit, withPlaceholder = true, loading = "lazy", sizes = [] }) {
+export default function Image({ id, aspectRatio, image, className, objectFit, withPlaceholder = true, loading = "lazy", sizes = [] }) {
     const [isLoaded, setLoaded] = useState(false);
     const imgRef = useRef(null);
     useEffect(() => {
+        console.log(aspectRatio)
         if (imgRef.current?.complete) {
             setLoaded(true)
         }
@@ -22,7 +23,7 @@ export default function Image({ id, image, className, objectFit, withPlaceholder
     const src = urlForImage(image.asset).format("webp")
 
     return (
-        <div className={className} id={id}>
+        <div style={{aspectRatio: `${aspectRatio}`}} className={className} id={id}>
             {image.metadata.lqip && withPlaceholder ? (
                 <img
                     className={`w-full h-full top-0 left-0 absolute ${objectFit} ${isLoaded ? "hidden" : ''}`}
