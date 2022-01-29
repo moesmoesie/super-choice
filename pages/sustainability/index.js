@@ -11,7 +11,7 @@ import { getSerializer } from '../../lib/serializers'
 export default function Home({ sustainabilityPage, global, locale }) {
     return (
         <Layout data={global}>
-            <LandingImage className="w-full mt-20 mb-12 h-96 md:wrapper"
+            <LandingImage className="w-full mb-12 h-72 md:wrapper"
                 image={sustainabilityPage.landingImage}
             />
 
@@ -26,7 +26,7 @@ export default function Home({ sustainabilityPage, global, locale }) {
             </div>
 
             <Highlight
-                className="md:mb-16"
+                className="md:mb-16 !max-w-[900px]"
                 highlight={sustainabilityPage.highlight}
             />
         </Layout>

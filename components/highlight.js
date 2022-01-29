@@ -64,7 +64,7 @@ const HighlightCta = ({ className, cta }) => {
 const HeadlineTitle = ({ className, children }) => {
     return (
         <>
-            <p className={`text-4xl font-bold text-white md:text-5xl font-header ${className}`}>
+            <p className={`text-[40px] leading-  font-bold text-white md:text-5xl font-header ${className}`}>
                 {children}
             </p>
         </>

@@ -12,17 +12,17 @@ export default function Home({ aboutPage, global, locale }) {
     return (
         <Layout data={global}>
             {/* Landing Section */}
-            <div className="grid grid-cols-1 mb-16 lg:grid-rows-[min-content,auto] lg:wrapper lg:grid-cols-2">
+            <div className="grid grid-cols-1 mb-16 lg:gap-4 lg:grid-rows-[min-content,auto] lg:wrapper lg:grid-cols-2">
                 <Headline1 className="wrapper mt-16 mb-14 w-full lg:max-w-none lg:px-0">
                     {aboutPage.title}
                 </Headline1>
 
-                <div className="wrapper !mx-0 !max-w-prose lg:max-w-none lg:row-start-2 lg:px-0">
+                <div className="wrapper !mx-0 !max-w-[900px] lg:max-w-none lg:row-start-2 lg:px-0">
                     <SanityBlockContent
                         blocks={aboutPage.landingContent} serializers={getSerializer()} />
                 </div>
 
-                <LandingImage className="w-full row-start-1 lg:col-start-2 lg:row-span-3 wrapper h-96 lg:h-auto lg:pr-0"
+                <LandingImage className="w-full row-start-1 lg:col-start-2 lg:row-span-3 h-72 lg:h-auto lg:pr-0"
                     image={aboutPage.landingImage}
                 />
             </div>
