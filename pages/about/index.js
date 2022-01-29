@@ -12,7 +12,7 @@ export default function Home({ aboutPage, global, locale }) {
     return (
         <Layout data={global}>
             {/* Landing Section */}
-            <div className="grid grid-cols-1 mt-16 mb-16 lg:grid-rows-[min-content,auto] lg:wrapper lg:grid-cols-2">
+            <div className="grid grid-cols-1 mb-16 lg:grid-rows-[min-content,auto] lg:wrapper lg:grid-cols-2">
                 <Headline1 className="wrapper mt-16 mb-14 w-full lg:max-w-none lg:px-0">
                     {aboutPage.title}
                 </Headline1>
