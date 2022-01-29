@@ -11,14 +11,14 @@ export default function Home({ homePage, global, locale }) {
     <Layout data={global}>
 
       {/* Landing Section */}
-      <div className=" h-screen w-full relative">
+      <div className=" h-screen -mt-[4rem] w-full relative">
 
         <LandingImage
           className="absolute w-full h-full"
           image={homePage.landingImage}
         />
 
-        <div className="absolute bottom-[5vh] w-full flex flex-col items-center">
+        <div className="absolute top-1/2 w-full flex flex-col items-center">
 
           <LandingTitle className="mb-5 md:mb-12">
             {homePage.title}
@@ -52,7 +52,7 @@ const LandingCTA = ({ className, cta }) => {
   return (
     <>
       <Link href={cta.slug}>
-        <a className={`button ${className}`}>
+        <a className={`button rounded-md ${className}`}>
           {cta.text}
         </a>
       </Link>

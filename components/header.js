@@ -1,16 +1,19 @@
-import { useState } from 'react';
 import anime from "animejs";
 import Link from "next/link";
 import Image from "./image";
 import AppContext from '../lib/contexts/AppContext';
-import { useContext, useEffect} from 'react';
+import { useContext, useEffect } from 'react';
 import { playOpenMenuAnimation, playCloseMenuAnimation } from '../lib/animations/MenuAnimations';
 
-export default function Header({data}) {
+export default function Header({ data }) {
     return (
-        <header className="top-0 z-50 pointer-events-none w-full absolute ">
+        <header className="top-0 z-50 pointer-events-none w-full bg-white sticky ">
             <div className='flex items-center wrapper min-h-[4rem]'>
-                <Image className="w-12 aspect-square relative" loading='eager' withPlaceholder={false} image={data.logo} sizes={[48]}/>
+                <Link href='/'>
+                    <a className='pointer-events-auto'>
+                        <Image className="w-12 aspect-square relative" loading='eager' withPlaceholder={false} image={data.logo} sizes={[180]} />
+                    </a>
+                </Link>
                 <HamburgerMenu className='ml-auto sm:ml-12' />
                 <HeaderNavigationLink slug="/" title="contact" />
             </div>
@@ -18,23 +21,23 @@ export default function Header({data}) {
     )
 }
 
-const HeaderNavigationLink = ({slug, title }) => {
-    const {isMenuOpen} = useContext(AppContext);
+const HeaderNavigationLink = ({ slug, title }) => {
+    const { isMenuOpen } = useContext(AppContext);
 
     useEffect(() => {
-       if(isMenuOpen){
+        if (isMenuOpen) {
             anime({
                 targets: ".link",
                 color: "#FFFFFF",
                 duration: 500
             });
-       }else{
-        anime({
-            targets: ".link",
-            color: "#007ACC",
-            duration: 500
-        });
-       }
+        } else {
+            anime({
+                targets: ".link",
+                color: "#007ACC",
+                duration: 500
+            });
+        }
     });
 
     return (
@@ -47,7 +50,7 @@ const HeaderNavigationLink = ({slug, title }) => {
 }
 
 const HamburgerMenu = (props) => {
-    const {isMenuOpen, setIsMenuOpen} = useContext(AppContext);
+    const { isMenuOpen, setIsMenuOpen } = useContext(AppContext);
 
     const openMenu = () => {
         setIsMenuOpen(true)
