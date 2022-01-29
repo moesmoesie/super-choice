@@ -9,21 +9,98 @@ import { FaFax } from '@react-icons/all-files/fa/FaFax'
 import { AiOutlineFacebook } from '@react-icons/all-files/ai/AiOutlineFacebook'
 import { AiOutlineInstagram } from '@react-icons/all-files/ai/AiOutlineInstagram'
 import { AiOutlineLinkedin } from '@react-icons/all-files/ai/AiOutlineLinkedin'
+import { useState } from 'react'
 
 export default function ContactPage({ pageData, global, locale }) {
     return (
         <Layout data={global}>
-            <div className='wrapper mt-24'>
+            <div className='wrapper'>
+            <BannerImage className="wrapper mb-12 mt-24" image={pageData.landingImage} />
+            <div className='grid lg:grid-cols-3 gap-8'>
                 <InfoSection pageData={pageData} global={global} />
+                <ContactForm className="lg:col-span-2" />
             </div>
+            </div>
+           
         </Layout>
+    )
+}
+
+const ContactForm = ({className}) => {
+    const [firstName, setFirstName] = useState('')
+    const [lastName, setLastName] = useState('')
+    const [email, setEmail] = useState('')
+    const [message, setMessage] = useState('')
+    const [submitted, setSubmitted] = useState(false)
+
+    async function fromSubmit(e){
+        e.preventDefault();
+        alert(`
+            First Name: ${firstName}
+            Last Name: ${lastName}
+            Email: ${email}
+            Message: ${message}
+        `)
+        return false
+    }
+
+    return (
+        <form className={`grid md:grid-cols-2 gap-5 mb-16 ${className}`}>
+            <ContactFromInput placeholder="First name" onChange={(e) => setFirstName(e.target.value)}/>
+            <ContactFromInput placeholder="Last name" onChange={(e) => setLastName(e.target.value)}/>
+            <ContactFromInput className="md:col-span-2" placeholder={"Email address"} onChange={(e) => setEmail(e.target.value)}/>
+            <ContactFromTextArea className="md:col-span-2" placeholder="Write your message" onChange={(e) => setMessage(e.target.value)} />
+            <div className='md:col-span-2'>
+                <ContactFromSubmitButton onClick={fromSubmit} />
+            </div>
+        </form>
+    )
+}
+
+const ContactFromSubmitButton = ({onClick}) => {
+    return (
+        <button className='bg-primary3 px-12 py-2 text-white rounded-md font-medium'
+            type='submit'
+            onClick={onClick}>
+            Verstuur
+        </button>
+    )
+}
+
+const ContactFromTextArea = ({placeholder, className, onChange}) => {
+    return (
+        <textarea className={`${className}
+            from-input bg-[#53D8FB]/5 border border-[#66C3FF] rounded-md py-2 px-2
+            text-primary3 min-h-[15rem]
+            placeholder:text-primary2
+            focus:border-primary3 focus:outline-none focus:placeholder:text-primary3`}
+            type='text'
+            onChange={onChange}
+            placeholder={placeholder}
+        />
+    )
+}
+
+const ContactFromInput = ({placeholder, className, onChange}) => {
+    return (
+        <>
+            <input className={` ${className}
+                from-input bg-[#53D8FB]/5 border border-[#66C3FF] rounded-md py-2 px-2
+                text-primary3
+                placeholder:text-primary2
+                focus:border-primary3 focus:outline-none focus:placeholder:text-primary3`}
+                type='text'
+                maxLength={25}
+                onChange={onChange}
+                placeholder= {placeholder}
+            />
+        </>
     )
 }
 
 const InfoSection = ({ pageData, className, global }) => {
     return (
         <div className={` ${className}`}>
-            <BannerImage className="mb-12" image={pageData.landingImage} />
             <Headline1 className="mb-6">
                 {pageData.title}
             </Headline1>
@@ -32,7 +109,7 @@ const InfoSection = ({ pageData, className, global }) => {
     )
 }
 
-const CompanyInfo = ({ data}) => {
+const CompanyInfo = ({ data }) => {
     return (
         <div className="grid md:grid-cols-2 lg:grid-cols-1 lg:mx-auto">
             <div>
