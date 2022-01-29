@@ -6,7 +6,7 @@ import Image from '../../components/image'
 import Highlight from '../../components/highlight'
 import { Headline1 } from '../../components/headlines'
 import SanityBlockContent from '@sanity/block-content-to-react'
-import serializers from '../../lib/serializers'
+import {getSerializer} from '../../lib/serializers'
 
 export default function Home({ sustainabilityPage, global, locale }) {
     return (
@@ -21,7 +21,7 @@ export default function Home({ sustainabilityPage, global, locale }) {
 
             <div className="wrapper mb-12">
                 <SanityBlockContent
-                    blocks={sustainabilityPage.landingContent} serializers={serializers} />
+                    blocks={sustainabilityPage.landingContent} serializers={getSerializer()} />
             </div>
 
             <Highlight

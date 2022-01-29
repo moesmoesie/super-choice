@@ -6,7 +6,7 @@ import Highlight from "../../components/highlight"
 import Layout from "../../components/layout"
 import { Headline1 } from "../../components/headlines"
 import SanityBlockContent from "@sanity/block-content-to-react"
-import serializers from "../../lib/serializers"
+import {getSerializer} from "../../lib/serializers"
 
 export default function Home({ aboutPage, global, locale }) {
     return (
@@ -19,7 +19,7 @@ export default function Home({ aboutPage, global, locale }) {
 
                 <div className="wrapper !mx-0 !max-w-prose lg:max-w-none lg:row-start-2 lg:px-0">
                     <SanityBlockContent
-                        blocks={aboutPage.landingContent} serializers={serializers} />
+                        blocks={aboutPage.landingContent} serializers={getSerializer()} />
                 </div>
 
                 <LandingImage className="w-full row-start-1 lg:col-start-2 lg:row-span-3 wrapper h-96 lg:h-auto lg:pr-0"

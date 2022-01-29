@@ -5,7 +5,7 @@ import AssortmentPageQuery from '../../lib/sanity/queries/AssortmentPageQuery'
 import Image from '../../components/image'
 import { Headline1 } from '../../components/headlines'
 import SanityBlockContent from '@sanity/block-content-to-react'
-import serializers from '../../lib/serializers'
+import {getSerializer} from '../../lib/serializers'
 import { useState, useContext, useEffect } from 'react'
 import Link from 'next/link'
 const PageContext = React.createContext();
@@ -113,7 +113,7 @@ const MobileLandingSectionMain = ({ pageData, className }) => {
 
             <div className="mb-16 row-start-2 col-span-full">
                 <SanityBlockContent
-                    blocks={pageData.landingContent} serializers={serializers} />
+                    blocks={pageData.landingContent} serializers={getSerializer()} />
             </div>
         </div>
     )
@@ -137,7 +137,7 @@ const TabletLandingSectionMain = ({ pageData, className }) => {
             </div>
             <div className="">
                 <SanityBlockContent
-                    blocks={pageData.landingContent} serializers={serializers} />
+                    blocks={pageData.landingContent} serializers={getSerializer()} />
             </div>
         </div>
     )
@@ -158,7 +158,7 @@ const DesktopLandingSectionMain = ({ pageData, className }) => {
             </div>
             <div className="row-start-2 col-start-1 col-span-3 ">
                 <SanityBlockContent
-                    blocks={pageData.landingContent} serializers={serializers} />
+                    blocks={pageData.landingContent} serializers={getSerializer()} />
             </div>
         </div>
     )

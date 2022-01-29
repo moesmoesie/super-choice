@@ -1,7 +1,7 @@
 import Link from "next/link"
 import Image from "./image"
-import serializers from '../lib/serializers'
 import SanityBlockContent from "@sanity/block-content-to-react"
+import { getSerializer } from "../lib/serializers"
 
 export default function Highlight(props) {
     const { highlight } = props
@@ -20,7 +20,7 @@ export default function Highlight(props) {
 
                         <HighlightText hasImage={hasImage}>
                             <SanityBlockContent
-                                blocks={highlight.content} serializers={serializers} />
+                                blocks={highlight.content} serializers={getSerializer("text-white")} />
                         </HighlightText>
 
                         {hasCta && (
@@ -42,9 +42,9 @@ export default function Highlight(props) {
 const HighlightText = ({ className, children, hasImage }) => {
     return (
         <>
-            <p className={`text-white  ${hasImage ? '' : 'md:columns-2'} ${className}`}>
+            <div className={`text-white  ${hasImage ? '' : 'md:columns-2'} ${className}`}>
                 {children}
-            </p>
+            </div>
         </>
     )
 }
