@@ -15,7 +15,7 @@ export default function ContactPage({ pageData, global, locale }) {
     return (
         <Layout data={global}>
             <div className='wrapper'>
-            <BannerImage className="wrapper mb-12 mt-24" image={pageData.landingImage} />
+            <BannerImage className="wrapper mb-12" image={pageData.landingImage} />
             <div className='grid lg:grid-cols-3 gap-8'>
                 <InfoSection pageData={pageData} global={global} />
                 <ContactForm className="lg:col-span-2" />
