@@ -73,7 +73,7 @@ const ContactFromTextArea = ({placeholder, className, onChange}) => {
             from-input bg-[#53D8FB]/5 border border-[#66C3FF] rounded-md py-2 px-2
             text-primary3 min-h-[15rem]
             placeholder:text-primary2
-            focus:border-primary3 focus:outline-none focus:placeholder:text-primary3`}
+            focus:border-primary4 focus:outline-none focus:text-primary4 focus:placeholder:text-primary4`}
             type='text'
             onChange={onChange}
             placeholder={placeholder}
@@ -88,7 +88,7 @@ const ContactFromInput = ({placeholder, className, onChange}) => {
                 from-input bg-[#53D8FB]/5 border border-[#66C3FF] rounded-md py-2 px-2
                 text-primary3
                 placeholder:text-primary2
-                focus:border-primary3 focus:outline-none focus:placeholder:text-primary3`}
+                focus:border-primary4 focus:outline-none focus:text-primary4 focus:placeholder:text-primary4`}
                 type='text'
                 maxLength={25}
                 onChange={onChange}
