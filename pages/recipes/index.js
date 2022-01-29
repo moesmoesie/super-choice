@@ -10,6 +10,7 @@ import { useState, useEffect, useContext } from 'react'
 import FilterRow from '../../components/FilterRow'
 const PageContext = React.createContext();
 import Image from '../../components/image'
+import FishBackground from '../../components/FishBackground'
 
 export default function RecipesPage({ pageData, global, locale }) {
     return (
@@ -57,19 +58,20 @@ const RecipesSection = ({ pageData }) => {
 
 
     return (
-        <div className='bg-[#E0F3FF] min-h-[40rem]'>
-            <div className='wrapper w-full grid py-8 gap-y-8 gap-8'>
+        <div className='bg-[#E0F3FF] min-h-[40rem] overflow-hidden relative'>
+            <div className='wrapper z-20 w-full grid py-8 gap-y-8 gap-8'>
                 {currentRecipes.map((el, index) =>
                     <RecipeCard key={index} recipe={el} cta="Zie recept" />
                 )}
             </div>
+            <FishBackground/>
         </div>
     )
 }
 
 const RecipeCard = ({ recipe, cta }) => {
     return (
-        <a className={`w-full bg-white overflow-hidden rounded-md cardShadow group
+        <a className={`w-full bg-white z-20 overflow-hidden rounded-md cardShadow group
                 grid md:grid-cols-10 md:min-h-[15rem]
             `}>
 

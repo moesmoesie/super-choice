@@ -5,11 +5,12 @@ import AssortmentPageQuery from '../../lib/sanity/queries/AssortmentPageQuery'
 import Image from '../../components/image'
 import { Headline1 } from '../../components/headlines'
 import SanityBlockContent from '@sanity/block-content-to-react'
-import {getSerializer} from '../../lib/serializers'
+import { getSerializer } from '../../lib/serializers'
 import { useState, useContext, useEffect } from 'react'
 import Link from 'next/link'
 const PageContext = React.createContext();
 import FilterRow from '../../components/FilterRow'
+import FishBackground from '../../components/FishBackground'
 
 export default function Assortment({ pageData, global, locale }) {
     return (
@@ -24,7 +25,7 @@ export default function Assortment({ pageData, global, locale }) {
 const AssortmentMain = ({ pageData }) => {
     const [selectedFilter, setSelectedFilter] = useState(null);
 
-    function onFilterClick(value){
+    function onFilterClick(value) {
         setSelectedFilter(selectedFilter == value ? null : value)
     }
 
@@ -39,22 +40,25 @@ const AssortmentMain = ({ pageData }) => {
 
 const ProductSections = ({ products, pageData }) => {
     const [currentProducts, setCurrentProducts] = useState(products);
-    const { selectedFilter} = useContext(PageContext);
+    const { selectedFilter } = useContext(PageContext);
     useEffect(() => {
-        if(!selectedFilter){
+        if (!selectedFilter) {
             setCurrentProducts(products)
-        }else{
+        } else {
             const p = products.filter((el) => {
                 return el.catagories.includes(selectedFilter)
             })
             setCurrentProducts(p)
         }
     }, [selectedFilter, products]);
-   
+
 
     return (
-        <div className='bg-[#E0F3FF]'>
-            <div className='wrapper w-full grid py-8 gap-y-8 grid-cols-[minmax(auto,22rem)] md:grid-cols-[repeat(2,minmax(auto,22rem))] lg:grid-cols-[repeat(3,minmax(auto,22rem))] gap-8 justify-center place-items-center'>
+        <div className='bg-[#E0F3FF] relative overflow-hidden'>
+
+            <FishBackground/>
+
+            <div className='wrapper z-20 w-full grid py-8 gap-y-8 grid-cols-[minmax(auto,22rem)] md:grid-cols-[repeat(2,minmax(auto,22rem))] lg:grid-cols-[repeat(3,minmax(auto,22rem))] gap-8 justify-center place-items-center'>
                 {currentProducts.map((el, index) =>
                     <ProductCard key={index} cta={pageData.productCtaText} product={el} image={pageData.landingProductImage} />
                 )}
@@ -66,7 +70,7 @@ const ProductSections = ({ products, pageData }) => {
 const ProductCard = ({ product, cta }) => {
     return (
         <Link href="#">
-            <a className='w-full h-full flex min-h-[32rem] flex-col bg-white rounded-md cardShadow group'>
+            <a className='w-full z-20 h-full flex min-h-[32rem] flex-col bg-white rounded-md cardShadow group'>
                 <Image
                     className="relative w-full h-64 mt-6 mb-4"
                     image={product.image}

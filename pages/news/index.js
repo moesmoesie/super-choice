@@ -11,6 +11,7 @@ import { useState, useContext, useEffect } from 'react'
 const PageContext = React.createContext();
 import Link from 'next/link'
 import Image from '../../components/image'
+import FishBackground from '../../components/FishBackground'
 
 export default function News({ pageData, global, locale }) {
     return (
@@ -55,7 +56,8 @@ const ArticleSection = ({pageData}) => {
 
 
     return (
-        <div className='bg-[#E0F3FF] min-h-[40rem]'>
+        <div className='bg-[#E0F3FF] min-h-[40rem] overflow-hidden'>
+            <FishBackground/>
             <div className='wrapper w-full grid py-8 gap-y-8 grid-cols-[minmax(auto,22rem)] md:grid-cols-[repeat(2,minmax(auto,22rem))] lg:grid-cols-[repeat(3,minmax(auto,22rem))] gap-8 justify-center place-items-center'>
                 {currentArticles.map((el, index) =>
                     <ArticleCard key={index} article={el} cta="Lees meer"/>
@@ -68,7 +70,7 @@ const ArticleSection = ({pageData}) => {
 const ArticleCard = ({ article, cta }) => {
     return (
         <Link href="#">
-            <a className='w-full h-full flex min-h-[32rem] flex-col bg-white overflow-hidden rounded-md cardShadow group'>
+            <a className='w-full z-20 h-full flex min-h-[32rem] flex-col bg-white overflow-hidden rounded-md cardShadow group'>
                 <Image
                     className="relative w-full h-80 mb-6"
                     image={article.previewImage}
