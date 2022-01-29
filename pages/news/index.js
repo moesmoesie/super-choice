@@ -5,7 +5,7 @@ import NewsPageQuery from '../../lib/sanity/queries/NewsPageQuery'
 import { Headline1 } from '../../components/headlines'
 import BannerImage from '../../components/BannerImage'
 import SanityBlockContent from '@sanity/block-content-to-react'
-import {getSerializer} from '../../lib/serializers'
+import { getSerializer } from '../../lib/serializers'
 import FilterRow from '../../components/FilterRow'
 import { useState, useContext, useEffect } from 'react'
 const PageContext = React.createContext();
@@ -16,7 +16,7 @@ import FishBackground from '../../components/FishBackground'
 export default function News({ pageData, global, locale }) {
     return (
         <Layout data={global}>
-            <LandingSection className="mt-16 mb-12" pageData={pageData} />
+            <LandingSection className="mb-12" pageData={pageData} />
             <MainSection pageData={pageData} />
         </Layout>
     )
@@ -35,18 +35,18 @@ const MainSection = ({ pageData }) => {
                 onClick={onFilterClick}
                 currentFilter={selectedFilter}
                 filters={pageData.articleFilters} />
-            <ArticleSection pageData={pageData}/>
+            <ArticleSection pageData={pageData} />
         </PageContext.Provider>
     )
 }
 
-const ArticleSection = ({pageData}) => {
+const ArticleSection = ({ pageData }) => {
     const [currentArticles, setCurrentArticles] = useState(pageData.articles);
-    const { selectedFilter} = useContext(PageContext);
+    const { selectedFilter } = useContext(PageContext);
     useEffect(() => {
-        if(!selectedFilter){
+        if (!selectedFilter) {
             setCurrentArticles(pageData.articles)
-        }else{
+        } else {
             const p = pageData.articles.filter((el) => {
                 return el.catagories.includes(selectedFilter)
             })
@@ -56,13 +56,16 @@ const ArticleSection = ({pageData}) => {
 
 
     return (
-        <div className='bg-[#E0F3FF] min-h-[40rem] overflow-hidden'>
-            <FishBackground/>
-            <div className='wrapper w-full grid py-8 gap-y-8 grid-cols-[minmax(auto,22rem)] md:grid-cols-[repeat(2,minmax(auto,22rem))] lg:grid-cols-[repeat(3,minmax(auto,22rem))] gap-8 justify-center place-items-center'>
-                {currentArticles.map((el, index) =>
-                    <ArticleCard key={index} article={el} cta="Lees meer"/>
-                )}
+        <div className='bg-[#E0F3FF]'>
+            <div className='min-h-[40rem] relative overflow-hidden'>
+                <FishBackground />
+                <div className='wrapper w-full grid py-20 gap-y-8 grid-cols-[minmax(auto,22rem)] md:grid-cols-[repeat(2,minmax(auto,22rem))] lg:grid-cols-[repeat(3,minmax(auto,22rem))] gap-8 justify-center place-items-center'>
+                    {currentArticles.map((el, index) =>
+                        <ArticleCard key={index} article={el} cta="Lees meer" />
+                    )}
+                </div>
             </div>
+
         </div>
     )
 }
@@ -71,12 +74,15 @@ const ArticleCard = ({ article, cta }) => {
     return (
         <Link href="#">
             <a className='w-full z-20 h-full flex min-h-[32rem] flex-col bg-white overflow-hidden rounded-md cardShadow group'>
-                <Image
-                    className="relative w-full h-80 mb-6"
-                    image={article.previewImage}
-                    objectFit='object-cover'
-                />
-                <div className='flex flex-1 flex-col pl-6 pr-6 pb-6'>
+                <div className='overflow-hidden h-80 mb-6 w-full'>
+                    <Image
+                        className="relative group-hover:scale-110 h-full duration-300 w-full  "
+                        image={article.previewImage}
+                        objectFit='object-cover'
+                    />
+                </div>
+
+                <div className='flex flex-1 flex-col pl-6 pr-6 pb-8'>
                     <p className='text-primary3 font-medium font-header text-3xl truncate'>{article.title}</p>
                     <p className='text-[#8D8F94] font-header mb-6'>12 feb 2022</p>
                     <p className='mb-8'>{article.summary}</p>

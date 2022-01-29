@@ -5,7 +5,7 @@ import RecipePageQuery from '../../lib/sanity/queries/RecipePageQuery'
 import BannerImage from '../../components/BannerImage'
 import { Headline1 } from '../../components/headlines'
 import SanityBlockContent from '@sanity/block-content-to-react'
-import {getSerializer} from '../../lib/serializers'
+import { getSerializer } from '../../lib/serializers'
 import { useState, useEffect, useContext } from 'react'
 import FilterRow from '../../components/FilterRow'
 const PageContext = React.createContext();
@@ -58,13 +58,15 @@ const RecipesSection = ({ pageData }) => {
 
 
     return (
-        <div className='bg-[#E0F3FF] min-h-[40rem] overflow-hidden relative'>
-            <div className='wrapper z-20 w-full grid py-8 gap-y-8 gap-8'>
-                {currentRecipes.map((el, index) =>
-                    <RecipeCard key={index} recipe={el} cta="Zie recept" />
-                )}
+        <div className='bg-[#E0F3FF] '>
+            <div className='min-h-[40rem] overflow-hidden relative'>
+                <div className='wrapper z-20 w-full grid py-20 gap-y-8 gap-8'>
+                    {currentRecipes.map((el, index) =>
+                        <RecipeCard key={index} recipe={el} cta="Zie recept" />
+                    )}
+                </div>
+                <FishBackground />
             </div>
-            <FishBackground/>
         </div>
     )
 }
@@ -76,9 +78,12 @@ const RecipeCard = ({ recipe, cta }) => {
             `}>
 
             <div className='w-full md:col-span-4 md:p-6 h-72 md:h-auto'>
-                <Image className="relative w-full h-full md:rounded-md overflow-hidden"
-                    objectFit="object-cover"
-                    image={recipe.previewImage} />
+                <div className='w-full h-full overflow-hidden md:rounded-md'>
+                    <Image className="relative group-hover:scale-110 duration-300 w-full h-full  overflow-hidden"
+                        objectFit="object-cover"
+                        image={recipe.previewImage} />
+                </div>
+
             </div>
 
 

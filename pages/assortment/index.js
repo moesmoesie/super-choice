@@ -15,7 +15,7 @@ import FishBackground from '../../components/FishBackground'
 export default function Assortment({ pageData, global, locale }) {
     return (
         <Layout data={global}>
-            <LandingImage className="mt-20" image={pageData.landingImage} />
+            <LandingImage image={pageData.landingImage} />
             <LandingSectionMain pageData={pageData} />
             <AssortmentMain pageData={pageData} />
         </Layout>
@@ -52,16 +52,15 @@ const ProductSections = ({ products, pageData }) => {
         }
     }, [selectedFilter, products]);
 
-
     return (
-        <div className='bg-[#E0F3FF] relative overflow-hidden'>
-
-            <FishBackground/>
-
-            <div className='wrapper z-20 w-full grid py-8 gap-y-8 grid-cols-[minmax(auto,22rem)] md:grid-cols-[repeat(2,minmax(auto,22rem))] lg:grid-cols-[repeat(3,minmax(auto,22rem))] gap-8 justify-center place-items-center'>
-                {currentProducts.map((el, index) =>
-                    <ProductCard key={index} cta={pageData.productCtaText} product={el} image={pageData.landingProductImage} />
-                )}
+        <div className='bg-[#E0F3FF] '>
+            <div className='relative overflow-hidden'>
+                <FishBackground />
+                <div className='wrapper w-full grid py-20 gap-y-8 grid-cols-[minmax(auto,22rem)] md:grid-cols-[repeat(2,minmax(auto,22rem))] lg:grid-cols-[repeat(3,22rem)] gap-8 justify-center place-items-center'>
+                    {currentProducts.map((el, index) =>
+                        <ProductCard key={index} cta={pageData.productCtaText} product={el} image={pageData.landingProductImage} />
+                    )}
+                </div>
             </div>
         </div>
     )
@@ -72,13 +71,13 @@ const ProductCard = ({ product, cta }) => {
         <Link href="#">
             <a className='w-full z-20 h-full flex min-h-[32rem] flex-col bg-white rounded-md cardShadow group'>
                 <Image
-                    className="relative w-full h-64 mt-6 mb-4"
+                    className="relative w-full group-hover:scale-110 duration-300 h-64 mt-6 mb-6"
                     image={product.image}
                     objectFit='object-contain'
                 />
-                <div className='flex flex-1 flex-col pl-6 pr-6 pb-6'>
+                <div className='flex flex-1 flex-col pl-6 pr-6 pb-8'>
                     <p className='text-primary3 font-medium font-header text-2xl mb-6 truncate'>{product.title}</p>
-                    <p className='mb-8'>{product.summary}</p>
+                    <p className='mb-10'>{product.summary}</p>
                     <button className={`button2 duration-300 mt-auto group-hover:text-white group-hover:bg-primary3`}>
                         {cta}
                     </button>
@@ -104,7 +103,7 @@ const MobileLandingSectionMain = ({ pageData, className }) => {
     return (
         <div className='relative wrapper md:hidden'>
             <Image className={`
-                mx-auto w-[70%] max-w-sm
+                mx-auto w-[70%] max-w-[20rem]
                 -translate-y-28`}
                 loading='eager'
                 aspectRatio={pageData.landingProductImage.metadata.dimensions.aspectRatio}
@@ -173,7 +172,7 @@ const LandingImage = ({ className, image }) => {
         <div className={`md:wrapper ${className}`}>
             <Image
                 loading="eager"
-                className='relative aspect-[5/4] md:aspect-[10/3] w-full rounded-md overflow-hidden'
+                className='relative h-72 w-full rounded-md overflow-hidden'
                 image={image}
                 objectFit='object-cover'
                 sizes={[600, 1200, 1800, 2400]}

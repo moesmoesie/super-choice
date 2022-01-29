@@ -1,6 +1,6 @@
 export default function FilterRow({ filters, currentFilter, onClick }) {
     return (
-        <div className='w-full drop-shadow-md bg-white pb-6'>
+        <div className='w-full drop-shadow-xl bg-white pb-6'>
             <div className='w-full gap-6 wrapper flex flex-wrap items-center justify-center'>
                 {filters.map((filter, index) => (
                     <FilterButton
