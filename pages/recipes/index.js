@@ -5,7 +5,7 @@ import RecipePageQuery from '../../lib/sanity/queries/RecipePageQuery'
 import BannerImage from '../../components/BannerImage'
 import { Headline1 } from '../../components/headlines'
 import SanityBlockContent from '@sanity/block-content-to-react'
-import serializers from '../../lib/serializers'
+import {getSerializer} from '../../lib/serializers'
 import { useState, useEffect, useContext } from 'react'
 import FilterRow from '../../components/FilterRow'
 const PageContext = React.createContext();
@@ -53,14 +53,14 @@ const RecipesSection = ({ pageData }) => {
             })
             setCurrentRecipes(p)
         }
-    }, [selectedFilter]);
+    }, [selectedFilter, pageData.recipes]);
 
 
     return (
         <div className='bg-[#E0F3FF] min-h-[40rem]'>
             <div className='wrapper w-full grid py-8 gap-y-8 gap-8'>
                 {currentRecipes.map((el, index) =>
-                    <RecipeCard recipe={el} cta="Zie recept" />
+                    <RecipeCard key={index} recipe={el} cta="Zie recept" />
                 )}
             </div>
         </div>
@@ -101,7 +101,7 @@ const LandingSection = ({ pageData, className }) => {
             <Headline1 className="mb-12 lg:my-12 lg:row-start-1">{pageData.title}</Headline1>
             <div className='lg:col-start-1 lg:pb-12 lg:max-w-[80%]'>
                 <SanityBlockContent
-                    blocks={pageData.landingContent} serializers={serializers} />
+                    blocks={pageData.landingContent} serializers={getSerializer()} />
             </div>
         </div>
     )

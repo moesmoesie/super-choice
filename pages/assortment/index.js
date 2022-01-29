@@ -49,7 +49,7 @@ const ProductSections = ({ products, pageData }) => {
             })
             setCurrentProducts(p)
         }
-    }, [selectedFilter]);
+    }, [selectedFilter, products]);
    
 
     return (

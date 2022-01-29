@@ -5,7 +5,7 @@ import NewsPageQuery from '../../lib/sanity/queries/NewsPageQuery'
 import { Headline1 } from '../../components/headlines'
 import BannerImage from '../../components/BannerImage'
 import SanityBlockContent from '@sanity/block-content-to-react'
-import serializers from '../../lib/serializers'
+import {getSerializer} from '../../lib/serializers'
 import FilterRow from '../../components/FilterRow'
 import { useState, useContext, useEffect } from 'react'
 const PageContext = React.createContext();
@@ -51,7 +51,7 @@ const ArticleSection = ({pageData}) => {
             })
             setCurrentArticles(p)
         }
-    }, [selectedFilter]);
+    }, [selectedFilter, pageData.articles]);
 
 
     return (
@@ -96,7 +96,7 @@ const LandingSection = ({ pageData, className }) => {
             <Headline1 className="mb-12 lg:my-12 lg:row-start-1">{pageData.title}</Headline1>
             <div className='lg:col-start-1 lg:pb-12 lg:max-w-[80%]'>
                 <SanityBlockContent
-                    blocks={pageData.landingContent} serializers={serializers} />
+                    blocks={pageData.landingContent} serializers={getSerializer()} />
             </div>
         </div>
     )

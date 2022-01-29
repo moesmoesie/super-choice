@@ -1,5 +1,5 @@
 import Image from "./image"
-export default ({ image, className }) => {
+const BannerImage = ({ image, className }) => {
     return (
         <Image
             className={`relative w-full h-72 md:h-80 rounded-md overflow-hidden ${className}`}
@@ -9,3 +9,4 @@ export default ({ image, className }) => {
     )
 }
 
+export default BannerImage
