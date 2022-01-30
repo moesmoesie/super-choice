@@ -7,12 +7,13 @@ import BannerImage from '../../components/BannerImage'
 import SanityBlockContent from '@sanity/block-content-to-react'
 import { getSerializer } from '../../lib/serializers'
 import FilterRow from '../../components/FilterRow'
-import { useState, useContext, useEffect } from 'react'
-const PageContext = React.createContext();
+import { useState} from 'react'
 import Link from 'next/link'
 import Image from '../../components/image'
-import FishBackground from '../../components/FishBackground'
 import { filterCollection } from '../../lib/hooks/FilterCollection'
+import CollectionGrid from '../../components/CollectionGrid'
+
+const PageContext = React.createContext();
 
 export default function News({ pageData, global, locale }) {
     return (
@@ -25,7 +26,7 @@ export default function News({ pageData, global, locale }) {
 
 const MainSection = ({ pageData }) => {
     const [selectedFilter, setSelectedFilter] = useState(null);
-    const {data} = filterCollection({filter: selectedFilter, collection: pageData.articles})
+    const { data } = filterCollection({ filter: selectedFilter, collection: pageData.articles })
 
     function onFilterClick(value) {
         setSelectedFilter(selectedFilter == value ? null : value)
@@ -45,16 +46,14 @@ const MainSection = ({ pageData }) => {
 const ArticleSection = ({ articles }) => {
 
     return (
-        <div className='bg-[#E0F3FF]'>
-            <div className='min-h-[40rem] relative overflow-hidden'>
-                <FishBackground />
-                <div className='wrapper w-full grid py-20 gap-y-8 grid-cols-[minmax(auto,22rem)] md:grid-cols-[repeat(2,minmax(auto,22rem))] lg:grid-cols-[repeat(3,minmax(auto,22rem))] gap-8 justify-center place-items-center'>
-                    {articles.map((el, index) =>
-                        <ArticleCard key={index} article={el} cta="Lees meer" />
-                    )}
-                </div>
-            </div>
-        </div>
+        <CollectionGrid>
+            {articles.map((article, index) =>
+                <ArticleCard 
+                    key={index} 
+                    article={article}
+                    cta="Lees meer" />
+            )}
+        </CollectionGrid>
     )
 }
 
@@ -82,8 +81,6 @@ const ArticleCard = ({ article, cta }) => {
         </Link>
     )
 }
-
-
 
 const LandingSection = ({ pageData, className }) => {
     return (

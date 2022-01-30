@@ -9,8 +9,8 @@ import { getSerializer } from '../../lib/serializers'
 import { useState } from 'react'
 import FilterRow from '../../components/FilterRow'
 import Image from '../../components/image'
-import FishBackground from '../../components/FishBackground'
 import { filterCollection } from '../../lib/hooks/FilterCollection'
+import CollectionGrid from '../../components/CollectionGrid'
 
 const PageContext = React.createContext();
 
@@ -43,16 +43,14 @@ const MainSection = ({ pageData }) => {
 
 const RecipesSection = ({ recipes }) => {
     return (
-        <div className='bg-[#E0F3FF] '>
-            <div className='min-h-[40rem] overflow-hidden relative'>
-                <div className='wrapper z-20 w-full grid py-20 gap-y-8 gap-8'>
-                    {recipes.map((el, index) =>
-                        <RecipeCard key={index} recipe={el} cta="Zie recept" />
-                    )}
-                </div>
-                <FishBackground />
-            </div>
-        </div>
+        <CollectionGrid type='wide'>
+            {recipes.map((el, index) =>
+                <RecipeCard 
+                    key={index} 
+                    recipe={el} 
+                    cta="Zie recept" />
+            )}
+        </CollectionGrid>
     )
 }
 
@@ -91,15 +89,15 @@ const RecipeCard = ({ recipe, cta }) => {
 const LandingSection = ({ pageData, className }) => {
     return (
         <div className={`wrapper grid lg:grid-rows-[min-content,auto] lg:grid-cols-2 ${className}`}>
-            <BannerImage className="mb-14 lg:col-start-2 lg:h-full lg:col-span-full lg:row-span-2 lg:mb-0" 
+            <BannerImage className="mb-14 lg:col-start-2 lg:h-full lg:col-span-full lg:row-span-2 lg:mb-0"
                 image={pageData.landingImage} />
             <Headline1 className="mb-12 lg:my-12 lg:row-start-1">
                 {pageData.title}
             </Headline1>
             <div className='lg:col-start-1 lg:pb-12 lg:max-w-[80%]'>
                 <SanityBlockContent
-                    blocks={pageData.landingContent} 
-                    serializers={getSerializer()}/>
+                    blocks={pageData.landingContent}
+                    serializers={getSerializer()} />
             </div>
         </div>
     )

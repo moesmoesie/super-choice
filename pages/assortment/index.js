@@ -11,6 +11,7 @@ import Link from 'next/link'
 import FilterRow from '../../components/FilterRow'
 import FishBackground from '../../components/FishBackground'
 import { filterCollection } from '../../lib/hooks/FilterCollection'
+import CollectionGrid from '../../components/CollectionGrid'
 
 const PageContext = React.createContext();
 
@@ -26,7 +27,7 @@ export default function Assortment({ pageData, global, locale }) {
 
 const AssortmentMain = ({ pageData }) => {
     const [selectedFilter, setSelectedFilter] = useState(null);
-    const {data} =  filterCollection({collection: pageData.products, filter: selectedFilter})
+    const { data } = filterCollection({ collection: pageData.products, filter: selectedFilter })
 
     function onFilterClick(value) {
         setSelectedFilter(selectedFilter == value ? null : value)
@@ -42,21 +43,15 @@ const AssortmentMain = ({ pageData }) => {
 
 
 const ProductSections = ({ products, pageData }) => {
-   
     return (
-        <div className='bg-[#E0F3FF] '>
-            <div className='relative overflow-hidden'>
-                <FishBackground />
-                <div className='wrapper w-full grid py-20 gap-y-8 grid-cols-[minmax(auto,22rem)] md:grid-cols-[repeat(2,minmax(auto,22rem))] lg:grid-cols-[repeat(3,22rem)] gap-8 justify-center place-items-center'>
-                    {products.map((el, index) =>
-                        <ProductCard 
-                            key={index} 
-                            cta={pageData.productCtaText} 
-                            product={el}/>
-                    )}
-                </div>
-            </div>
-        </div>
+        <CollectionGrid>
+            {products.map((product, index) =>
+                <ProductCard
+                    key={index}
+                    cta={pageData.productCtaText}
+                    product={product}/>
+            )}
+        </CollectionGrid>
     )
 }
 
@@ -67,7 +62,7 @@ const ProductCard = ({ product, cta }) => {
                 <Image
                     className="relative w-full group-hover:scale-110 duration-300 h-64 mt-6 mb-6"
                     image={product.image}
-                    objectFit='object-contain'/>
+                    objectFit='object-contain' />
                 <div className='flex flex-1 flex-col pl-6 pr-6 pb-8'>
                     <p className='text-primary3 font-medium font-header text-2xl mb-6 truncate'>
                         {product.title}
