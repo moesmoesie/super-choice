@@ -11,6 +11,7 @@ import FilterRow from '../../components/FilterRow'
 import Image from '../../components/image'
 import { filterCollection } from '../../lib/hooks/FilterCollection'
 import CollectionGrid from '../../components/CollectionGrid'
+import Link from 'next/link'
 
 const PageContext = React.createContext();
 
@@ -45,9 +46,9 @@ const RecipesSection = ({ recipes }) => {
     return (
         <CollectionGrid type='wide'>
             {recipes.map((el, index) =>
-                <RecipeCard 
-                    key={index} 
-                    recipe={el} 
+                <RecipeCard
+                    key={index}
+                    recipe={el}
                     cta="Zie recept" />
             )}
         </CollectionGrid>
@@ -56,32 +57,34 @@ const RecipesSection = ({ recipes }) => {
 
 const RecipeCard = ({ recipe, cta }) => {
     return (
-        <a className={`w-full bg-white z-20 overflow-hidden rounded-md cardShadow group
+        <Link href={`recipes/${recipe.slug}`}>
+            <a className={`w-full bg-white z-20 overflow-hidden rounded-md cardShadow group
                 grid md:grid-cols-10 md:min-h-[15rem]`}>
 
-            <div className='w-full md:col-span-4 md:p-6 h-72 md:h-auto'>
-                <div className='w-full h-full overflow-hidden md:rounded-md'>
-                    <Image className="relative group-hover:scale-110 duration-300 w-full h-full overflow-hidden"
-                        objectFit="object-cover"
-                        image={recipe.previewImage} />
+                <div className='w-full md:col-span-4 md:p-6 h-72 md:h-auto'>
+                    <div className='w-full h-full overflow-hidden md:rounded-md'>
+                        <Image className="relative group-hover:scale-110 duration-300 w-full h-full overflow-hidden"
+                            objectFit="object-cover"
+                            image={recipe.previewImage} />
+                    </div>
                 </div>
-            </div>
 
-            <div className='flex flex-col p-6 md:col-span-6'>
-                <p className='text-primary4 font-bold font-header text-4xl md:text-5xl md:mb-2 truncate'>
-                    {recipe.title}
-                </p>
-                <p className='text-[#8D8F94] font-header mb-6'>
-                    12 feb 2022
-                </p>
-                <p className='mb-8'>
-                    {recipe.summary}
-                </p>
-                <button className={`button2 self-start duration-300 mt-auto group-hover:text-white group-hover:bg-primary3`}>
-                    {cta}
-                </button>
-            </div>
-        </a>
+                <div className='flex flex-col p-6 md:col-span-6'>
+                    <p className='text-primary4 font-bold font-header text-4xl md:text-5xl md:mb-2 truncate'>
+                        {recipe.title}
+                    </p>
+                    <p className='text-[#8D8F94] font-header mb-6'>
+                        12 feb 2022
+                    </p>
+                    <p className='mb-8'>
+                        {recipe.summary}
+                    </p>
+                    <button className={`button2 self-start duration-300 mt-auto group-hover:text-white group-hover:bg-primary3`}>
+                        {cta}
+                    </button>
+                </div>
+            </a>
+        </Link>
     )
 }
 
