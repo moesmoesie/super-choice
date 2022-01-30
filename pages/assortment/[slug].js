@@ -20,12 +20,27 @@ export default function Assortment({ detailData, global, locale }) {
 
 const LandingSection = ({ detailData, className }) => {
     const [selectedImage, setSelectedImage] = useState(detailData.gallary[0]);
-
+    function onPick(image) {
+        setSelectedImage(image)
+    }
 
     return (
-        <div className={`grid ${className}`}>
-            <ProductImage className="mb-6" image={detailData.gallary[0]} />
-            <ImagePicker className='mb-2' gallary={detailData.gallary} />
+        <>
+            <SmallLandingSection
+                className={className}
+                selectedImage={selectedImage}
+                onPick={onPick}
+                detailData={detailData} />
+        </>
+
+    )
+}
+
+const SmallLandingSection = ({ detailData, className, selectedImage, onPick }) => {
+    return (
+        <div className={`grid md:hidden ${className}`}>
+            <ProductImage className="mb-6" image={selectedImage} />
+            <ImagePicker className='mb-2' onPick={onPick} gallary={detailData.gallary} />
             <Headline1 className='wrapper mb-4'>
                 {detailData.title}
             </Headline1>
@@ -39,20 +54,37 @@ const LandingSection = ({ detailData, className }) => {
     )
 }
 
-const ImagePicker = ({ gallary, className }) => {
+const ImagePicker = ({ gallary, className, onPick }) => {
     return (
-        <ScrollContainer className={`w-full whitespace-nowrap pb-2 ${className}`}>
-            {gallary.map((el) => {
-                return <button className='w-24 aspect-square first:ml-4 mr-2 last:mr-4 inline-block bg-[#E2E8F3] rounded-md overflow-hidden'>
-                    <Image
-                        image={el}
-                        className={'relative w-full h-full'}
-                        loading='eager'
-                        objectFit='object-cover'
+        <ScrollContainer className={`w-full grid place-items-center whitespace-nowrap pb-2 ${className}`}>
+            <div>
+                {gallary.map((image, index) => {
+                    return <ImagePickerButton
+                        onPick={onPick}
+                        image={image}
+                        key={index}
+                        className='mr-2 first:ml-4 last:mr-4'
                     />
-                </button>
-            })}
+                })}
+            </div>
         </ScrollContainer>
+    )
+}
+
+const ImagePickerButton = ({ className, image, onPick }) => {
+    return (
+        <button className={`
+            ${className}
+            w-24 aspect-square bg-[#E2E8F3] rounded-md overflow-hidden`}
+            onClick={(e) => onPick(image)}
+        >
+            <Image
+                image={image}
+                className={'relative w-full h-full'}
+                loading='eager'
+                objectFit='object-cover'
+            />
+        </button>
     )
 }
 
@@ -60,9 +92,9 @@ const ProductImage = ({ image, className }) => {
     return (
         <Image
             image={image}
-            className={`relative w-full max-w-xs mx-auto ${className}`}
+            className={`relative h-60 rounded-md overflow-hidden w-full ${className}`}
             loading='eager'
-            aspectRatio={image.metadata.dimensions.aspectRatio}
+            objectFit='object-contain'
         />
     )
 }
