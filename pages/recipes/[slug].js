@@ -23,7 +23,7 @@ export default function RecipePage({ pageDetail, global, locale }) {
                     <div className='grid gap-6 md:col-start-1 md:row-start-2'>
                         {pageDetail.steps.map((el, index) => {
                             return (
-                                <div className={` flex`}>
+                                <div key={index} className={` flex`}>
                                     <p className=' min-w-[3rem] pl-2 text-3xl text-primary2'>{index + 1}.</p>
                                     <SanityBlockContent blocks={el.content} serializers={getSerializer()} />
                                 </div>

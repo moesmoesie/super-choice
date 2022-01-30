@@ -10,7 +10,7 @@ import FilterRow from '../../components/FilterRow'
 import { useState} from 'react'
 import Link from 'next/link'
 import Image from '../../components/image'
-import { filterCollection } from '../../lib/hooks/FilterCollection'
+import { useFilterCollection } from '../../lib/hooks/useFilterCollection'
 import CollectionGrid from '../../components/CollectionGrid'
 
 const PageContext = React.createContext();
@@ -26,7 +26,7 @@ export default function News({ pageData, global, locale }) {
 
 const MainSection = ({ pageData }) => {
     const [selectedFilter, setSelectedFilter] = useState(null);
-    const { data } = filterCollection({ filter: selectedFilter, collection: pageData.articles })
+    const { data } = useFilterCollection({ filter: selectedFilter, collection: pageData.articles })
 
     function onFilterClick(value) {
         setSelectedFilter(selectedFilter == value ? null : value)

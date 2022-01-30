@@ -9,7 +9,7 @@ import { getSerializer } from '../../lib/serializers'
 import { useState } from 'react'
 import FilterRow from '../../components/FilterRow'
 import Image from '../../components/image'
-import { filterCollection } from '../../lib/hooks/FilterCollection'
+import { useFilterCollection } from '../../lib/hooks/useFilterCollection'
 import CollectionGrid from '../../components/CollectionGrid'
 import Link from 'next/link'
 
@@ -26,7 +26,7 @@ export default function RecipesPage({ pageData, global, locale }) {
 
 const MainSection = ({ pageData }) => {
     const [selectedFilter, setSelectedFilter] = useState(null);
-    const { data } = filterCollection({ filter: selectedFilter, collection: pageData.recipes })
+    const { data } = useFilterCollection({ filter: selectedFilter, collection: pageData.recipes })
     function onFilterClick(value) {
         setSelectedFilter(selectedFilter == value ? null : value)
     }

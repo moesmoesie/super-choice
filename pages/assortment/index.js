@@ -9,7 +9,7 @@ import { getSerializer } from '../../lib/serializers'
 import { useState } from 'react'
 import Link from 'next/link'
 import FilterRow from '../../components/FilterRow'
-import { filterCollection } from '../../lib/hooks/FilterCollection'
+import { useFilterCollection } from '../../lib/hooks/useFilterCollection'
 import CollectionGrid from '../../components/CollectionGrid'
 
 const PageContext = React.createContext();
@@ -26,7 +26,7 @@ export default function Assortment({ pageData, global, locale }) {
 
 const AssortmentMain = ({ pageData }) => {
     const [selectedFilter, setSelectedFilter] = useState(null);
-    const { data } = filterCollection({ collection: pageData.products, filter: selectedFilter })
+    const { data } = useFilterCollection({ collection: pageData.products, filter: selectedFilter })
 
     function onFilterClick(value) {
         setSelectedFilter(selectedFilter == value ? null : value)
