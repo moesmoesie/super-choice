@@ -6,11 +6,13 @@ import Image from '../../components/image'
 import { Headline1 } from '../../components/headlines'
 import SanityBlockContent from '@sanity/block-content-to-react'
 import { getSerializer } from '../../lib/serializers'
-import { useState, useContext, useEffect } from 'react'
+import { useState } from 'react'
 import Link from 'next/link'
-const PageContext = React.createContext();
 import FilterRow from '../../components/FilterRow'
 import FishBackground from '../../components/FishBackground'
+import { filterCollection } from '../../lib/hooks/FilterCollection'
+
+const PageContext = React.createContext();
 
 export default function Assortment({ pageData, global, locale }) {
     return (
@@ -24,6 +26,7 @@ export default function Assortment({ pageData, global, locale }) {
 
 const AssortmentMain = ({ pageData }) => {
     const [selectedFilter, setSelectedFilter] = useState(null);
+    const {data} =  filterCollection({collection: pageData.products, filter: selectedFilter})
 
     function onFilterClick(value) {
         setSelectedFilter(selectedFilter == value ? null : value)
@@ -32,33 +35,24 @@ const AssortmentMain = ({ pageData }) => {
     return (
         <PageContext.Provider value={{ selectedFilter, setSelectedFilter }}>
             <FilterRow onClick={onFilterClick} currentFilter={selectedFilter} filters={pageData.productFilters} />
-            <ProductSections products={pageData.products} pageData={pageData} />
+            <ProductSections products={data ? data : []} pageData={pageData} />
         </PageContext.Provider>
     )
 }
 
 
 const ProductSections = ({ products, pageData }) => {
-    const [currentProducts, setCurrentProducts] = useState(products);
-    const { selectedFilter } = useContext(PageContext);
-    useEffect(() => {
-        if (!selectedFilter) {
-            setCurrentProducts(products)
-        } else {
-            const p = products.filter((el) => {
-                return el.catagories.includes(selectedFilter)
-            })
-            setCurrentProducts(p)
-        }
-    }, [selectedFilter, products]);
-
+   
     return (
         <div className='bg-[#E0F3FF] '>
             <div className='relative overflow-hidden'>
                 <FishBackground />
                 <div className='wrapper w-full grid py-20 gap-y-8 grid-cols-[minmax(auto,22rem)] md:grid-cols-[repeat(2,minmax(auto,22rem))] lg:grid-cols-[repeat(3,22rem)] gap-8 justify-center place-items-center'>
-                    {currentProducts.map((el, index) =>
-                        <ProductCard key={index} cta={pageData.productCtaText} product={el} image={pageData.landingProductImage} />
+                    {products.map((el, index) =>
+                        <ProductCard 
+                            key={index} 
+                            cta={pageData.productCtaText} 
+                            product={el}/>
                     )}
                 </div>
             </div>
@@ -73,11 +67,14 @@ const ProductCard = ({ product, cta }) => {
                 <Image
                     className="relative w-full group-hover:scale-110 duration-300 h-64 mt-6 mb-6"
                     image={product.image}
-                    objectFit='object-contain'
-                />
+                    objectFit='object-contain'/>
                 <div className='flex flex-1 flex-col pl-6 pr-6 pb-8'>
-                    <p className='text-primary3 font-medium font-header text-2xl mb-6 truncate'>{product.title}</p>
-                    <p className='mb-10'>{product.summary}</p>
+                    <p className='text-primary3 font-medium font-header text-2xl mb-6 truncate'>
+                        {product.title}
+                    </p>
+                    <p className='mb-10'>
+                        {product.summary}
+                    </p>
                     <button className={`button2 duration-300 mt-auto group-hover:text-white group-hover:bg-primary3`}>
                         {cta}
                     </button>

@@ -12,6 +12,7 @@ const PageContext = React.createContext();
 import Link from 'next/link'
 import Image from '../../components/image'
 import FishBackground from '../../components/FishBackground'
+import { filterCollection } from '../../lib/hooks/FilterCollection'
 
 export default function News({ pageData, global, locale }) {
     return (
@@ -24,6 +25,7 @@ export default function News({ pageData, global, locale }) {
 
 const MainSection = ({ pageData }) => {
     const [selectedFilter, setSelectedFilter] = useState(null);
+    const {data} = filterCollection({filter: selectedFilter, collection: pageData.articles})
 
     function onFilterClick(value) {
         setSelectedFilter(selectedFilter == value ? null : value)
@@ -35,37 +37,23 @@ const MainSection = ({ pageData }) => {
                 onClick={onFilterClick}
                 currentFilter={selectedFilter}
                 filters={pageData.articleFilters} />
-            <ArticleSection pageData={pageData} />
+            <ArticleSection articles={data ? data : []} pageData={pageData} />
         </PageContext.Provider>
     )
 }
 
-const ArticleSection = ({ pageData }) => {
-    const [currentArticles, setCurrentArticles] = useState(pageData.articles);
-    const { selectedFilter } = useContext(PageContext);
-    useEffect(() => {
-        if (!selectedFilter) {
-            setCurrentArticles(pageData.articles)
-        } else {
-            const p = pageData.articles.filter((el) => {
-                return el.catagories.includes(selectedFilter)
-            })
-            setCurrentArticles(p)
-        }
-    }, [selectedFilter, pageData.articles]);
-
+const ArticleSection = ({ articles }) => {
 
     return (
         <div className='bg-[#E0F3FF]'>
             <div className='min-h-[40rem] relative overflow-hidden'>
                 <FishBackground />
                 <div className='wrapper w-full grid py-20 gap-y-8 grid-cols-[minmax(auto,22rem)] md:grid-cols-[repeat(2,minmax(auto,22rem))] lg:grid-cols-[repeat(3,minmax(auto,22rem))] gap-8 justify-center place-items-center'>
-                    {currentArticles.map((el, index) =>
+                    {articles.map((el, index) =>
                         <ArticleCard key={index} article={el} cta="Lees meer" />
                     )}
                 </div>
             </div>
-
         </div>
     )
 }
