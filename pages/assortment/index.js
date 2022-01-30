@@ -9,7 +9,6 @@ import { getSerializer } from '../../lib/serializers'
 import { useState } from 'react'
 import Link from 'next/link'
 import FilterRow from '../../components/FilterRow'
-import FishBackground from '../../components/FishBackground'
 import { filterCollection } from '../../lib/hooks/FilterCollection'
 import CollectionGrid from '../../components/CollectionGrid'
 
@@ -57,7 +56,7 @@ const ProductSections = ({ products, pageData }) => {
 
 const ProductCard = ({ product, cta }) => {
     return (
-        <Link href="#">
+        <Link href={`assortment/${product.slug}`}>
             <a className='w-full z-20 h-full flex min-h-[32rem] flex-col bg-white rounded-md cardShadow group'>
                 <Image
                     className="relative w-full group-hover:scale-110 duration-300 h-64 mt-6 mb-6"
