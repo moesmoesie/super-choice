@@ -9,21 +9,22 @@ import { getSerializer } from '../../lib/serializers'
 import SanityBlockContent from '@sanity/block-content-to-react'
 
 export default function RecipePage({ pageDetail, global, locale }) {
-    console.log(pageDetail)
     return (
         <Layout data={global}>
             <div className='wrapper'>
                 <BannerImage className='wrapper mb-12' image={pageDetail.bannerImage} />
-
-                <div className='grid mb-12'>
-                    <Headline1 className='mb-4'>
+                <div className='grid mb-12 md:grid-cols-2'>
+                    <Headline1 className='mb-12 md:col-span-2'>
                         {pageDetail.title}
                     </Headline1>
-                    <div className='grid gap-6'>
+                    <div className='bg-[#E0F3FF] md:ml-12 lg:ml-24 mb-12 md:self-start md:col-start-2 px-4 py-6 rounded-md'>
+                        <SanityBlockContent blocks={pageDetail.instructions} serializers={getSerializer()} />
+                    </div>
+                    <div className='grid gap-6 md:col-start-1 md:row-start-2'>
                         {pageDetail.steps.map((el, index) => {
                             return (
                                 <div className={` flex`}>
-                                    <p className=' min-w-[3rem] md:min-w-[4rem] text-3xl text-primary2'>{index + 1}.</p>
+                                    <p className=' min-w-[3rem] pl-2 text-3xl text-primary2'>{index + 1}.</p>
                                     <SanityBlockContent blocks={el.content} serializers={getSerializer()} />
                                 </div>
                             )
@@ -31,8 +32,6 @@ export default function RecipePage({ pageDetail, global, locale }) {
                     </div>
                 </div>
             </div>
-
-
         </Layout>
     )
 }
