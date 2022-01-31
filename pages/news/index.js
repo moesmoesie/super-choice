@@ -59,7 +59,7 @@ const ArticleSection = ({ articles }) => {
 
 const ArticleCard = ({ article, cta }) => {
     return (
-        <Link href="#">
+        <Link href={`/news/${article.slug}`}>
             <a className='w-full z-20 h-full flex min-h-[32rem] flex-col bg-white overflow-hidden rounded-md cardShadow group'>
                 <div className='overflow-hidden h-80 mb-6 w-full'>
                     <Image
