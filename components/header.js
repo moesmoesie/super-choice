@@ -17,7 +17,7 @@ export default function Header({ data, preview }) {
                 <HamburgerMenu className='ml-auto sm:ml-12' />
                 <div className="ml-auto flex gap-x-10">
                     {preview && <ExitPreviewModeButton />}
-                    <HeaderNavigationLink slug="/" title="contact" />
+                    <HeaderNavigationLink slug="/contact" title="contact" />
                 </div>
             </div>
         </header>
