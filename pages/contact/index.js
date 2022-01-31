@@ -16,12 +16,11 @@ export default function ContactPage({ pageData,preview, global, locale }) {
         <Layout preview={preview} data={global}>
             <div className='wrapper'>
             <BannerImage className="wrapper mb-12" image={pageData.landingImage} />
-            <div className='grid lg:grid-cols-3 gap-8'>
+            <div className='grid lg:grid-cols-3 gap-8 mb-12'>
                 <InfoSection pageData={pageData} global={global} />
-                <ContactForm className="lg:col-span-2" />
+                {/* <ContactForm className="lg:col-span-2" /> */}
             </div>
             </div>
-           
         </Layout>
     )
 }
