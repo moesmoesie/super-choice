@@ -13,7 +13,7 @@ export default function Footer({ data }) {
                 <div className="grid lg:grid-cols-2 py-12 max-w-xl lg:mx-auto">
 
                     {/* Logo */}
-                    <Image className="w-16 aspect-square relative mb-4" loading="eager" image={data.logo} withPlaceholder={false} sizes={[250]}/>
+                    <Image className="w-16 h-16 relative mb-4" loading="eager" image={data.logo} withPlaceholder={false} sizes={[250]}/>
 
                     <p className="text-white mb-4 lg:col-start-1 lg:mb-0 lg:self-end">
                         © 2021 <span className="font-bold">Super Choice.</span> <br/> All rights reserved
@@ -42,7 +42,7 @@ export default function Footer({ data }) {
 
             <div className="bg-primary5 px-6">
                 <div className="grid lg:grid-cols-2 py-12 lg:mx-auto max-w-xl">
-                    <div className="w-16 aspect-square mb-4 hidden lg:block lg:col-start-2"/>
+                    <div className="w-16 h-16 mb-4 hidden lg:block lg:col-start-2"/>
                         <p className="text-white lg:col-start-1 lg:row-start-1 lg:self-center uppercase mb-1 pb-0 font-bold">
                             Contact
                         </p>
