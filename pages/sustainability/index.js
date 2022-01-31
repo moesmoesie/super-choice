@@ -8,9 +8,9 @@ import { Headline1 } from '../../components/headlines'
 import SanityBlockContent from '@sanity/block-content-to-react'
 import { getSerializer } from '../../lib/serializers'
 
-export default function Home({ sustainabilityPage, global, locale }) {
+export default function Home({ sustainabilityPage, global,preview, locale }) {
     return (
-        <Layout data={global}>
+        <Layout preview={preview} data={global}>
             <LandingImage className="w-full mb-12 h-72 md:wrapper"
                 image={sustainabilityPage.landingImage}
             />
@@ -95,7 +95,8 @@ export async function getStaticProps(context) {
         props: {
             "sustainabilityPage": sustainabilityPage,
             global,
-            locale
+            locale,
+            'preview': context.preview ?? false,
         }
     }
 }

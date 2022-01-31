@@ -15,9 +15,9 @@ import Link from 'next/link'
 
 const PageContext = React.createContext();
 
-export default function RecipesPage({ pageData, global, locale }) {
+export default function RecipesPage({ pageData, global,preview, locale }) {
     return (
-        <Layout data={global}>
+        <Layout preview={preview} data={global}>
             <LandingSection pageData={pageData} className="mb-12" />
             <MainSection pageData={pageData} />
         </Layout>
@@ -121,7 +121,8 @@ export async function getStaticProps(context) {
         props: {
             pageData,
             global,
-            locale
+            locale,
+            'preview': context.preview ?? false,
         }
     }
 }

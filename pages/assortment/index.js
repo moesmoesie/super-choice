@@ -14,9 +14,9 @@ import CollectionGrid from '../../components/CollectionGrid'
 
 const PageContext = React.createContext();
 
-export default function Assortment({ pageData, global, locale }) {
+export default function Assortment({ pageData,preview, global, locale }) {
     return (
-        <Layout data={global}>
+        <Layout preview={preview} data={global}>
             <LandingImage image={pageData.landingImage} />
             <LandingSectionMain pageData={pageData} />
             <AssortmentMain pageData={pageData} />

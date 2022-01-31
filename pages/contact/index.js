@@ -11,9 +11,9 @@ import { AiOutlineInstagram } from '@react-icons/all-files/ai/AiOutlineInstagram
 import { AiOutlineLinkedin } from '@react-icons/all-files/ai/AiOutlineLinkedin'
 import { useState } from 'react'
 
-export default function ContactPage({ pageData, global, locale }) {
+export default function ContactPage({ pageData,preview, global, locale }) {
     return (
-        <Layout data={global}>
+        <Layout preview={preview} data={global}>
             <div className='wrapper'>
             <BannerImage className="wrapper mb-12" image={pageData.landingImage} />
             <div className='grid lg:grid-cols-3 gap-8'>
@@ -181,6 +181,7 @@ export async function getStaticProps(context) {
         props: {
             pageData,
             global,
+            'preview': context.preview ?? false,
             locale
         }
     }

@@ -5,7 +5,7 @@ import AppContext from '../lib/contexts/AppContext';
 import { useContext, useEffect } from 'react';
 import { playOpenMenuAnimation, playCloseMenuAnimation } from '../lib/animations/MenuAnimations';
 
-export default function Header({ data }) {
+export default function Header({ data, preview }) {
     return (
         <header className="top-0 z-50 pointer-events-none w-full bg-white sticky ">
             <div className='flex items-center wrapper min-h-[4rem]'>
@@ -15,9 +15,22 @@ export default function Header({ data }) {
                     </a>
                 </Link>
                 <HamburgerMenu className='ml-auto sm:ml-12' />
-                <HeaderNavigationLink slug="/" title="contact" />
+                <div className="ml-auto flex gap-x-10">
+                    {preview && <ExitPreviewModeButton />}
+                    <HeaderNavigationLink slug="/" title="contact" />
+                </div>
             </div>
         </header>
+    )
+}
+
+const ExitPreviewModeButton = () => {
+    return (
+        <Link href='/api/exitPreview'>
+            <a className="link pointer-events-auto hidden sm:block text-primary4 font-bold uppercase">
+                Exit Preview
+            </a>
+        </Link>
     )
 }
 
@@ -42,7 +55,7 @@ const HeaderNavigationLink = ({ slug, title }) => {
 
     return (
         <Link href={slug}>
-            <a className="link pointer-events-auto hidden sm:block ml-auto text-primary4 font-bold uppercase">
+            <a className="link pointer-events-auto hidden sm:block text-primary4 font-bold uppercase">
                 {title}
             </a>
         </Link>

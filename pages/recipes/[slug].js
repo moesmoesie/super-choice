@@ -8,9 +8,9 @@ import BannerImage from '../../components/BannerImage'
 import { getSerializer } from '../../lib/serializers'
 import SanityBlockContent from '@sanity/block-content-to-react'
 
-export default function RecipePage({ pageDetail, global, locale }) {
+export default function RecipePage({ pageDetail,preview, global, locale }) {
     return (
-        <Layout data={global}>
+        <Layout preview={preview} data={global}>
             <div className='wrapper'>
                 <BannerImage className='wrapper mb-12' image={pageDetail.bannerImage} />
                 <div className='grid mb-12 md:grid-cols-2'>
@@ -65,7 +65,8 @@ export async function getStaticProps(context) {
         props: {
             pageDetail,
             global,
-            locale
+            locale,
+            'preview': context.preview ?? false
         }
     }
 }

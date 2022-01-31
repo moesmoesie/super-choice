@@ -8,9 +8,9 @@ import { Headline1 } from "../../components/headlines"
 import SanityBlockContent from "@sanity/block-content-to-react"
 import {getSerializer} from "../../lib/serializers"
 
-export default function Home({ aboutPage, global, locale }) {
+export default function Home({ aboutPage,preview, global, locale }) {
     return (
-        <Layout data={global}>
+        <Layout preview={preview} data={global}>
             {/* Landing Section */}
             <div className="grid grid-cols-1 mb-16 lg:gap-4 lg:grid-rows-[min-content,auto] lg:wrapper lg:grid-cols-2">
                 <Headline1 className="wrapper mt-16 mb-14 w-full lg:max-w-none lg:px-0">
@@ -153,7 +153,8 @@ export async function getStaticProps(context) {
         props: {
             "aboutPage": aboutPage,
             global,
-            locale
+            locale,
+            'preview': context.preview ?? false,
         }
     }
 }

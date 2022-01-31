@@ -6,9 +6,9 @@ import Image from "../components/image"
 import Link from "next/link"
 import Layout from "../components/layout"
 
-export default function Home({ homePage, global, locale }) {
+export default function Home({ homePage, global,preview, locale }) {
   return (
-    <Layout data={global}>
+    <Layout preview={preview} data={global}>
 
       {/* Landing Section */}
       <div className=" h-screen -mt-[4rem] w-full relative">
@@ -244,6 +244,7 @@ export async function getStaticProps(context) {
     props: {
       "homePage": homePage,
       global,
+      'preview': context.preview ?? false,
       locale
     }
   }

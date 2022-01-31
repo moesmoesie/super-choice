@@ -10,9 +10,9 @@ import { getSerializer } from '../../lib/serializers'
 import ScrollContainer from 'react-indiana-drag-scroll'
 import { useState } from 'react'
 
-export default function Assortment({ detailData, global, locale }) {
+export default function Assortment({ detailData,preview, global, locale }) {
     return (
-        <Layout data={global}>
+        <Layout preview={preview} data={global}>
             <LandingSection detailData={detailData} className='mb-12' />
         </Layout>
     )
@@ -163,7 +163,8 @@ export async function getStaticProps(context) {
         props: {
             detailData,
             global,
-            locale
+            locale,
+            'preview': context.preview ?? false,
         }
     }
 }

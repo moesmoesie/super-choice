@@ -15,9 +15,9 @@ import CollectionGrid from '../../components/CollectionGrid'
 
 const PageContext = React.createContext();
 
-export default function News({ pageData, global, locale }) {
+export default function News({ pageData, global,preview, locale }) {
     return (
-        <Layout data={global}>
+        <Layout preview={preview} data={global}>
             <LandingSection className="mb-12" pageData={pageData} />
             <MainSection pageData={pageData} />
         </Layout>
@@ -110,7 +110,8 @@ export async function getStaticProps(context) {
         props: {
             pageData,
             global,
-            locale
+            locale,
+            'preview': context.preview ?? false,
         }
     }
 }
