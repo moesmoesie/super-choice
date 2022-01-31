@@ -90,14 +90,15 @@ const LandingSectionMain = ({ pageData }) => {
     )
 }
 
-const MobileLandingSectionMain = ({ pageData, className }) => {
+const MobileLandingSectionMain = ({ pageData }) => {
     return (
         <div className='relative wrapper md:hidden'>
             <Image className={`
-                mx-auto w-[70%] max-w-[20rem]
+                mx-auto w-[70%] max-w-[20rem] h-[25rem]
                 -translate-y-28`}
+                objectFit={'object-contain'}
                 loading='eager'
-                aspectRatio={pageData.landingProductImage.metadata.dimensions.aspectRatio}
+                imageClassname={'object-bottom'}
                 image={pageData.landingProductImage}
             />
 
@@ -122,9 +123,11 @@ const TabletLandingSectionMain = ({ pageData, className }) => {
                 </Headline1>
                 <div className='flex-3 relative w-full bg-red-300'>
                     <Image className={`
-                        absolute bottom-0 w-1/2 left-1/2 -translate-x-1/3`}
+                        absolute h-[25rem] bottom-0 w-1/2 left-1/2 -translate-x-1/3`}
                         loading='eager'
-                        aspectRatio={pageData.landingProductImage.metadata.dimensions.aspectRatio}
+                        objectFit={'object-contain'}
+                        imageClassname={'object-bottom'}
+
                         image={pageData.landingProductImage}
                     />
                 </div>

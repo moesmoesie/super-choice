@@ -60,9 +60,9 @@ const LargeLandingSection = ({ detailData, className, selectedImage, onPick }) =
 
             <Image
                 image={selectedImage}
-                className={` relative flex-1 rounded-md overflow-hidden ${className}`}
+                className={` relative h-[35rem] max-w-full flex-1 rounded-md overflow-hidden ${className}`}
+                imageClassname={'object-contain object-top'}
                 loading='eager'
-                aspectRatio={selectedImage.metadata.dimensions.aspectRatio}
             />
 
             <div className='flex-1 self-start'>
@@ -84,7 +84,7 @@ const SmallLandingSection = ({ detailData, className, selectedImage, onPick }) =
         <div className={`grid md:hidden ${className}`}>
             <Image
                 image={selectedImage}
-                className={`mb-6 relative h-60 rounded-md overflow-hidden w-full ${className}`}
+                className={`mb-6 relative h-[20rem] rounded-md overflow-hidden w-full ${className}`}
                 loading='eager'
                 objectFit='object-contain'
             />

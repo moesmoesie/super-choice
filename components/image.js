@@ -1,7 +1,7 @@
 import { urlForImage } from "../lib/sanity/sanity"
 import { useRef, useEffect, useState } from "react";
 
-export default function Image({ id, aspectRatio, image, className, objectFit, withPlaceholder = true, loading = "lazy", sizes = [] }) {
+export default function Image({ id, aspectRatio,imageClassname, image, className, objectFit, withPlaceholder = true, loading = "lazy", sizes = [] }) {
     const [isLoaded, setLoaded] = useState(false);
     const imgRef = useRef(null);
     useEffect(() => {
@@ -25,7 +25,7 @@ export default function Image({ id, aspectRatio, image, className, objectFit, wi
         <div style={{aspectRatio: `${aspectRatio}`}} className={className} id={id}>
             {image.metadata.lqip && withPlaceholder ? (
                 <img
-                    className={`w-full h-full top-0 left-0 absolute ${objectFit} ${isLoaded ? "hidden" : ''}`}
+                    className={`w-full h-full top-0 left-0 absolute ${imageClassname} ${objectFit} ${isLoaded ? "hidden" : ''}`}
                     src={image.metadata.lqip}
                     alt={image?.alt}
                     title={image?.caption}
@@ -34,7 +34,7 @@ export default function Image({ id, aspectRatio, image, className, objectFit, wi
             ) : ''}
 
             <img
-                className={`w-full h-full top-0 left-0 absolute ${objectFit}`}
+                className={`w-full h-full top-0 left-0 absolute ${imageClassname} ${objectFit}`}
                 src={src}
                 ref={imgRef}
                 onLoad={(e) => setLoaded(true)}
