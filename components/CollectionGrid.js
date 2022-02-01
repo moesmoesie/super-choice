@@ -4,7 +4,8 @@ export default function CollectionGrid({ children, type = "small" }) {
     const smallGridStyle = `
         grid-cols-[minmax(auto,22rem)]
         md:grid-cols-[repeat(2,minmax(auto,22rem))] 
-        lg:grid-cols-[repeat(3,22rem)]
+        lg:grid-cols-[repeat(3,19rem)]
+        xl:grid-cols-[repeat(3,22rem)]
     `
 
     return (
