@@ -48,7 +48,7 @@ const ProductSections = ({ products, pageData }) => {
                 {products.map((product, index) =>
                     <ProductCard
                         index={index}
-                        key={Math.random()}
+                        key={product.key}
                         cta={pageData.productCtaText}
                         product={product} />
                 )}

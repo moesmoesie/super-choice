@@ -52,7 +52,7 @@ const ArticleSection = ({ articles }) => {
                 {articles.map((article, index) =>
                     <ArticleCard
                         index={index}
-                        key={Math.random()}
+                        key={article.key}
                         article={article}
                         cta="Lees meer" />
                 )}

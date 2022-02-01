@@ -48,7 +48,7 @@ const RecipesSection = ({ recipes }) => {
             <AnimatePresence initial={false}>
                 {recipes.map((el, index) =>
                     <RecipeCard
-                        key={Math.random()}
+                        key={el.key}
                         index={index}
                         recipe={el}
                         cta="Zie recept" />
