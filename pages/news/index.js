@@ -7,15 +7,15 @@ import BannerImage from '../../components/BannerImage'
 import SanityBlockContent from '@sanity/block-content-to-react'
 import { getSerializer } from '../../lib/serializers'
 import FilterRow from '../../components/FilterRow'
-import { useState} from 'react'
+import { useState } from 'react'
 import Link from 'next/link'
 import Image from '../../components/image'
 import { useFilterCollection } from '../../lib/hooks/useFilterCollection'
 import CollectionGrid from '../../components/CollectionGrid'
-
+import { motion, AnimatePresence } from 'framer-motion'
 const PageContext = React.createContext();
 
-export default function News({ pageData, global,preview, locale }) {
+export default function News({ pageData, global, preview, locale }) {
     return (
         <Layout preview={preview} data={global}>
             <LandingSection className="mb-12" pageData={pageData} />
@@ -47,20 +47,30 @@ const ArticleSection = ({ articles }) => {
 
     return (
         <CollectionGrid>
-            {articles.map((article, index) =>
-                <ArticleCard 
-                    key={index} 
-                    article={article}
-                    cta="Lees meer" />
-            )}
+            <AnimatePresence initial={false}>
+
+                {articles.map((article, index) =>
+                    <ArticleCard
+                        index={index}
+                        key={Math.random()}
+                        article={article}
+                        cta="Lees meer" />
+                )}
+            </AnimatePresence>
+
         </CollectionGrid>
     )
 }
 
-const ArticleCard = ({ article, cta }) => {
+const ArticleCard = ({ article, index, cta }) => {
     return (
         <Link href={`/news/${article.slug}`}>
-            <a className='w-full z-20 h-full flex min-h-[32rem] flex-col bg-white overflow-hidden rounded-md cardShadow group'>
+            <motion.a
+                exit={{ opacity: 0, translateX: -20 }}
+                initial={{ opacity: 0, translateX: 20 }}
+                animate={{ opacity: 1, translateX: 0, transition: { delay: 0.1 * index } }}
+
+                className='w-full z-20 h-full flex min-h-[32rem] flex-col bg-white overflow-hidden rounded-md cardShadow group'>
                 <div className='overflow-hidden h-80 mb-6 w-full'>
                     <Image
                         className="relative group-hover:scale-110 h-full duration-300 w-full  "
@@ -77,7 +87,7 @@ const ArticleCard = ({ article, cta }) => {
                         {cta}
                     </button>
                 </div>
-            </a>
+            </motion.a>
         </Link>
     )
 }

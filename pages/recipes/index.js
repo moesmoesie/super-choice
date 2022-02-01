@@ -12,10 +12,10 @@ import Image from '../../components/image'
 import { useFilterCollection } from '../../lib/hooks/useFilterCollection'
 import CollectionGrid from '../../components/CollectionGrid'
 import Link from 'next/link'
-
+import { motion, AnimatePresence } from 'framer-motion'
 const PageContext = React.createContext();
 
-export default function RecipesPage({ pageData, global,preview, locale }) {
+export default function RecipesPage({ pageData, global, preview, locale }) {
     return (
         <Layout preview={preview} data={global}>
             <LandingSection pageData={pageData} className="mb-12" />
@@ -45,20 +45,28 @@ const MainSection = ({ pageData }) => {
 const RecipesSection = ({ recipes }) => {
     return (
         <CollectionGrid type='wide'>
-            {recipes.map((el, index) =>
-                <RecipeCard
-                    key={index}
-                    recipe={el}
-                    cta="Zie recept" />
-            )}
+            <AnimatePresence initial={false}>
+                {recipes.map((el, index) =>
+                    <RecipeCard
+                        key={Math.random()}
+                        index={index}
+                        recipe={el}
+                        cta="Zie recept" />
+                )}
+            </AnimatePresence>
         </CollectionGrid>
     )
 }
 
-const RecipeCard = ({ recipe, cta }) => {
+const RecipeCard = ({ recipe, cta, index }) => {
     return (
         <Link href={`recipes/${recipe.slug}`}>
-            <a className={`w-full bg-white z-20 overflow-hidden rounded-md cardShadow group
+            <motion.a
+                exit={{ opacity: 0, translateX: -20 }}
+                initial={{ opacity: 0, translateX: 20 }}
+                animate={{ opacity: 1, translateX: 0, transition: { delay: 0.1 * index } }}
+
+                className={`w-full bg-white z-20 overflow-hidden rounded-md cardShadow group
                 grid md:grid-cols-10 md:min-h-[15rem]`}>
 
                 <div className='w-full md:col-span-4 md:p-6 h-72 md:h-auto'>
@@ -83,7 +91,7 @@ const RecipeCard = ({ recipe, cta }) => {
                         {cta}
                     </button>
                 </div>
-            </a>
+            </motion.a>
         </Link>
     )
 }

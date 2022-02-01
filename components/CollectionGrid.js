@@ -1,5 +1,5 @@
 import FishBackground from "./FishBackground"
-
+import { motion } from "framer-motion"
 export default function CollectionGrid({ children, type = "small" }) {
     const smallGridStyle = `
         grid-cols-[minmax(auto,22rem)]
@@ -10,7 +10,7 @@ export default function CollectionGrid({ children, type = "small" }) {
 
     return (
         <div className='bg-[#E0F3FF] '>
-            <div className='relative overflow-hidden'>
+            <div className='relative min-h-[100vh] overflow-hidden'>
                 <FishBackground />
                 <div className={`
                     ${type == 'small' ? smallGridStyle : ''}

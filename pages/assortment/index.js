@@ -11,10 +11,10 @@ import Link from 'next/link'
 import FilterRow from '../../components/FilterRow'
 import { useFilterCollection } from '../../lib/hooks/useFilterCollection'
 import CollectionGrid from '../../components/CollectionGrid'
-
+import { motion, AnimatePresence } from 'framer-motion'
 const PageContext = React.createContext();
 
-export default function Assortment({ pageData,preview, global, locale }) {
+export default function Assortment({ pageData, preview, global, locale }) {
     return (
         <Layout preview={preview} data={global}>
             <LandingImage image={pageData.landingImage} />
@@ -44,20 +44,27 @@ const AssortmentMain = ({ pageData }) => {
 const ProductSections = ({ products, pageData }) => {
     return (
         <CollectionGrid>
-            {products.map((product, index) =>
-                <ProductCard
-                    key={index}
-                    cta={pageData.productCtaText}
-                    product={product}/>
-            )}
+            <AnimatePresence initial={false}>
+                {products.map((product, index) =>
+                    <ProductCard
+                        index={index}
+                        key={Math.random()}
+                        cta={pageData.productCtaText}
+                        product={product} />
+                )}
+            </AnimatePresence>
         </CollectionGrid>
     )
 }
 
-const ProductCard = ({ product, cta }) => {
+const ProductCard = ({ product, cta, index }) => {
     return (
         <Link href={`assortment/${product.slug}`}>
-            <a className='w-full z-20 h-full flex min-h-[32rem] flex-col bg-white rounded-md cardShadow group'>
+            <motion.a
+                exit={{ opacity: 0, translateX: -20}}
+                initial={{ opacity: 0, translateX: 20}}
+                animate={{ opacity: 1, translateX: 0, transition:{delay: 0.1 * index}}}
+                className='w-full z-20 h-full flex min-h-[32rem] flex-col bg-white rounded-md cardShadow group'>
                 <Image
                     className="relative w-full group-hover:scale-110 duration-300 h-64 mt-6 mb-6"
                     image={product.image}
@@ -73,7 +80,7 @@ const ProductCard = ({ product, cta }) => {
                         {cta}
                     </button>
                 </div>
-            </a>
+            </motion.a>
         </Link>
     )
 }
