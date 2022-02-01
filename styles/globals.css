@@ -2,6 +2,16 @@
 @tailwind components;
 @tailwind utilities;
 
+:root {
+    --theme-color: #52b3d0;
+    --primary1: #53D8FB;
+    --primary2: #66C3FF;
+    --primary3: #18A0FB;
+    --primary4: #007ACC;
+    --primary5: #142C4B;
+    --secondary1: #FFB01F;
+    --bodyColor: #444444;
+}
 
 /* Load Fonts */
 @font-face {
