@@ -4,6 +4,7 @@ export default function BannerImage({ image, className }){
         <Image
             className={`relative w-full h-72 md:h-80 rounded-md overflow-hidden ${className}`}
             objectFit="object-cover"
+            loading="eager"
             image={image}
         />
     )
