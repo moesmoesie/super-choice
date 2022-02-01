@@ -10,8 +10,8 @@ export default function Menu({ data }) {
         show: {
             opacity: 1,
             transition: {
-                delay: 0.7,
-                delayChildren: 0.7,
+                delay: 0.3,
+                delayChildren: 0.3,
                 staggerChildren: 0.1
             }
         }
@@ -27,19 +27,19 @@ export default function Menu({ data }) {
             <AnimatePresence>
                 {isMenuOpen && (
                     <motion.div
-                        initial={{ translateY: '-100vh' }}
+                        initial={{ translateY: '-100%' }}
                         animate={{ translateY: '0px' }}
-                        exit={{ translateY: '-100vh' }}
-                        transition={{ type: 'easeOut', duration: 0.75 }}
-                        className={`w-full absolute grid place-items-center top-0 h-screen bg-primary5`}
+                        exit={{ translateY: '-100%' }}
+                        transition={{ type: 'easeOut', duration: 0.3 }}
+                        className={`w-full absolute top-0 bg-primary5`}
                     >
 
-                        <div>
+                        <div className="wrapper">
                             <motion.ul
                             variants={container}
                             initial="hidden"
                             animate="show"
-                            className="grid gap-5">
+                            className="grid gap-5 mt-32 mb-32">
                                 {[1, 2, 3, 4, 5].map((el, index) => {
                                     return <motion.li 
                                     variants={item}
