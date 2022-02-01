@@ -70,7 +70,7 @@ const ProductCard = ({ product, cta, index }) => {
                     image={product.image}
                     objectFit='object-contain' 
                     mediaQueries={[
-                        { w: 0, s: 600 },
+                        { w: 1, s: 600 },
                         { w: 500, s: 1000 },
                         { w: 1000, s: 1500 },
                     ]}
@@ -114,7 +114,7 @@ const MobileLandingSectionMain = ({ pageData }) => {
                 imageClassname={'object-bottom'}
                 image={pageData.landingProductImage}
                 mediaQueries={[
-                    { w: 0, s: 500 },
+                    { w: 1, s: 500 },
                     { w: 500, s: 1000 },
                 ]}
             />
@@ -146,7 +146,7 @@ const TabletLandingSectionMain = ({ pageData, className }) => {
                         imageClassname={'object-bottom'}
                         image={pageData.landingProductImage}
                         mediaQueries={[
-                            { w: 0, s: 500 },
+                            { w: 1, s: 500 },
                             { w: 500, s: 1000 },
                             { w: 1000, s: 1500 },
                             { w: 1500, s: 2000 },
@@ -175,7 +175,7 @@ const DesktopLandingSectionMain = ({ pageData, className }) => {
                     loading='eager'
                     image={pageData.landingProductImage}
                     mediaQueries={[
-                        { w: 0, s: 500 },
+                        { w: 1, s: 500 },
                         { w: 500, s: 1000 },
                         { w: 1000, s: 1500 },
                         { w: 1500, s: 2000 },
@@ -200,7 +200,7 @@ const LandingImage = ({ className, image }) => {
                 image={image}
                 objectFit='object-cover'
                 mediaQueries={[
-                    { w: 0, s: 500 },
+                    { w: 1, s: 500 },
                     { w: 500, s: 1000 },
                     { w: 1000, s: 1500 },
                     { w: 1500, s: 2000 },

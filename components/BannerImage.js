@@ -7,7 +7,7 @@ export default function BannerImage({ image, className }){
             loading="eager"
             image={image}
             mediaQueries={[
-                { w: 0, s: 500 },
+                { w: 10, s: 500 },
                 { w: 500, s: 1000 },
                 { w: 1000, s: 1500 },
                 { w: 1500, s: 2000 },

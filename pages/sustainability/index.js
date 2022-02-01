@@ -54,7 +54,7 @@ const LandingImage = ({ className, image }) => {
                     image={image}
                     objectFit='object-cover'
                     mediaQueries={[
-                        { w: 0, s: 500 },
+                        { w: 1, s: 500 },
                         { w: 500, s: 1000 },
                         { w: 1000, s: 1500 },
                         { w: 1500, s: 2000 },

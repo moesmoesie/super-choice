@@ -33,7 +33,7 @@ export default function NewsArticle({ pageDetail, global,preview, locale }) {
                                             objectFit='object-cover' 
                                             className=' relative brightness-75 overflow-x-hidden min-w-[6rem] w-24 md:h-44 lg:w-24 lg:h-24 md:w-full h-24 bg-red-500 rounded-md'
                                             mediaQueries={[
-                                                { w: 0, s: 500 },
+                                                { w: 1, s: 500 },
                                                 { w: 500, s: 1000 },
                                                 { w: 1000, s: 1500 }
                                             ]}
