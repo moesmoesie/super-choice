@@ -71,7 +71,7 @@ const MenuList = ({className}) => {
             animate="show"
             className={`grid gap-5 ${className}`}>
             {[1, 2, 3, 4, 5].map((el, index) => {
-                return <MenuItem index={index} />
+                return <MenuItem key={index} index={index} />
             })}
         </motion.ul>
     )
