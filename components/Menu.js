@@ -1,8 +1,9 @@
 import { motion, AnimatePresence } from "framer-motion"
 import { useContext } from "react";
 import AppContext from "../lib/contexts/AppContext";
+import Link from "next/link";
 
-export default function Menu({ data }) {
+export default function Menu({ links }) {
     const { isMenuOpen } = useContext(AppContext);
 
     const variants = {
@@ -12,7 +13,7 @@ export default function Menu({ data }) {
                 type: 'easeOut',
             }
         },
-        hidden: { 
+        hidden: {
             translateY: '-100%',
             transition: {
                 type: 'easeOut',
@@ -20,8 +21,6 @@ export default function Menu({ data }) {
             }
         },
     }
-
-
 
     return (
         <>
@@ -35,7 +34,7 @@ export default function Menu({ data }) {
                         className={`w-full absolute top-0 bg-primary5`}
                     >
                         <div className="wrapper mt-32 mb-32">
-                            <MenuList />
+                            <MenuList links={links} />
                         </div>
                     </motion.div>)}
             </AnimatePresence>
@@ -43,7 +42,7 @@ export default function Menu({ data }) {
     )
 }
 
-const MenuList = ({className}) => {
+const MenuList = ({ className, links }) => {
     const container = {
         hidden: { opacity: 0 },
         visible: {
@@ -60,14 +59,14 @@ const MenuList = ({className}) => {
         <motion.ul
             variants={container}
             className={`grid gap-5 ${className}`}>
-            {[1, 2, 3, 4, 5].map((el, index) => {
-                return <MenuItem key={index} index={index} />
+            {links.map((el, index) => {
+                return <MenuItem link={el} key={index} index={index} />
             })}
         </motion.ul>
     )
 }
 
-const MenuItem = ({ index }) => {
+const MenuItem = ({ index, link }) => {
     const item = {
         hidden: { opacity: 0, translateX: "-40px", transition: { type: 'easeIn' } },
         visible: { opacity: 1, translateX: "0px", transition: { type: 'easeIn' } }
@@ -78,7 +77,9 @@ const MenuItem = ({ index }) => {
             variants={item}
             key={index}
             className="text-white text-2xl font-bold font-header">
-            Hello World {index}
+            <a href={link.slug}>
+                {link.text}
+            </a>
         </motion.li>
     )
 
