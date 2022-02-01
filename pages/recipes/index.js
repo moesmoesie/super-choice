@@ -73,7 +73,14 @@ const RecipeCard = ({ recipe, cta, index }) => {
                     <div className='w-full h-full overflow-hidden md:rounded-md'>
                         <Image className="relative group-hover:scale-110 duration-300 w-full h-full overflow-hidden"
                             objectFit="object-cover"
-                            image={recipe.previewImage} />
+                            image={recipe.previewImage} 
+                            mediaQueries={[
+                                { w: 0, s: 500 },
+                                { w: 500, s: 1000 },
+                                { w: 1000, s: 1500 }
+                            ]}
+                            
+                            />
                     </div>
                 </div>
 

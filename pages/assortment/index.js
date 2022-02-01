@@ -68,7 +68,13 @@ const ProductCard = ({ product, cta, index }) => {
                 <Image
                     className="relative w-full group-hover:scale-110 duration-300 h-64 mt-6 mb-6"
                     image={product.image}
-                    objectFit='object-contain' />
+                    objectFit='object-contain' 
+                    mediaQueries={[
+                        { w: 0, s: 600 },
+                        { w: 500, s: 1000 },
+                        { w: 1000, s: 1500 },
+                    ]}
+                    />
                 <div className='flex flex-1 flex-col pl-6 pr-6 pb-8'>
                     <p className='text-primary3 font-medium font-header text-2xl mb-6 truncate'>
                         {product.title}
@@ -107,6 +113,10 @@ const MobileLandingSectionMain = ({ pageData }) => {
                 loading='eager'
                 imageClassname={'object-bottom'}
                 image={pageData.landingProductImage}
+                mediaQueries={[
+                    { w: 0, s: 500 },
+                    { w: 500, s: 1000 },
+                ]}
             />
 
             <Headline1 className="-translate-y-10">
@@ -134,8 +144,14 @@ const TabletLandingSectionMain = ({ pageData, className }) => {
                         loading='eager'
                         objectFit={'object-contain'}
                         imageClassname={'object-bottom'}
-
                         image={pageData.landingProductImage}
+                        mediaQueries={[
+                            { w: 0, s: 500 },
+                            { w: 500, s: 1000 },
+                            { w: 1000, s: 1500 },
+                            { w: 1500, s: 2000 },
+                            { w: 2000, s: 2500 },
+                        ]}
                     />
                 </div>
             </div>
@@ -158,6 +174,13 @@ const DesktopLandingSectionMain = ({ pageData, className }) => {
                     objectFit={"object-contain"}
                     loading='eager'
                     image={pageData.landingProductImage}
+                    mediaQueries={[
+                        { w: 0, s: 500 },
+                        { w: 500, s: 1000 },
+                        { w: 1000, s: 1500 },
+                        { w: 1500, s: 2000 },
+                        { w: 2000, s: 2500 },
+                    ]}
                 />
             </div>
             <div className="row-start-2 col-start-1 col-span-3 ">
@@ -176,7 +199,13 @@ const LandingImage = ({ className, image }) => {
                 className='relative h-72 w-full rounded-md overflow-hidden'
                 image={image}
                 objectFit='object-cover'
-                sizes={[600, 1200, 1800, 2400]}
+                mediaQueries={[
+                    { w: 0, s: 500 },
+                    { w: 500, s: 1000 },
+                    { w: 1000, s: 1500 },
+                    { w: 1500, s: 2000 },
+                    { w: 2000, s: 2500 },
+                ]}
             />
         </div>
     )

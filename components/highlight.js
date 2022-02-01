@@ -79,8 +79,9 @@ const HighlightImage = ({ className, image }) => {
                     className='relative h-full w-full md:rounded-md overflow-hidden'
                     image={image}
                     objectFit='object-cover'
-                    sizes={[600]}
-                />
+                    mediaQueries={[
+                        { w: 0, s: 600 },
+                    ]}/>
             </div>
         </>
     )

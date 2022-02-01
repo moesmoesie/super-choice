@@ -79,7 +79,13 @@ const LandingImage = ({ className, image }) => {
                     className='relative h-full w-full rounded-md overflow-hidden'
                     image={image}
                     objectFit='object-cover'
-                    sizes={[600, 1200, 1800, 2400]}
+                    mediaQueries={[
+                        { w: 10, s: 500 },
+                        { w: 500, s: 1000 },
+                        { w: 1000, s: 1500 },
+                        { w: 1500, s: 2000 },
+                        { w: 2000, s: 2500 },
+                    ]}
                 />
             </div>
         </>
@@ -94,7 +100,13 @@ const GallaryImage = ({ className, image }) => {
                     className='relative h-full w-full md:rounded-md overflow-hidden'
                     image={image}
                     objectFit='object-cover'
-                    sizes={[600, 1200, 1800, 2400]}
+                    mediaQueries={[
+                        { w: 10, s: 500 },
+                        { w: 500, s: 1000 },
+                        { w: 1000, s: 1500 },
+                        { w: 1500, s: 2000 },
+                        { w: 2000, s: 2500 },
+                    ]}
                 />
             </div>
         </>

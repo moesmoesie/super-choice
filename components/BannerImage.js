@@ -6,6 +6,13 @@ export default function BannerImage({ image, className }){
             objectFit="object-cover"
             loading="eager"
             image={image}
+            mediaQueries={[
+                { w: 0, s: 500 },
+                { w: 500, s: 1000 },
+                { w: 1000, s: 1500 },
+                { w: 1500, s: 2000 },
+                { w: 2000, s: 2500 },
+            ]}
         />
     )
 }

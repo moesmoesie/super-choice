@@ -63,6 +63,13 @@ const LargeLandingSection = ({ detailData, className, selectedImage, onPick }) =
                 className={` relative h-[35rem] max-w-full flex-1 rounded-md overflow-hidden ${className}`}
                 imageClassname={'object-contain object-top'}
                 loading='eager'
+                mediaQueries={[
+                    { w: 1, s: 500 },
+                    { w: 500, s: 1000 },
+                    { w: 1000, s: 1500 },
+                    { w: 1500, s: 2000 },
+                    { w: 2000, s: 2500 },
+                ]}
             />
 
             <div className='flex-1 self-start'>
@@ -87,6 +94,10 @@ const SmallLandingSection = ({ detailData, className, selectedImage, onPick }) =
                 className={`mb-6 relative h-[20rem] rounded-md overflow-hidden w-full ${className}`}
                 loading='eager'
                 objectFit='object-contain'
+                mediaQueries={[
+                    { w: 200, s: 600 },
+                    { w: 500, s: 1200 },
+                ]}
             />
 
             {detailData.gallary.length > 1 && (
@@ -130,6 +141,10 @@ const ImagePickerButton = ({ className, image, onPick }) => {
                 className={'relative w-full h-full'}
                 loading='eager'
                 objectFit='object-cover'
+                mediaQueries={[
+                    { w: 1, s: 300 },
+                    { w: 500, s: 500 },
+                ]}
             />
         </button>
     )

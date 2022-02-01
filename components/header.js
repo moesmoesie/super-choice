@@ -9,10 +9,16 @@ import { AnimatePresence } from "framer-motion";
 export default function Header({ data, preview }) {
     return (
         <header className="z-50 pointer-events-none w-full">
-            <div className='flex z-50 items-center wrapper min-h-[4rem]'>
+            <div className='flex z-50 items-center wrapper min-h-[5rem]'>
                 <Link href='/'>
                     <a className='pointer-events-auto'>
-                        <Image className="w-12 h-12 relative" loading='eager' withPlaceholder={false} image={data.logo} sizes={[180]} />
+                        <Image 
+                        className="w-16 h-16 relative" 
+                        loading='eager' withPlaceholder={false} 
+                        image={data.logo} 
+                        mediaQueries={[
+                            { w: 10, s: 128 },
+                        ]}/>
                     </a>
                 </Link>
                 <HamburgerMenu className='ml-auto z-50 sm:ml-12' />

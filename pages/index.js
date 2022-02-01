@@ -6,7 +6,7 @@ import Image from "../components/image"
 import Link from "next/link"
 import Layout from "../components/layout"
 
-export default function Home({ homePage, global,preview, locale }) {
+export default function Home({ homePage, global, preview, locale }) {
   return (
     <Layout preview={preview} data={global}>
 
@@ -29,7 +29,7 @@ export default function Home({ homePage, global,preview, locale }) {
             <LandingCTA cta={homePage.callToAction2} />
           </div>
 
-          <LandingArt className="h-44 hidden md:block"/>
+          <LandingArt className="h-44 hidden md:block" />
         </div>
       </div>
 
@@ -66,6 +66,12 @@ const LandingImage = ({ className, image }) => {
       className={`${className}`}
       objectFit="object-cover"
       image={image}
+      mediaQueries={[
+        { w: 375, s: 500 },
+        { w: 768, s: 1000 },
+        { w: 1024, s: 1300 },
+        { w: 1500, s: 2000 }
+      ]}
       sizes={[600, 1500, 4000]}
       loading="eager"
     />
@@ -164,8 +170,13 @@ const HomeNavigationItem = ({ data, index }) => {
         <Image className="absolute w-full h-full"
           id={`HomeNavigationItemImage${index}`}
           image={data.image}
-          sizes={[1000, 2000]}
           objectFit='object-cover'
+          mediaQueries={[
+            { w: 375, s: 500 },
+            { w: 768, s: 1000 },
+            { w: 1024, s: 1300 },
+            { w: 1500, s: 2000 }
+          ]} 
         />
 
         <div className="absolute w-full h-full bg-black opacity-40 group-hover:opacity-10"

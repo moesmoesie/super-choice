@@ -1,7 +1,7 @@
 import { urlForImage } from "../lib/sanity/sanity"
 import { useRef, useEffect, useState } from "react";
 
-export default function Image({ id, aspectRatio,imageClassname, image, className, objectFit, withPlaceholder = true, loading = "lazy", sizes = [] }) {
+export default function Image({ id, aspectRatio,imageClassname, image, className, objectFit, withPlaceholder = true, loading = "lazy",  mediaQueries = [],  sizes = [] }) {
     const [isLoaded, setLoaded] = useState(false);
     const imgRef = useRef(null);
     useEffect(() => {
@@ -13,9 +13,9 @@ export default function Image({ id, aspectRatio,imageClassname, image, className
 
     const sources = []
 
-    sizes.forEach((size) => {
-        const src = urlForImage(image.asset).width(size).format("webp")
-        sources.push(`${src} ${size}w`)
+    mediaQueries.forEach((query) => {
+        const src = urlForImage(image.asset).width(query.s).format("webp")
+        sources.push(`${src} ${query.w}w`)
     })
 
     const srcset = sources.join(",")

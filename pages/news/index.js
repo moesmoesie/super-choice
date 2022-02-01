@@ -76,6 +76,11 @@ const ArticleCard = ({ article, index, cta }) => {
                         className="relative group-hover:scale-110 h-full duration-300 w-full  "
                         image={article.previewImage}
                         objectFit='object-cover'
+                        mediaQueries={[
+                            { w: 0, s: 500 },
+                            { w: 500, s: 1000 },
+                            { w: 1000, s: 1500 }
+                        ]}
                     />
                 </div>
 
