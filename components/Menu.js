@@ -31,14 +31,40 @@ export default function Menu({ links }) {
                         animate='visible'
                         exit='hidden'
                         variants={variants}
-                        className={`w-full absolute top-0 bg-primary5`}
+                        className={`w-full absolute top-0`}
                     >
-                        <div className="wrapper mt-32 mb-32">
-                            <MenuList links={links} />
+                        <div className="bg-primary5 z-50">
+                            <div className="wrapper pt-32 pb-20">
+                                <MenuList links={links} />
+                            </div>
                         </div>
                     </motion.div>)}
             </AnimatePresence>
         </>
+    )
+}
+
+const Backdrop = () => {
+    const { isMenuOpen, setIsMenuOpen } = useContext(AppContext);
+
+    const variants = {
+        visible: {
+            opacity: 0.6,
+            transition: {
+                delay:0.2,
+                type: 'easeOut',
+                duration : 0.2
+            }
+        },
+        hidden: {
+            opacity: 0
+        },
+    }
+    return (
+        <motion.div
+            onClick={(e) => setIsMenuOpen(false)}
+            variants={variants}
+            className="w-full h-screen bg-black" />
     )
 }
 
