@@ -1,7 +1,6 @@
 import { motion, AnimatePresence } from "framer-motion"
 import { useContext } from "react";
 import AppContext from "../lib/contexts/AppContext";
-import Link from "next/link";
 
 export default function Menu({ links }) {
     const { isMenuOpen } = useContext(AppContext);
@@ -34,9 +33,10 @@ export default function Menu({ links }) {
                         className={`w-full absolute top-0`}
                     >
                         <div className="bg-primary5 z-50">
-                            <div className="wrapper pt-32 pb-20">
-                                <MenuList links={links} className='mb-12' />
-                                <MenuLine/>
+                            <div className="wrapper pt-32 pb-16">
+                                <MenuList links={links} className='mb-7' />
+                                <MenuLine className='mb-6' />
+                                <ExtraMenuLinks />
                             </div>
                         </div>
                     </motion.div>)}
@@ -45,18 +45,44 @@ export default function Menu({ links }) {
     )
 }
 
-const MenuLine = ({}) => {
+const ExtraMenuLinks = () => {
     const variants = {
-        visible: { scaleX: 1, transition: { type: 'easeOut', duration: 0.5, delay:0.3 } },
-        hidden: { scaleX: 0, transition: { type: 'easeOut', duration: 0.3} },
+        visible: {
+            opacity: 1,
+            transition: { delay: 0.3 }
+        },
+        hidden: {
+            opacity: 0
+        },
+    }
+
+    const underline = {
+        hover: { scaleX: 1, transition: { type: 'easeOut', duration: 0.2 } },
+        rest: { scaleX: 0, transition: { type: 'easeOut', duration: 0.2 } },
+    }
+
+    return (
+        <motion.div variants={variants} className="flex gap-4">
+            <motion.a  whileHover='hover' initial='rest' className="text-white text-xs relative pb-2" href="/">
+                Privacy Policy
+                <motion.div variants={underline} className="absolute opacity-80 w-full origin-left h-px bottom-0 bg-white" />
+            </motion.a>
+        </motion.div>
+    )
+}
+
+const MenuLine = ({ className }) => {
+    const variants = {
+        visible: { scaleX: 1, transition: { type: 'easeOut', duration: 0.5, delay: 0.3 } },
+        hidden: { scaleX: 0, transition: { type: 'easeOut', duration: 0.3 } },
     }
 
     return (
         <motion.div
             variants={variants}
-            className="w-full bg-white origin-left h-px opacity-20"
+            className={`w-full bg-white origin-left h-px opacity-20 ${className}`}
         />
-    )    
+    )
 }
 
 const MenuList = ({ className, links }) => {
@@ -98,13 +124,13 @@ const MenuItem = ({ index, link }) => {
         <motion.li
             variants={item}
             key={index}
-            className="text-white text-[17px] font-body ">
-            <motion.a 
-            whileHover='hover'
-            initial= 'rest'
-            className="relative pb-2" href={link.slug}>
+            className="text-white md:text-left text-[17px] font-body ">
+            <motion.a
+                whileHover='hover'
+                initial='rest'
+                className="relative pb-2" href={link.slug}>
                 {link.text}
-                <motion.div variants={underline} className="absolute opacity-80 w-full origin-left h-px bottom-0 bg-white"/>
+                <motion.div variants={underline} className="absolute opacity-80 w-full origin-left h-px bottom-0 bg-white" />
             </motion.a>
         </motion.li>
     )
