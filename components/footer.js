@@ -68,7 +68,7 @@ export default function Footer({ data }) {
                         </li>
                         <li className="flex items-center gap-2">
                             <AiTwotonePhone className="text-primary2" />
-                            {data.contact.phone}
+                            <a href={`tel:${data.contact.phone}`} >{data.contact.phone}</a>
                         </li>
                         <li className="flex items-center gap-2">
                             <FaFax className="text-primary2" />
