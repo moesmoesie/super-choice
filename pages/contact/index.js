@@ -113,7 +113,7 @@ const CompanyInfo = ({ data }) => {
         <div className="grid md:grid-cols-2 lg:grid-cols-1 lg:mx-auto">
             <div>
                 <p className="text-primary4 lg:col-start-1 lg:row-start-1 lg:self-center mb-1 pb-0 font-bold">
-                    Adress
+                    Adres
                 </p>
 
                 <ul className="w-full grid text-bodyColor gap-1 mb-6">
