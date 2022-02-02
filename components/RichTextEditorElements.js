@@ -1,3 +1,6 @@
+import Image from "./image"
+import Link from "next/link"
+
 export const CustomNumberedList = ({ children }) => {
     return (
         <ol className='grid gap-6'>
@@ -45,4 +48,11 @@ export const LinkText = ({ children, link }) => {
             </a>
         </Link>
     )
+}
+
+export const RichTextImage = ({image}) => {
+    return <Image image={image} 
+        imageClassname='object-left'
+        objectFit='object-contain' 
+        className='w-full relative h-96' />
 }
