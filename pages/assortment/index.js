@@ -70,9 +70,9 @@ const ProductCard = ({ product, cta, index }) => {
                     image={product.image}
                     objectFit='object-contain'
                     mediaQueries={[
-                        { w: 1, s: 600 },
-                        { w: 500, s: 1000 },
-                        { w: 1000, s: 1500 },
+                        { w: 1, s: 300 },
+                        { w: 500, s: 400 },
+                        { w: 1000, s: 500 },
                     ]}
                 />
                 <div className='flex flex-1 flex-col pl-6 pr-6 pb-8'>
@@ -115,8 +115,7 @@ const MobileLandingSectionMain = ({ pageData }) => {
                 imageClassname={'object-bottom'}
                 image={pageData.landingProductImage}
                 mediaQueries={[
-                    { w: 1, s: 500 },
-                    { w: 500, s: 1000 },
+                    { w: 1, s: 712 },
                 ]}
             />
 
@@ -149,9 +148,7 @@ const TabletLandingSectionMain = ({ pageData, className }) => {
                         mediaQueries={[
                             { w: 1, s: 500 },
                             { w: 500, s: 1000 },
-                            { w: 1000, s: 1500 },
-                            { w: 1500, s: 2000 },
-                            { w: 2000, s: 2500 },
+                            { w: 1000, s: 1200 }
                         ]}
                     />
                 </div>
@@ -178,9 +175,7 @@ const DesktopLandingSectionMain = ({ pageData, className }) => {
                     mediaQueries={[
                         { w: 1, s: 500 },
                         { w: 500, s: 1000 },
-                        { w: 1000, s: 1500 },
-                        { w: 1500, s: 2000 },
-                        { w: 2000, s: 2500 },
+                        { w: 1000, s: 1200 }
                     ]}
                 />
             </div>
@@ -203,9 +198,7 @@ const LandingImage = ({ className, image }) => {
                 mediaQueries={[
                     { w: 1, s: 500 },
                     { w: 500, s: 1000 },
-                    { w: 1000, s: 1500 },
-                    { w: 1500, s: 2000 },
-                    { w: 2000, s: 2500 },
+                    { w: 1000, s: 1200 }
                 ]}
             />
         </div>
