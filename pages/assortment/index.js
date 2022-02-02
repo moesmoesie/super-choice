@@ -58,7 +58,6 @@ const ProductSections = ({ products, pageData }) => {
 }
 
 const ProductCard = ({ product, cta, index }) => {
-    console.log(product)
     return (
         <Link passHref href={`assortment/${product.slug}`}>
             <motion.a
