@@ -60,7 +60,7 @@ const RecipesSection = ({ recipes }) => {
 
 const RecipeCard = ({ recipe, cta, index }) => {
     return (
-        <Link href={`recipes/${recipe.slug}`}>
+        <Link passHref href={`recipes/${recipe.slug}`}>
             <motion.a
                 exit={{ opacity: 0, translateX: -20 }}
                 initial={{ opacity: 0, translateX: 20 }}

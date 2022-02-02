@@ -10,7 +10,7 @@ export default function Header({ data, preview }) {
     return (
         <header className="z-50 pointer-events-none w-full">
             <div className='flex z-50 items-center wrapper min-h-[5rem]'>
-                <Link href='/'>
+                <Link passHref href='/'>
                     <a className='pointer-events-auto'>
                         <Image 
                         className="w-16 h-16 relative" 
@@ -45,7 +45,7 @@ const HeaderNavigationLink = ({ slug, title }) => {
     const { isMenuOpen } = useContext(AppContext);
 
     return (
-        <Link href={slug}>
+        <Link passHref href={slug}>
             <motion.a 
                 transition={{type: 'easeIn'}}
                 animate={!isMenuOpen ? {color: 'var(--primary4)'} : {color: '#FFFFFF'} }

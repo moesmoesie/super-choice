@@ -64,7 +64,7 @@ const ArticleSection = ({ articles }) => {
 
 const ArticleCard = ({ article, index, cta }) => {
     return (
-        <Link href={`/news/${article.slug}`}>
+        <Link passHref href={`/news/${article.slug}`}>
             <motion.a
                 exit={{ opacity: 0, translateX: -20 }}
                 initial={{ opacity: 0, translateX: 20 }}

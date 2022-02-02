@@ -59,7 +59,7 @@ const ProductSections = ({ products, pageData }) => {
 
 const ProductCard = ({ product, cta, index }) => {
     return (
-        <Link href={`assortment/${product.slug}`}>
+        <Link passHref href={`assortment/${product.slug}`}>
             <motion.a
                 exit={{ opacity: 0, translateX: -20}}
                 initial={{ opacity: 0, translateX: 20}}
