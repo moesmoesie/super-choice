@@ -32,14 +32,6 @@
 
 @font-face {
     font-family: "Montserrat";
-    src: url("/fonts/montserrat/montserrat-100.woff2");
-    font-style: normal;
-    font-weight: 100;
-    font-display: swap;
-}
-
-@font-face {
-    font-family: "Montserrat";
     src: url("/fonts/montserrat/montserrat-300.woff2");
     font-style: normal;
     font-weight: 300;
@@ -93,6 +85,80 @@
     font-weight: 900;
     font-display: swap;
 }
+
+@font-face {
+    font-family: "Montserrat";
+    src: url("/fonts/montserrat/montserrat-100-italic.woff2");
+    font-style: italic;
+    font-weight: 100;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: "Montserrat";
+    src: url("/fonts/montserrat/montserrat-200-italic.woff2");
+    font-style: italic;
+    font-weight: 200;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: "Montserrat";
+    src: url("/fonts/montserrat/montserrat-300-italic.woff2");
+    font-style: italic;
+    font-weight: 300;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: "Montserrat";
+    src: url("/fonts/montserrat/montserrat-400-italic.woff2");
+    font-style: italic;
+    font-weight: 400;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: "Montserrat";
+    src: url("/fonts/montserrat/montserrat-500-italic.woff2");
+    font-style: italic;
+    font-weight: 500;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: "Montserrat";
+    src: url("/fonts/montserrat/montserrat-600-italic.woff2");
+    font-style: italic;
+    font-weight: 600;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: "Montserrat";
+    src: url("/fonts/montserrat/montserrat-700-italic.woff2");
+    font-style: italic;
+    font-weight: 700;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: "Montserrat";
+    src: url("/fonts/montserrat/montserrat-800-italic.woff2");
+    font-style: italic;
+    font-weight: 800;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: "Montserrat";
+    src: url("/fonts/montserrat/montserrat-900-italic.woff2");
+    font-style: italic;
+    font-weight: 900;
+    font-display: swap;
+}
+
+
 
 @font-face {
     font-family: "Mulish";
