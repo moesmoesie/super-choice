@@ -91,9 +91,10 @@ const RecipeCard = ({ recipe, cta, index }) => {
                     <p className='text-[#8D8F94] font-header mb-6'>
                         12 feb 2022
                     </p>
-                    <p className='mb-8'>
-                        {recipe.summary}
-                    </p>
+                    <div className='mb-8'>
+                        <SanityBlockContent
+                            blocks={recipe.summary} serializers={getSerializer()} />
+                    </div>
                     <button className={`button2 self-start duration-300 mt-auto group-hover:text-white group-hover:bg-primary3`}>
                         {cta}
                     </button>

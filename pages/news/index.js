@@ -87,7 +87,10 @@ const ArticleCard = ({ article, index, cta }) => {
                 <div className='flex flex-1 flex-col pl-6 pr-6 pb-8'>
                     <p className='text-primary3 font-medium font-header text-3xl truncate'>{article.title}</p>
                     <p className='text-[#8D8F94] font-header mb-6'>12 feb 2022</p>
-                    <p className='mb-8'>{article.summary}</p>
+                    <div className='mb-8'>
+                        <SanityBlockContent
+                            blocks={article.summary} serializers={getSerializer()} />
+                    </div>
                     <button className={`button2 duration-300 mt-auto group-hover:text-white group-hover:bg-primary3`}>
                         {cta}
                     </button>
