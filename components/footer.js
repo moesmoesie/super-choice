@@ -13,14 +13,18 @@ export default function Footer({ data }) {
                 <div className="grid lg:grid-cols-2 py-12 max-w-xl lg:mx-auto">
 
                     {/* Logo */}
-                    <Image
-                        className="w-16 h-16 relative mb-4"
-                        loading="eager"
-                        image={data.logo}
-                        withPlaceholder={false}
-                        mediaQueries={[
-                            { w: 10, s: 128 },
-                        ]} />
+                    <Link href={"/"}>
+                        <a>
+                            <Image
+                                className="w-16 h-16 relative mb-4"
+                                loading="eager"
+                                image={data.logo}
+                                withPlaceholder={false}
+                                mediaQueries={[
+                                    { w: 10, s: 128 },
+                                ]} />
+                        </a>
+                    </Link>
 
                     <p className="text-white mb-4 lg:col-start-1 lg:mb-0 lg:self-end">
                         © 2021 <span className="font-bold">Super Choice.</span> <br /> All rights reserved
