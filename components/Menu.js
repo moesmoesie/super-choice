@@ -44,30 +44,6 @@ export default function Menu({ links }) {
     )
 }
 
-const Backdrop = () => {
-    const { isMenuOpen, setIsMenuOpen } = useContext(AppContext);
-
-    const variants = {
-        visible: {
-            opacity: 0.6,
-            transition: {
-                delay:0.2,
-                type: 'easeOut',
-                duration : 0.2
-            }
-        },
-        hidden: {
-            opacity: 0
-        },
-    }
-    return (
-        <motion.div
-            onClick={(e) => setIsMenuOpen(false)}
-            variants={variants}
-            className="w-full h-screen bg-black" />
-    )
-}
-
 const MenuList = ({ className, links }) => {
     const container = {
         hidden: { opacity: 0 },
@@ -95,17 +71,26 @@ const MenuList = ({ className, links }) => {
 const MenuItem = ({ index, link }) => {
     const item = {
         hidden: { opacity: 0, translateX: "-40px", transition: { type: 'easeIn' } },
-        visible: { opacity: 1, translateX: "0px", transition: { type: 'easeIn' } }
+        visible: { opacity: 1, translateX: "0px", transition: { type: 'easeIn' } },
+    }
+
+    const underline = {
+        hover: { scaleX: 1, transition: { type: 'easeOut', duration: 0.2 } },
+        rest: { scaleX: 0, transition: { type: 'easeOut', duration: 0.2 } },
     }
 
     return (
         <motion.li
             variants={item}
             key={index}
-            className="text-white text-2xl font-bold font-header">
-            <a href={link.slug}>
+            className="text-white text-[17px] font-body ">
+            <motion.a 
+            whileHover='hover'
+            initial= 'rest'
+            className="relative pb-2" href={link.slug}>
                 {link.text}
-            </a>
+                <motion.div variants={underline} className="absolute opacity-80 w-full origin-left h-px bottom-0 bg-white"/>
+            </motion.a>
         </motion.li>
     )
 
