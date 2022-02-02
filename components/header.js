@@ -49,7 +49,7 @@ const HeaderNavigationLink = ({ slug, title }) => {
             <motion.a 
                 transition={{type: 'easeIn'}}
                 animate={!isMenuOpen ? {color: 'var(--primary4)'} : {color: '#FFFFFF'} }
-                className="link z-50 pointer-events-auto hidden sm:block text-primary4 font-bold uppercase">
+                className="link z-50 cursor-pointer pointer-events-auto hidden sm:block text-primary4 font-bold uppercase">
                 {title}
             </motion.a>
         </Link>
