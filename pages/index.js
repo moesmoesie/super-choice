@@ -1,10 +1,10 @@
 import groq from "groq"
 import { getClient, getGlobalData } from '../lib/sanity/sanity.server'
 import React from "react"
-import anime from "animejs"
 import Image from "../components/image"
 import Link from "next/link"
 import Layout from "../components/layout"
+import { motion } from "framer-motion"
 
 export default function Home({ homePage, global, preview, locale }) {
   return (
@@ -121,72 +121,70 @@ const HomeNavigationItem = ({ data, index }) => {
     }
   }
 
-  //ANIMATION
-  const DURATION = 1000
-  const SCALE = { FROM: 1, TO: 1.2 }
-  const OPACITY = { FROM: 0.4, TO: 0.2 }
-  const EASING = "easeInOutSine"
+  const imageVarient = {
+    rest: {
+      transition:{
+        type: 'easeOut',
+        duration: 0.3,
+      },
+      scale: 1,
+    },
+    hover: {
+      transition:{
+        duration: 0.3,
+        type: 'easeOut'
+      },
+      scale: 1.1
+    }
+  };
 
-  const onMouseEnter = () => {
-    anime({
-      targets: `#HomeNavigationItemImage${index}`,
-      scale: SCALE.TO,
-      easing: EASING,
-      duration: DURATION
-    });
-
-    anime({
-      targets: `#HomeNavigationItemBackground${index}`,
-      opacity: OPACITY.TO,
-      easing: EASING,
-      duration: DURATION
-    });
-  }
-
-  const onMouseLeave = () => {
-    anime({
-      targets: `#HomeNavigationItemImage${index}`,
-      scale: SCALE.FROM,
-      easing: EASING,
-      duration: DURATION
-    });
-
-    anime({
-      targets: `#HomeNavigationItemBackground${index}`,
-      opacity: OPACITY.FROM,
-      easing: EASING,
-      duration: DURATION
-    });
+  const backgroundVarient = {
+    rest: {
+      transition:{
+        type: 'linear',
+        duration: 0.3,
+      },
+      opacity: 0.2,
+    },
+    hover: {
+      transition:{
+        type: 'linear',
+        duration: 0.5,
+      },
+      opacity: 0,
+    }
   }
 
 
   return (
     <Link href={data.slug}>
-      <a className={`${getRowSpan(index)} ${getColumnSpan(index)} pointer-events-auto grid place-items-center relative overflow-hidden`}
-        onMouseEnter={onMouseEnter}
-        onMouseLeave={onMouseLeave}
+      <motion.a className={`${getRowSpan(index)} ${getColumnSpan(index)} pointer-events-auto cursor-pointer grid place-items-center relative overflow-hidden`}
+        initial="rest" whileHover="hover" animate="rest"
       >
 
-        <Image className="absolute w-full h-full"
-          id={`HomeNavigationItemImage${index}`}
-          image={data.image}
-          objectFit='object-cover'
-          mediaQueries={[
-            { w: 375, s: 500 },
-            { w: 768, s: 1000 },
-            { w: 1024, s: 1300 },
-            { w: 1500, s: 2000 }
-          ]} 
-        />
+        <motion.div variants={imageVarient}
+        className="absolute w-full h-full">
+          <Image className="absolute w-full h-full"
+            image={data.image}
+            objectFit='object-cover'
+            mediaQueries={[
+              { w: 375, s: 500 },
+              { w: 768, s: 1000 },
+              { w: 1024, s: 1300 },
+              { w: 1500, s: 2000 }  
+            ]}
+          />
+        </motion.div>
 
-        <div className="absolute w-full h-full bg-black opacity-40 group-hover:opacity-10"
-          id={`HomeNavigationItemBackground${index}`}
-        />
+        <motion.div variants={backgroundVarient}
+          className="absolute w-full h-full bg-black"/>
 
-        <h2 className="font-header font-bold text-3xl md:text-4xl text-white pointer-events-none z-10 drop-shadow-2xl">
+        <h2 className="font-header font-bold text-3xl md:text-4xl text-white pointer-events-none z-10"
+          style={{textShadow: "2px 2px 5px rgba(0, 0, 0, 0.40)"}}
+        >
           {data.text}
         </h2>
-      </a>
+      </motion.a>
     </Link>
   )
 }
