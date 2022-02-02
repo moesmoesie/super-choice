@@ -35,13 +35,28 @@ export default function Menu({ links }) {
                     >
                         <div className="bg-primary5 z-50">
                             <div className="wrapper pt-32 pb-20">
-                                <MenuList links={links} />
+                                <MenuList links={links} className='mb-12' />
+                                <MenuLine/>
                             </div>
                         </div>
                     </motion.div>)}
             </AnimatePresence>
         </>
     )
+}
+
+const MenuLine = ({}) => {
+    const variants = {
+        visible: { scaleX: 1, transition: { type: 'easeOut', duration: 0.5, delay:0.3 } },
+        hidden: { scaleX: 0, transition: { type: 'easeOut', duration: 0.3} },
+    }
+
+    return (
+        <motion.div
+            variants={variants}
+            className="w-full bg-white origin-left h-px opacity-20"
+        />
+    )    
 }
 
 const MenuList = ({ className, links }) => {
