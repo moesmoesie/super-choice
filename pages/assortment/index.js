@@ -18,12 +18,12 @@ const PageContext = React.createContext();
 export default function Assortment({ pageData, preview, global, locale }) {
     return (
         <>
-        <Seo seo={pageData.seo}/>
-        <Layout preview={preview} data={global}>
-            <LandingImage image={pageData.landingImage} />
-            <LandingSectionMain pageData={pageData} />
-            <AssortmentMain pageData={pageData} />
-        </Layout>
+            <Seo seo={pageData.seo} />
+            <Layout preview={preview} data={global}>
+                <LandingImage image={pageData.landingImage} />
+                <LandingSectionMain pageData={pageData} />
+                <AssortmentMain pageData={pageData} />
+            </Layout>
         </>
     )
 }
@@ -110,20 +110,8 @@ const LandingSectionMain = ({ pageData }) => {
 
 const MobileLandingSectionMain = ({ pageData }) => {
     return (
-        <div className='relative wrapper md:hidden'>
-            <Image className={`
-                mx-auto w-[70%] max-w-[20rem] h-[25rem]
-                -translate-y-28`}
-                objectFit={'object-contain'}
-                loading='eager'
-                imageClassname={'object-bottom'}
-                image={pageData.landingProductImage}
-                mediaQueries={[
-                    { w: 1, s: 712 },
-                ]}
-            />
-
-            <Headline1 className="-translate-y-10">
+        <div className='relative wrapper md:hidden mt-12'>
+            <Headline1 className='mb-8'>
                 {pageData.title}
             </Headline1>
 
