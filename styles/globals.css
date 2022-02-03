@@ -237,7 +237,7 @@
 
 @layer components {
     .button{
-        @apply  bg-primary3 text-white px-10 py-2 rounded-md
+        @apply  bg-primary3 text-white px-12 py-4 rounded-md
                 uppercase font-bold transition duration-150 ease-in-out;
     }
 

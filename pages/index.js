@@ -10,47 +10,38 @@ import Seo from "../components/Seo"
 export default function Home({ homePage, global, preview, locale }) {
   return (
     <>
-    <Seo seo={homePage.seo}/>
-    <Layout preview={preview} data={global}>
+      <Seo seo={homePage.seo} />
+      <Layout fadeInWhite={true} preview={preview} data={global}>
 
-      {/* Landing Section */}
-      <div className=" h-screen -mt-[4rem] w-full relative">
+        {/* Landing Section */}
+        <LandingSection homePage={homePage}/>
 
-        <LandingImage
-          className="absolute w-full h-full"
-          image={homePage.landingImage}
-        />
-
-        <div className="absolute top-1/2 w-full flex flex-col items-center">
-
-          <LandingTitle className="mb-5 md:mb-12">
-            {homePage.title}
-          </LandingTitle>
-
-          <div className="flex flex-col items-center gap-5 md:flex-row md:mb-3">
-            <LandingCTA className="bg-primary4" cta={homePage.callToAction1} />
-            <LandingCTA cta={homePage.callToAction2} />
-          </div>
-
-          <LandingArt className="h-44 hidden md:block" />
-        </div>
-      </div>
-
-      <HomeNavigation data={homePage.navigation} />
-    </Layout>
+        <HomeNavigation data={homePage.navigation} />
+      </Layout>
     </>
   )
 }
 
-const LandingTitle = ({ className, children }) => {
+const LandingSection = ({homePage}) => {
   return (
-    <>
-      <h1 className={`font-header text-6xl md:text-9xl font-black text-center text-white ${className}`}>
-        {children}
-      </h1>
-    </>
+    <div className="w-full h-screen relative -mt-20">
+      <video className="w-full h-full object-cover -z-20 top-0 absolute" autoPlay muted loop id="myVideo">
+        <source src="video.mp4" type="video/mp4" />
+      </video>
+      <div className="absolute flex items-center flex-col w-full bottom-14 md:bottom-28 left-1/2 -translate-x-1/2">
+        <h1 
+          style={{textShadow: '2px 2px 5px rgba(0, 0, 0, 0.40)'}}
+          className='z-20 w-full text-center font-header text-7xl md:text-9xl uppercase font-black text-white mb-7 md:mb-12'>
+          Super Choice
+        </h1>
+
+        <LandingCTA className="bg-primary4" cta={homePage.callToAction1} />
+
+      </div>
+    </div>
   )
 }
+
 
 const LandingCTA = ({ className, cta }) => {
   return (
@@ -64,23 +55,11 @@ const LandingCTA = ({ className, cta }) => {
   )
 }
 
-const LandingImage = ({ className, image }) => {
-  return (
-    <Image
-      className={`${className}`}
-      objectFit="object-cover"
-      image={image}
-      mediaQueries={[
-        { w: 375, s: 500 },
-        { w: 768, s: 1000 },
-        { w: 1024, s: 1300 },
-        { w: 1500, s: 2000 }
-      ]}
-      sizes={[600, 1500, 4000]}
-      loading="eager"
-    />
-  )
-}
+
+
+
+
+
 
 const HomeNavigation = ({ data }) => {
   return (
@@ -127,14 +106,14 @@ const HomeNavigationItem = ({ data, index }) => {
 
   const imageVarient = {
     rest: {
-      transition:{
+      transition: {
         type: 'easeOut',
         duration: 0.3,
       },
       scale: 1,
     },
     hover: {
-      transition:{
+      transition: {
         duration: 0.3,
         type: 'easeOut'
       },
@@ -144,14 +123,14 @@ const HomeNavigationItem = ({ data, index }) => {
 
   const backgroundVarient = {
     rest: {
-      transition:{
+      transition: {
         type: 'linear',
         duration: 0.3,
       },
       opacity: 0.2,
     },
     hover: {
-      transition:{
+      transition: {
         type: 'linear',
         duration: 0.5,
       },
@@ -167,7 +146,7 @@ const HomeNavigationItem = ({ data, index }) => {
       >
 
         <motion.div variants={imageVarient}
-        className="absolute w-full h-full">
+          className="absolute w-full h-full">
           <Image className="absolute w-full h-full"
             image={data.image}
             objectFit='object-cover'
@@ -175,16 +154,16 @@ const HomeNavigationItem = ({ data, index }) => {
               { w: 375, s: 500 },
               { w: 768, s: 1000 },
               { w: 1024, s: 1300 },
-              { w: 1500, s: 2000 }  
+              { w: 1500, s: 2000 }
             ]}
           />
         </motion.div>
 
         <motion.div variants={backgroundVarient}
-          className="absolute w-full h-full bg-black"/>
+          className="absolute w-full h-full bg-black" />
 
         <h2 className="font-header font-bold text-3xl md:text-4xl text-white pointer-events-none z-10"
-          style={{textShadow: "2px 2px 5px rgba(0, 0, 0, 0.40)"}}
+          style={{ textShadow: "2px 2px 5px rgba(0, 0, 0, 0.40)" }}
         >
           {data.text}
         </h2>

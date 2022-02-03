@@ -144,7 +144,7 @@ const HamburgerIcon = () => {
         open: {
             rotate: 0,
             translateY: 0,
-            stroke: 'var(--primary2)'
+            stroke: 'var(--primary4)'
         },
         close: {
             rotate: 45,
@@ -166,7 +166,7 @@ const HamburgerIcon = () => {
         open: {
             rotate: 0,
             translateY: 0,
-            stroke: 'var(--primary2)'
+            stroke: 'var(--primary4)'
         },
         close: {
             rotate: -45,
@@ -176,7 +176,7 @@ const HamburgerIcon = () => {
     }
 
     return (
-        <motion.svg viewBox="0 0 100 100" className="w-8 stroke-primary2">
+        <motion.svg viewBox="0 0 100 100" className="w-8 stroke-primary4">
             <motion.line
                 variants={topLineVarient}
                 initial="open"
