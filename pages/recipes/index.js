@@ -13,14 +13,18 @@ import { useFilterCollection } from '../../lib/hooks/useFilterCollection'
 import CollectionGrid from '../../components/CollectionGrid'
 import Link from 'next/link'
 import { motion, AnimatePresence } from 'framer-motion'
+import Seo from '../../components/Seo'
 const PageContext = React.createContext();
 
 export default function RecipesPage({ pageData, global, preview, locale }) {
     return (
+        <>
+        <Seo seo={pageData.seo}/>
         <Layout preview={preview} data={global}>
             <LandingSection pageData={pageData} className="mb-12" />
             <MainSection pageData={pageData} />
         </Layout>
+        </>
     )
 }
 

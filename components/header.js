@@ -12,20 +12,22 @@ export default function Header({ data, preview }) {
             <div className='flex z-50 items-center wrapper min-h-[5rem]'>
                 <Link passHref href='/'>
                     <a className='pointer-events-auto'>
-                        <Image 
-                        className="w-16 h-16 relative" 
-                        loading='eager' withPlaceholder={false} 
-                        image={data.logo} 
-                        mediaQueries={[
-                            { w: 10, s: 128 },
-                        ]}/>
+                        <Image
+                            className="w-16 h-16 relative"
+                            loading='eager' withPlaceholder={false}
+                            image={data.logo}
+                            mediaQueries={[
+                                { w: 10, s: 128 },
+                            ]} />
                     </a>
                 </Link>
-                <HamburgerMenu className='ml-auto z-50 sm:ml-12' />
-                <div className="ml-auto flex gap-x-10">
-                    {preview && <ExitPreviewModeButton />}
-                    <HeaderNavigationLink slug="/contact" title="contact" />
+                <HamburgerMenu className='ml-auto z-50 md:ml-12' />
+
+                <div className="ml-auto hidden md:flex gap-3">
+                    {preview && <ExitPreviewModeButton/>}
+                    <HeaderNavigationLink slug='/contact' title='Contact' />
                 </div>
+
             </div>
         </header>
     )
@@ -46,9 +48,9 @@ const HeaderNavigationLink = ({ slug, title }) => {
 
     return (
         <Link passHref href={slug}>
-            <motion.a 
-                transition={{type: 'easeIn'}}
-                animate={!isMenuOpen ? {color: 'var(--primary4)'} : {color: '#FFFFFF'} }
+            <motion.a
+                transition={{ type: 'easeIn' }}
+                animate={!isMenuOpen ? { color: 'var(--primary4)' } : { color: '#FFFFFF' }}
                 className="link z-50 cursor-pointer pointer-events-auto hidden sm:block text-primary4 font-bold uppercase">
                 {title}
             </motion.a>
@@ -102,11 +104,11 @@ const MenuText = () => {
     }
 
     return (
-        <div className='relative flex items-center'>
+        <div className='relative hidden  md:flex items-center'>
             <AnimatePresence initial={false}>
                 {!isMenuOpen && (
                     <motion.span
-                        transition={{type: 'easeIn'}}
+                        transition={{ type: 'easeIn' }}
                         variants={menu}
                         initial='nonActive'
                         exit='nonActive'
@@ -120,7 +122,7 @@ const MenuText = () => {
             <AnimatePresence>
                 {isMenuOpen && (
                     <motion.span
-                        transition={{type: 'easeIn'}}
+                        transition={{ type: 'easeIn' }}
                         exit='nonActive'
                         initial='nonActive'
                         animate='active'

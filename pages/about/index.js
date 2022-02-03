@@ -7,9 +7,11 @@ import Layout from "../../components/layout"
 import { Headline1 } from "../../components/headlines"
 import SanityBlockContent from "@sanity/block-content-to-react"
 import {getSerializer} from "../../lib/serializers"
-
+import Seo from "../../components/Seo"
 export default function Home({ aboutPage,preview, global, locale }) {
     return (
+        <>
+        <Seo seo={aboutPage.seo} />
         <Layout preview={preview} data={global}>
             {/* Landing Section */}
             <div className="grid grid-cols-1 mb-16 lg:gap-4 lg:grid-rows-[min-content,auto] lg:wrapper lg:grid-cols-2">
@@ -52,6 +54,7 @@ export default function Home({ aboutPage,preview, global, locale }) {
                 />
             </div>
         </Layout>
+        </>
     )
 }
 
@@ -120,6 +123,7 @@ export async function getStaticProps(context) {
      *[_type == "aboutPage" && language->languageCode == '${locale}'][0]{
             _id,
             title,
+            seo,
             'locale' : language->languageCode,
             'landingImage' : landingImage{
                 ...,

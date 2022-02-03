@@ -9,12 +9,17 @@ import SanityBlockContent from '@sanity/block-content-to-react'
 import { getSerializer } from '../../lib/serializers'
 import ScrollContainer from 'react-indiana-drag-scroll'
 import { useState } from 'react'
+import Seo from '../../components/Seo'
 
-export default function Assortment({ detailData,preview, global, locale }) {
+export default function Assortment({ detailData, preview, global, locale }) {
     return (
-        <Layout preview={preview} data={global}>
-            <LandingSection detailData={detailData} className='mb-12' />
-        </Layout>
+        <>
+            <Seo seo={detailData.seo}/>
+            <Layout preview={preview} data={global}>
+                <LandingSection detailData={detailData} className='mb-12' />
+            </Layout>
+        </>
+
     )
 }
 
