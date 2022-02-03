@@ -138,7 +138,7 @@ const ImagePickerButton = ({ className, image, onPick }) => {
     return (
         <button className={`
             ${className}
-            w-24 bg-orange-100 aspect-square rounded-md overflow-hidden`}
+            w-24 bg-gray-100 aspect-square rounded-md overflow-hidden`}
             onClick={(e) => onPick(image)}
         >
             <Image
