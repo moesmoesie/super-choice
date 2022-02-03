@@ -63,7 +63,10 @@ const ExtraMenuLinks = () => {
 
     return (
         <motion.div variants={variants} className="flex gap-4">
-            <motion.a  whileHover='hover' initial='rest' className="text-white text-xs relative pb-2" href="/">
+            <motion.a className="text-white text-xs relative pb-2"
+                whileHover='hover' initial='rest'
+                href="/privacy-policy"  
+            >
                 Privacy Policy
                 <motion.div variants={underline} className="absolute opacity-80 w-full origin-left h-px bottom-0 bg-white" />
             </motion.a>
