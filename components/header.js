@@ -1,4 +1,3 @@
-import anime from "animejs";
 import Link from "next/link";
 import Image from "./image";
 import AppContext from '../lib/contexts/AppContext';

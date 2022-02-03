@@ -19,16 +19,16 @@ export default function Layout({ children, data, fadeInWhite = false, preview })
 const TopSection = ({ data, preview, fadeInWhite = false }) => {
     const [isAtTop, setIsAtTop] = useState(fadeInWhite);
 
-    if (fadeInWhite) {
-        function logit() {
-            if (window.pageYOffset > 500 && isAtTop) {
-                setIsAtTop(false)
-            } else if (window.pageYOffset < 500 && !isAtTop) {
-                setIsAtTop(true)
-            }
+    function logit() {
+        if (window.pageYOffset > 500 && isAtTop) {
+            setIsAtTop(false)
+        } else if (window.pageYOffset < 500 && !isAtTop) {
+            setIsAtTop(true)
         }
+    }
 
-        useEffect(() => {
+    useEffect(() => {
+        if (fadeInWhite) {
             function watchScroll() {
                 window.addEventListener("scroll", logit);
             }
@@ -36,8 +36,8 @@ const TopSection = ({ data, preview, fadeInWhite = false }) => {
             return () => {
                 window.removeEventListener("scroll", logit);
             };
-        });
-    }
+        }
+    });
 
 
 
