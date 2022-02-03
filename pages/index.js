@@ -5,9 +5,12 @@ import Image from "../components/image"
 import Link from "next/link"
 import Layout from "../components/layout"
 import { motion } from "framer-motion"
+import Seo from "../components/Seo"
 
 export default function Home({ homePage, global, preview, locale }) {
   return (
+    <>
+    <Seo seo={homePage.seo}/>
     <Layout preview={preview} data={global}>
 
       {/* Landing Section */}
@@ -35,6 +38,7 @@ export default function Home({ homePage, global, preview, locale }) {
 
       <HomeNavigation data={homePage.navigation} />
     </Layout>
+    </>
   )
 }
 
@@ -220,6 +224,7 @@ export async function getStaticProps(context) {
     *[_type == "homePage" && language->languageCode == '${locale}'][0]{
       _id,
       title,
+      seo,
       'locale' : language->languageCode,
       'landingImage': landingImage  {
         ...,

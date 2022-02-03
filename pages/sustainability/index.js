@@ -7,9 +7,12 @@ import Highlight from '../../components/highlight'
 import { Headline1 } from '../../components/headlines'
 import SanityBlockContent from '@sanity/block-content-to-react'
 import { getSerializer } from '../../lib/serializers'
+import Seo from '../../components/Seo'
 
 export default function Home({ sustainabilityPage, global,preview, locale }) {
     return (
+        <>
+        <Seo seo={sustainabilityPage.seo}/>
         <Layout preview={preview} data={global}>
             <LandingImage className="w-full mb-12 h-72 md:wrapper"
                 image={sustainabilityPage.landingImage}
@@ -30,6 +33,7 @@ export default function Home({ sustainabilityPage, global,preview, locale }) {
                 highlight={sustainabilityPage.highlight}
             />
         </Layout>
+        </>
     )
 }
 
@@ -75,6 +79,7 @@ export async function getStaticProps(context) {
             title,
             landingContent,
             'locale' : language->languageCode,
+            seo,
             'highlight' : highlight{
             ...,
             'image' : image{

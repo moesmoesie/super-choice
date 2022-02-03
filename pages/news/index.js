@@ -13,14 +13,18 @@ import Image from '../../components/image'
 import { useFilterCollection } from '../../lib/hooks/useFilterCollection'
 import CollectionGrid from '../../components/CollectionGrid'
 import { motion, AnimatePresence } from 'framer-motion'
+import Seo from '../../components/Seo'
 const PageContext = React.createContext();
 
 export default function News({ pageData, global, preview, locale }) {
     return (
-        <Layout preview={preview} data={global}>
-            <LandingSection className="mb-12" pageData={pageData} />
-            <MainSection pageData={pageData} />
-        </Layout>
+        <>
+            <Seo seo={pageData.seo} />
+            <Layout preview={preview} data={global}>
+                <LandingSection className="mb-12" pageData={pageData} />
+                <MainSection pageData={pageData} />
+            </Layout>
+        </>
     )
 }
 

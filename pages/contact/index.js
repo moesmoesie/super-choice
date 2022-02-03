@@ -10,29 +10,33 @@ import { AiOutlineFacebook } from '@react-icons/all-files/ai/AiOutlineFacebook'
 import { AiOutlineInstagram } from '@react-icons/all-files/ai/AiOutlineInstagram'
 import { AiOutlineLinkedin } from '@react-icons/all-files/ai/AiOutlineLinkedin'
 import { useState } from 'react'
-
-export default function ContactPage({ pageData,preview, global, locale }) {
+import Seo from '../../components/Seo'
+export default function ContactPage({ pageData, preview, global, locale }) {
     return (
-        <Layout preview={preview} data={global}>
-            <div className='wrapper'>
-            <BannerImage className="wrapper mb-12" image={pageData.landingImage} />
-            <div className='grid lg:grid-cols-3 gap-8 mb-12'>
-                <InfoSection pageData={pageData} global={global} />
-                {/* <ContactForm className="lg:col-span-2" /> */}
-            </div>
-            </div>
-        </Layout>
+        <>
+            <Seo seo={pageData.seo}/>
+            <Layout preview={preview} data={global}>
+                <div className='wrapper'>
+                    <BannerImage className="wrapper mb-12" image={pageData.landingImage} />
+                    <div className='grid lg:grid-cols-3 gap-8 mb-12'>
+                        <InfoSection pageData={pageData} global={global} />
+                        {/* <ContactForm className="lg:col-span-2" /> */}
+                    </div>
+                </div>
+            </Layout>
+        </>
+
     )
 }
 
-const ContactForm = ({className}) => {
+const ContactForm = ({ className }) => {
     const [firstName, setFirstName] = useState('')
     const [lastName, setLastName] = useState('')
     const [email, setEmail] = useState('')
     const [message, setMessage] = useState('')
     const [submitted, setSubmitted] = useState(false)
 
-    async function fromSubmit(e){
+    async function fromSubmit(e) {
         e.preventDefault();
         alert(`
             First Name: ${firstName}
@@ -45,9 +49,9 @@ const ContactForm = ({className}) => {
 
     return (
         <form className={`grid md:grid-cols-2 gap-5 mb-16 ${className}`}>
-            <ContactFromInput placeholder="First name" onChange={(e) => setFirstName(e.target.value)}/>
-            <ContactFromInput placeholder="Last name" onChange={(e) => setLastName(e.target.value)}/>
-            <ContactFromInput className="md:col-span-2" placeholder={"Email address"} onChange={(e) => setEmail(e.target.value)}/>
+            <ContactFromInput placeholder="First name" onChange={(e) => setFirstName(e.target.value)} />
+            <ContactFromInput placeholder="Last name" onChange={(e) => setLastName(e.target.value)} />
+            <ContactFromInput className="md:col-span-2" placeholder={"Email address"} onChange={(e) => setEmail(e.target.value)} />
             <ContactFromTextArea className="md:col-span-2" placeholder="Write your message" onChange={(e) => setMessage(e.target.value)} />
             <div className='md:col-span-2'>
                 <ContactFromSubmitButton onClick={fromSubmit} />
@@ -56,7 +60,7 @@ const ContactForm = ({className}) => {
     )
 }
 
-const ContactFromSubmitButton = ({onClick}) => {
+const ContactFromSubmitButton = ({ onClick }) => {
     return (
         <button className='bg-primary3 px-12 py-2 text-white rounded-md font-medium'
             type='submit'
@@ -66,7 +70,7 @@ const ContactFromSubmitButton = ({onClick}) => {
     )
 }
 
-const ContactFromTextArea = ({placeholder, className, onChange}) => {
+const ContactFromTextArea = ({ placeholder, className, onChange }) => {
     return (
         <textarea className={`${className}
             from-input bg-[#53D8FB]/5 border border-[#66C3FF] rounded-md py-2 px-2
@@ -80,7 +84,7 @@ const ContactFromTextArea = ({placeholder, className, onChange}) => {
     )
 }
 
-const ContactFromInput = ({placeholder, className, onChange}) => {
+const ContactFromInput = ({ placeholder, className, onChange }) => {
     return (
         <>
             <input className={` ${className}
@@ -91,7 +95,7 @@ const ContactFromInput = ({placeholder, className, onChange}) => {
                 type='text'
                 maxLength={25}
                 onChange={onChange}
-                placeholder= {placeholder}
+                placeholder={placeholder}
             />
         </>
     )

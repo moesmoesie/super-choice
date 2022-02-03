@@ -7,29 +7,31 @@ import RecipeDetailPageQuery from '../../lib/sanity/queries/RecipeDetailPageQuer
 import BannerImage from '../../components/BannerImage'
 import { getSerializer } from '../../lib/serializers'
 import SanityBlockContent from '@sanity/block-content-to-react'
-
+import Seo from '../../components/Seo'
 export default function RecipePage({ pageDetail, preview, global, locale }) {
     return (
-        <Layout preview={preview} data={global}>
-            <div className='wrapper'>
-                <BannerImage className='wrapper mb-12' image={pageDetail.bannerImage} />
-                <div className='grid mb-12 md:grid-cols-2'>
-                    <Headline1 className='mb-12 md:col-span-2'>
-                        {pageDetail.title}
-                    </Headline1>
-                    <div className='bg-[#E0F3FF] md:ml-12 lg:ml-24 mb-12 md:self-start md:col-start-2 px-4 py-6 rounded-md'>
-                        <SanityBlockContent blocks={pageDetail.instructions} serializers={getSerializer()} />
-                    </div>
-                    <div className='grid gap-6 md:col-start-1 md:row-start-2'>
-                        <SanityBlockContent blocks={pageDetail.steps} serializers={getSerializer()} />
+        <>
+            <Seo seo={pageDetail.seo}/>
+            <Layout preview={preview} data={global}>
+                <div className='wrapper'>
+                    <BannerImage className='wrapper mb-12' image={pageDetail.bannerImage} />
+                    <div className='grid mb-12 md:grid-cols-2'>
+                        <Headline1 className='mb-12 md:col-span-2'>
+                            {pageDetail.title}
+                        </Headline1>
+                        <div className='bg-[#E0F3FF] md:ml-12 lg:ml-24 mb-12 md:self-start md:col-start-2 px-4 py-6 rounded-md'>
+                            <SanityBlockContent blocks={pageDetail.instructions} serializers={getSerializer()} />
+                        </div>
+                        <div className='grid gap-6 md:col-start-1 md:row-start-2'>
+                            <SanityBlockContent blocks={pageDetail.steps} serializers={getSerializer()} />
+                        </div>
                     </div>
                 </div>
-            </div>
-        </Layout>
+            </Layout>
+        </>
+
     )
 }
-
-
 
 export const getStaticPaths = async () => {
     const data = await getClient(false).fetch(CollectionSlugs, { collection: 'recipe' })

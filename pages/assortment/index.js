@@ -12,15 +12,19 @@ import FilterRow from '../../components/FilterRow'
 import { useFilterCollection } from '../../lib/hooks/useFilterCollection'
 import CollectionGrid from '../../components/CollectionGrid'
 import { motion, AnimatePresence } from 'framer-motion'
+import Seo from '../../components/Seo'
 const PageContext = React.createContext();
 
 export default function Assortment({ pageData, preview, global, locale }) {
     return (
+        <>
+        <Seo seo={pageData.seo}/>
         <Layout preview={preview} data={global}>
             <LandingImage image={pageData.landingImage} />
             <LandingSectionMain pageData={pageData} />
             <AssortmentMain pageData={pageData} />
         </Layout>
+        </>
     )
 }
 
