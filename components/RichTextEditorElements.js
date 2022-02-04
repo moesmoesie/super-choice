@@ -40,6 +40,10 @@ export const MscColor = ({ children }) => {
     return <span className="text-[#0A529B]">{children}</span>
 }
 
+export const CustomColor = ({ children,color }) => {
+    return <span style={{color: color}}>{children}</span>
+}
+
 export const LinkText = ({ children, link }) => {
     return (
         <Link href={link}>
