@@ -1,6 +1,5 @@
 import { getGlobalData, getClient } from '../../lib/sanity/sanity.server'
 import React from "react"
-import Layout from "../../components/layout"
 import NewsPageQuery from '../../lib/sanity/queries/NewsPageQuery'
 import { Headline1 } from '../../components/headlines'
 import BannerImage from '../../components/BannerImage'
@@ -14,16 +13,17 @@ import { useFilterCollection } from '../../lib/hooks/useFilterCollection'
 import CollectionGrid from '../../components/CollectionGrid'
 import { motion, AnimatePresence } from 'framer-motion'
 import Seo from '../../components/Seo'
+import Page from '../../components/Page'
 const PageContext = React.createContext();
 
 export default function News({ pageData, global, preview, locale }) {
     return (
         <>
             <Seo seo={pageData.seo} />
-            <Layout preview={preview} data={global}>
+            <Page preview={preview} data={global}>
                 <LandingSection className="mb-12" pageData={pageData} />
                 <MainSection pageData={pageData} />
-            </Layout>
+            </Page>
         </>
     )
 }

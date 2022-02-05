@@ -1,6 +1,5 @@
 import { getGlobalData, getClient } from '../../lib/sanity/sanity.server'
 import React from "react"
-import Layout from "../../components/layout"
 import RecipePageQuery from '../../lib/sanity/queries/RecipePageQuery'
 import BannerImage from '../../components/BannerImage'
 import { Headline1 } from '../../components/headlines'
@@ -14,16 +13,17 @@ import CollectionGrid from '../../components/CollectionGrid'
 import Link from 'next/link'
 import { motion, AnimatePresence } from 'framer-motion'
 import Seo from '../../components/Seo'
+import Page from '../../components/Page'
 const PageContext = React.createContext();
 
 export default function RecipesPage({ pageData, global, preview, locale }) {
     return (
         <>
         <Seo seo={pageData.seo}/>
-        <Layout preview={preview} data={global}>
+        <Page preview={preview} data={global}>
             <LandingSection pageData={pageData} className="mb-12" />
             <MainSection pageData={pageData} />
-        </Layout>
+        </Page>
         </>
     )
 }

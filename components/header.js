@@ -12,7 +12,7 @@ export default function Header({ data, preview }) {
                 <Link passHref href='/'>
                     <a className='pointer-events-auto'>
                         <Image
-                            className="w-16 h-16 relative"
+                            className="z-50 w-16 h-16 relative"
                             loading='eager' withPlaceholder={false}
                             image={data.logo}
                             mediaQueries={[

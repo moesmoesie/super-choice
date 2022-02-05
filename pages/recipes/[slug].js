@@ -2,17 +2,18 @@ import { getGlobalData, getClient } from '../../lib/sanity/sanity.server'
 import React from "react"
 import CollectionSlugs from '../../lib/sanity/queries/CollectionSlugs'
 import { Headline1 } from '../../components/headlines'
-import Layout from '../../components/layout'
 import RecipeDetailPageQuery from '../../lib/sanity/queries/RecipeDetailPageQuery'
 import BannerImage from '../../components/BannerImage'
 import { getSerializer } from '../../lib/serializers'
 import SanityBlockContent from '@sanity/block-content-to-react'
 import Seo from '../../components/Seo'
+import Page from '../../components/Page'
+
 export default function RecipePage({ pageDetail, preview, global, locale }) {
     return (
         <>
             <Seo seo={pageDetail.seo}/>
-            <Layout preview={preview} data={global}>
+            <Page preview={preview} data={global}>
                 <div className='wrapper'>
                     <BannerImage className='wrapper mb-12' image={pageDetail.bannerImage} />
                     <div className='grid mb-12 md:grid-cols-2'>
@@ -27,7 +28,7 @@ export default function RecipePage({ pageDetail, preview, global, locale }) {
                         </div>
                     </div>
                 </div>
-            </Layout>
+            </Page>
         </>
 
     )

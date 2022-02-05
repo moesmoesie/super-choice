@@ -3,23 +3,22 @@ import React from "react"
 import CollectionSlugs from '../../lib/sanity/queries/CollectionSlugs'
 import ProductDetailPageQuery from '../../lib/sanity/queries/ProductDetailPageQuery'
 import { Headline1 } from '../../components/headlines'
-import Layout from '../../components/layout'
 import Image from '../../components/image'
 import SanityBlockContent from '@sanity/block-content-to-react'
 import { getSerializer } from '../../lib/serializers'
 import ScrollContainer from 'react-indiana-drag-scroll'
 import { useState } from 'react'
 import Seo from '../../components/Seo'
+import Page from '../../components/Page'
 
 export default function Assortment({ detailData, preview, global, locale }) {
     return (
         <>
             <Seo seo={detailData.seo}/>
-            <Layout preview={preview} data={global}>
+            <Page preview={preview} data={global}>
                 <LandingSection detailData={detailData} className='mb-12' />
-            </Layout>
+            </Page>
         </>
-
     )
 }
 

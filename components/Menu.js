@@ -22,26 +22,24 @@ export default function Menu({ links }) {
     }
 
     return (
-        <>
-            <AnimatePresence>
-                {isMenuOpen && (
-                    <motion.div
-                        initial='hidden'
-                        animate='visible'
-                        exit='hidden'
-                        variants={variants}
-                        className={`w-full absolute top-0`}
-                    >
-                        <div className="bg-primary5 z-50">
-                            <div className="wrapper pt-32 pb-16">
-                                <MenuList links={links} className='mb-7' />
-                                <MenuLine className='mb-6' />
-                                <ExtraMenuLinks />
-                            </div>
+        <AnimatePresence>
+            {isMenuOpen && (
+                <motion.div
+                    initial='hidden'
+                    animate='visible'
+                    exit='hidden'
+                    variants={variants}
+                    className={`w-full absolute top-0`}
+                >
+                    <div className="bg-primary5 z-50">
+                        <div className="wrapper pt-32 pb-16">
+                            <MenuList links={links} className='mb-7' />
+                            <MenuLine className='mb-6' />
+                            <ExtraMenuLinks />
                         </div>
-                    </motion.div>)}
-            </AnimatePresence>
-        </>
+                    </div>
+                </motion.div>)}
+        </AnimatePresence>
     )
 }
 
@@ -65,7 +63,7 @@ const ExtraMenuLinks = () => {
         <motion.div variants={variants} className="flex gap-4">
             <motion.a className="text-white text-xs relative pb-2"
                 whileHover='hover' initial='rest'
-                href="/privacy-policy"  
+                href="/privacy-policy"
             >
                 Privacy Policy
                 <motion.div variants={underline} className="absolute opacity-80 w-full origin-left h-px bottom-0 bg-white" />
@@ -137,6 +135,4 @@ const MenuItem = ({ index, link }) => {
             </motion.a>
         </motion.li>
     )
-
 }
-

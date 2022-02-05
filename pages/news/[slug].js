@@ -3,19 +3,19 @@ import React from "react"
 import CollectionSlugs from '../../lib/sanity/queries/CollectionSlugs'
 import ArticleDetailPageQuery from '../../lib/sanity/queries/ArticleDetailPageQuery'
 import { Headline1 } from '../../components/headlines'
-import Layout from '../../components/layout'
 import BannerImage from '../../components/BannerImage'
 import SanityBlockContent from '@sanity/block-content-to-react'
 import { getSerializer } from '../../lib/serializers'
 import Link from 'next/link'
 import Image from '../../components/image'
 import Seo from '../../components/Seo'
+import Page from '../../components/Page'
 
 export default function NewsArticle({ pageDetail, global, preview, locale }) {
     return (
         <>
             <Seo seo={pageDetail.seo} />
-            <Layout preview={preview} data={global}>
+            <Page preview={preview} data={global}>
                 <div className='wrapper mb-12'>
                     <BannerImage className='wrapper mb-12' image={pageDetail.bannerImage} />
                     <div className='lg:gap-20 grid relative lg:grid-cols-[auto,20rem]'>
@@ -55,9 +55,8 @@ export default function NewsArticle({ pageDetail, global, preview, locale }) {
                         </div>
                     </div>
                 </div>
-            </Layout>
+            </Page>
         </>
-
     )
 }
 
