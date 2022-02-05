@@ -2,7 +2,7 @@ import { getGlobalData, getClient } from '../../lib/sanity/sanity.server'
 import ContactPage from '../../lib/pages/Contact'
 import ContactPageQuery from '../../lib/sanity/queries/ContactPageQuery'
 
-export default function ({ pageData, preview, global, locale }) {
+export default function Contact ({ pageData, preview, global, locale }) {
     return (
       <ContactPage
         global={global}
