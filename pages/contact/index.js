@@ -1,6 +1,6 @@
 import { getGlobalData, getClient } from '../../lib/sanity/sanity.server'
 import ContactPage from '../../lib/pages/Contact'
-import ContactPageQuery from '../../lib/sanity/queries/ContactPageQuery'
+import { getRichImageQuery } from '../../lib/sanity/components'
 
 export default function Contact ({ pageData, preview, global, locale }) {
     return (
@@ -12,13 +12,22 @@ export default function Contact ({ pageData, preview, global, locale }) {
     )
 }
 
+const query = `
+    *[_type == "contactPage" && language->languageCode == $locale][0]{
+        _id,
+        title,
+        seo,
+        ${getRichImageQuery('landingImage')}
+    }
+`
+
 export async function getStaticProps(context) {
     const { locale, defaultLocale } = context
 
-    var pageData = await getClient(context?.preview).fetch(ContactPageQuery, { locale })
+    var pageData = await getClient(context?.preview).fetch(query, { locale })
 
     if (!pageData) {
-        pageData = await getClient(context?.preview).fetch(ContactPageQuery, { locale: defaultLocale })
+        pageData = await getClient(context?.preview).fetch(query, { locale: defaultLocale })
     }
 
     const global = await getGlobalData(context?.preview, locale, defaultLocale)

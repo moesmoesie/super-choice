@@ -37,8 +37,15 @@ const query = `
         }
 `
 
+const collectionQuery = `
+    *[_type == 'article'][]{
+        'slug': slug.current,
+        'language' : language->languageCode
+    }
+`
+
 export const getStaticPaths = async () => {
-    const data = await getClient(false).fetch(CollectionSlugs, { collection: 'article' })
+    const data = await getClient(false).fetch(collectionQuery)
     var paths = data.map((el) => {
         return { params: { slug: el.slug }, locale: el.language }
     })
