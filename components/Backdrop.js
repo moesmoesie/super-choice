@@ -1,30 +1,12 @@
-import { AnimatePresence, motion } from "framer-motion"
 
-export default function Backdrop({show = false}){
-    const variants = {
-        visible: {
-            opacity: 0.6,
-            transition: {
-                duration: 1
-            }
-        },
-        hidden: {
-            opacity: 0,
-            transition: {
-                duration: 1
-            }
-        },
-    }
+export default function Backdrop({ show = false, z = 50, onClick }) {
+
 
     return (
-        <AnimatePresence>
-            {show && <motion.div
-                animate="visible"
-                initial="hidden"
-                exit="hidden"
-                onClick={(e) => setIsMenuOpen(false)}
-                variants={variants}
-                className="w-full absolute h-screen bg-black" />}
-        </AnimatePresence>
+        <div
+            style={{ zIndex: z }}
+            onClick={(e) => onClick(e)}
+            className="w-full absolute h-screen bg-black/40" 
+        />
     )
 }
