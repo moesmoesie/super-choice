@@ -1,5 +1,4 @@
 import { getGlobalData, getClient } from '../../lib/sanity/sanity.server'
-import CollectionSlugs from '../../lib/sanity/queries/CollectionSlugs'
 import Seo from '../../components/Seo'
 import ProductDetail from '../../lib/pages/ProductDetail/Index'
 import { getRichTextEditorQuery, getRichImageQuery } from '../../lib/sanity/components'

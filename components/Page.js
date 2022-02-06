@@ -2,11 +2,12 @@ import Footer from './footer'
 import Header from './header'
 import Menu from './Menu'
 import Cookies from './Cookies'
+
 export default function Page({children, data, preview }) {
     return (
         <div className='min-h-screen relative flex flex-col'>
             <StickyArea>
-                {/* <Cookies/> */}
+                <Cookies/>
                 <Header preview={preview} data={data} />
                 <Menu links={data.footerLinks} />
             </StickyArea>
