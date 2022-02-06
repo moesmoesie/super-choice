@@ -1,38 +1,35 @@
 import { getGlobalData, getClient } from '../../lib/sanity/sanity.server'
 import React from "react"
 import CollectionSlugs from '../../lib/sanity/queries/CollectionSlugs'
-import { Headline1 } from '../../components/headlines'
-import RecipeDetailPageQuery from '../../lib/sanity/queries/RecipeDetailPageQuery'
-import BannerImage from '../../components/BannerImage'
-import { getSerializer } from '../../lib/serializers'
-import SanityBlockContent from '@sanity/block-content-to-react'
 import Seo from '../../components/Seo'
-import Page from '../../components/Page'
+import RecipeDetail from '../../lib/pages/RecipeDetail/Index'
+import { getRichImageQuery, getRichTextEditorQuery } from '../../lib/sanity/components'
 
-export default function RecipePage({ pageDetail, preview, global, locale }) {
+export default function RecipePage({ detailData, preview, global, locale }) {
     return (
         <>
-            <Seo seo={pageDetail.seo}/>
-            <Page preview={preview} data={global}>
-                <div className='wrapper'>
-                    <BannerImage className='wrapper mb-12' image={pageDetail.bannerImage} />
-                    <div className='grid mb-12 md:grid-cols-2'>
-                        <Headline1 className='mb-12 md:col-span-2'>
-                            {pageDetail.title}
-                        </Headline1>
-                        <div className='bg-[#E0F3FF] md:ml-12 lg:ml-24 mb-12 md:self-start md:col-start-2 px-4 py-6 rounded-md'>
-                            <SanityBlockContent blocks={pageDetail.instructions} serializers={getSerializer()} />
-                        </div>
-                        <div className='grid gap-6 md:col-start-1 md:row-start-2'>
-                            <SanityBlockContent blocks={pageDetail.steps} serializers={getSerializer()} />
-                        </div>
-                    </div>
-                </div>
-            </Page>
+            <Seo seo={detailData.seo} />
+            <RecipeDetail detailData={detailData} global={global} preview={preview} />
         </>
 
     )
 }
+
+const query = `
+    *[
+        _type == "recipe" && 
+        slug.current == $slug && 
+        language->languageCode == $locale][0]{
+            _id,
+            title,
+            seo,
+            ${getRichTextEditorQuery('steps')},
+            ${getRichTextEditorQuery('instructions')},
+            ${getRichImageQuery('bannerImage')}
+        }
+`
+
+
 
 export const getStaticPaths = async () => {
     const data = await getClient(false).fetch(CollectionSlugs, { collection: 'recipe' })
@@ -49,17 +46,17 @@ export const getStaticPaths = async () => {
 export async function getStaticProps(context) {
     const { locale, defaultLocale, params } = context
 
-    var pageDetail = await getClient(context?.preview).fetch(RecipeDetailPageQuery, { locale, slug: params.slug })
+    var detailData = await getClient(context?.preview).fetch(query, { locale, slug: params.slug })
 
-    if (!pageDetail) {
-        pageDetail = await getClient(context?.preview).fetch(RecipeDetailPageQuery, { locale: defaultLocale, slug: params.slug })
+    if (!detailData) {
+        detailData = await getClient(context?.preview).fetch(query, { locale: defaultLocale, slug: params.slug })
     }
 
     const global = await getGlobalData(context?.preview, locale, defaultLocale)
 
     return {
         props: {
-            pageDetail,
+            detailData,
             global,
             locale,
             'preview': context.preview ?? false
