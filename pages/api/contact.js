@@ -16,6 +16,7 @@ export default async function (req, res) {
             to: 'super.choice.contact@gmail.com',
             subject: `Message From ${req.body?.firstName} ${req.body?.lastName}`,
             text: req.body?.message + " | Sent from:" + req.body?.email,
+            replyTo: req.body?.email,
             html: `<div>${req.body?.message}</div><p>Sent from: ${req.body?.email}</p>`
         }
 
