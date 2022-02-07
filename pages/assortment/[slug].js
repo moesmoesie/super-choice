@@ -1,6 +1,6 @@
 import { getGlobalData, getClient } from '../../lib/sanity/sanity.server'
 import Seo from '../../components/Seo'
-import ProductDetail from '../../lib/pages/ProductDetail/Index'
+import ProductDetail from '../../lib/pages/ProductDetail'
 import { getRichTextEditorQuery, getRichImageQuery } from '../../lib/sanity/components'
 
 export default function Assortment({ detailData, preview, global }) {

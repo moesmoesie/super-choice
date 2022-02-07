@@ -1,6 +1,6 @@
 import { getGlobalData, getClient } from '../../lib/sanity/sanity.server'
 import React from "react"
-import PrivacyPolicyPage from '../../lib/pages/PrivacyPolicy/Index'
+import PrivacyPolicyPage from '../../lib/pages/PrivacyPolicy'
 import { getRichImageQuery, getRichTextEditorQuery } from '../../lib/sanity/components'
 
 const query = `

@@ -1,7 +1,7 @@
 import { getGlobalData, getClient } from '../../lib/sanity/sanity.server'
 import React from "react"
 import Seo from '../../components/Seo'
-import RecipeDetail from '../../lib/pages/RecipeDetail/Index'
+import RecipeDetail from '../../lib/pages/RecipeDetail'
 import { getRichImageQuery, getRichTextEditorQuery } from '../../lib/sanity/components'
 
 export default function RecipePage({ detailData, preview, global, locale }) {
