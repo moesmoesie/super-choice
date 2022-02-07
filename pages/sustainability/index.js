@@ -1,5 +1,5 @@
 import { getGlobalData, getClient } from '../../lib/sanity/sanity.server'
-import SustainabilityPage from '../../lib/pages/Sustainability/Index'
+import SustainabilityPage from '../../lib/pages/Sustainability'
 
 const query = `
     *[_type == "sustainabilityPage" && language->languageCode == $locale][0]{

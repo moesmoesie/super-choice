@@ -1,5 +1,5 @@
 import { getGlobalData, getClient } from '../../lib/sanity/sanity.server'
-import AssortmentPage from '../../lib/pages/Assortment/Index'
+import AssortmentPage from '../../lib/pages/Assortment'
 import { getRichImageQuery, getRichTextEditorQuery } from '../../lib/sanity/components'
 
 export default function Assortment({ pageData, preview, global, locale }) {

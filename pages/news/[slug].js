@@ -1,7 +1,7 @@
 import { getGlobalData, getClient } from '../../lib/sanity/sanity.server'
 import { getRichImageQuery,getRichTextEditorQuery } from '../../lib/sanity/components'
 import Seo from '../../components/Seo'
-import ArticleDetail from '../../lib/pages/ArticleDetail/Index'
+import ArticleDetail from '../../lib/pages/ArticleDetail'
 
 export default function NewsArticle({ detailData, global, preview, locale }) {
     return (
