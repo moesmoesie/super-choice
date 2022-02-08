@@ -23,7 +23,7 @@ export default function Header({ data, preview }) {
                 <HamburgerMenu className='ml-auto z-50 md:ml-12' />
 
                 <div className="ml-auto hidden md:flex gap-3">
-                    {preview && <ExitPreviewModeButton/>}
+                    {preview && <ExitPreviewModeButton />}
                     <HeaderNavigationLink slug='/contact' title='Contact' />
                 </div>
 
@@ -46,14 +46,13 @@ const HeaderNavigationLink = ({ slug, title }) => {
     const { isMenuOpen } = useContext(AppContext);
 
     return (
-        <Link passHref href={slug}>
-            <motion.a
-                transition={{ type: 'easeIn' }}
-                animate={!isMenuOpen ? { color: 'var(--primary4)' } : { color: '#FFFFFF' }}
-                className="link z-50 cursor-pointer pointer-events-auto hidden sm:block text-primary4 font-bold uppercase">
-                {title}
-            </motion.a>
-        </Link>
+        <motion.a
+            href={slug}
+            transition={{ type: 'easeIn' }}
+            animate={!isMenuOpen ? { color: 'var(--primary4)' } : { color: '#FFFFFF' }}
+            className="link z-50 cursor-pointer pointer-events-auto hidden sm:block text-primary4 font-bold uppercase">
+            {title}
+        </motion.a>
     )
 }
 
