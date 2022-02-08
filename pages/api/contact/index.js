@@ -1,26 +1,34 @@
-import { getEmailHtml, createTransporter, createSubject, sendEmail} from './email';
+import { getEmailHtml, createTransporter, createSubject, sendEmail } from './email';
+import isValidRechaptchaCode from './reCaptcha';
 
 export default async function (req, res) {
+    const { body, method } = req;
+
+    if (method !== 'POST') {
+        return res.status(404).send("Not found");
+    }
+
+    const { name, email, message, captchaCode } = body
+
+    if (!email || !message || !captchaCode) {
+        return res.status(422).json({
+            message: "Unproccesable request, please provide the required fields",
+        });
+    }
+
+    const isValidCode = await isValidRechaptchaCode(captchaCode)
+
+    if (!isValidCode) {
+        return res.status(422).json({
+            message: "Unproccesable request, Invalid captcha code",
+        });
+    }
+
     const { EMAIL_PASSWORD, EMAIL_USER } = process.env
 
-    if (!EMAIL_USER) {
+    if (!EMAIL_USER || !EMAIL_PASSWORD) {
         return res.status(500).json({
-            error: 'Failed to send email!'
-        })
-    }
-
-    if (!EMAIL_PASSWORD) {
-        return res.status(500).json({
-            error: 'Failed to send email!'
-        })
-    }
-
-    const {firstName, lastName, email, message } = req.body
-    const name = `${firstName} ${lastName}`
-
-    if(!email && !message){
-        return res.status(500).json({
-            error: 'Failed to send email!'
+            message: 'Failed to send email!'
         })
     }
 
@@ -35,13 +43,13 @@ export default async function (req, res) {
     }
 
     try {
-        await sendEmail(transporter,mailData)
+        await sendEmail(transporter, mailData)
         return res.status(200).json({
-            body: 'Succesfully send email!'
+            message: 'Succesfully send email!'
         })
     } catch (error) {
         return res.status(500).json({
-            error: 'Failed to send email!'
+            message: 'Failed to send email!'
         })
     }
 }
