@@ -32,6 +32,7 @@ const query = `
             _id,
             'slug' : slug.current,
             title,
+            date,
             catagories,
             ${getRichImageQuery('previewImage')},
             ${getRichTextEditorQuery('summary')},
