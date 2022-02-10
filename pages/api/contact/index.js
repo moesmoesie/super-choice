@@ -8,7 +8,7 @@ export default async function (req, res) {
         return res.status(404).send("Not found");
     }
 
-    const { name, email, message, captchaCode } = body
+    const { name, email, message, company, captchaCode } = body
 
     if (!email || !message || !captchaCode) {
         return res.status(422).json({
@@ -37,7 +37,7 @@ export default async function (req, res) {
     const mailData = {
         from: EMAIL_USER,
         to: EMAIL_USER,
-        subject: createSubject(name),
+        subject: createSubject(name, company),
         replyTo: email,
         html: getEmailHtml(email, message)
     }

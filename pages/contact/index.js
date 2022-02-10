@@ -16,6 +16,7 @@ const query = `
     *[_type == "contactPage" && language->languageCode == $locale][0]{
         _id,
         title,
+        contactForm,
         seo,
         ${getRichImageQuery('landingImage')}
     }

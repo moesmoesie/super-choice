@@ -18,8 +18,12 @@ export function createTransporter(email,password){
     });
 }
 
-export function createSubject(name){
-    return `Message From ${name}. Super Choice contact form.`
+export function createSubject(name,company){
+    if(name && company){
+        return `Message From ${name} at company ${company}. Super Choice contact form.`
+    }else{
+        return `Message From ${name}. Super Choice contact form.`
+    }
 }
 
 export async function sendEmail(transporter,data){
