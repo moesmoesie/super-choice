@@ -6,8 +6,8 @@ export default function CollectionReferences({title="",items = [] }) {
         <div className="wrapper mb-24">
             <p className="text-primary4 font-medium text-3xl mb-10" >{title}</p>
             <div className="flex gap-4 md:gap-y-10 relative flex-col md:flex-row md:flex-wrap">
-                {items.map((item) => {
-                    return <ReferenceItem item={item} />
+                {items.map((item,index) => {
+                    return <ReferenceItem item={item} key={index} />
                 })}
             </div>
         </div>
@@ -45,7 +45,7 @@ const ArrowIcon = () => {
     return (
         <svg className="w-5 h-5" width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
             <circle cx="6" cy="6" r="6" fill="#66C3FF" />
-            <path fill-rule="evenodd" clip-rule="evenodd" d="M4.07129 3.40234L8.57129 6.00042L4.07129 8.5985L4.07129 3.40234Z" fill="white" />
+            <path fillRule="evenodd" clipRule="evenodd" d="M4.07129 3.40234L8.57129 6.00042L4.07129 8.5985L4.07129 3.40234Z" fill="white" />
         </svg>
     )
 }
