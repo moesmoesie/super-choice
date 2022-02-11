@@ -1,17 +1,21 @@
 export default function FilterRow({ filters, currentFilter, onClick }) {
     return (
-        <div className='w-full drop-shadow-xl bg-white pb-6'>
-            <div className='w-full gap-6 wrapper flex flex-wrap items-center justify-center'>
-                {filters.map((filter, index) => (
-                    <FilterButton
-                        isSelected={currentFilter == filter.value}
-                        onClick={onClick}
-                        key={index}
-                        filter={filter}
-                    />)
-                )}
-            </div>
-        </div>
+        <>
+            {(filters != null) && (
+                <div className='w-full drop-shadow-xl bg-white pb-6'>
+                    <div className='w-full gap-6 wrapper flex flex-wrap items-center justify-center'>
+                        {filters.map((filter, index) => (
+                            <FilterButton
+                                isSelected={currentFilter == filter.value}
+                                onClick={onClick}
+                                key={index}
+                                filter={filter}
+                            />)
+                        )}
+                    </div>
+                </div>
+            )}
+        </>
     )
 }
 
