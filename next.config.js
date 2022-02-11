@@ -5,4 +5,13 @@ module.exports = {
     defaultLocale: 'nl',
     localeDetection: false,
   },
+  async redirects() {
+    return [
+      {
+        source: '/recepten',
+        destination: '/assortment',
+        permanent: true,
+      },
+    ]
+  }
 }
