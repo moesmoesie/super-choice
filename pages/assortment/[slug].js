@@ -3,11 +3,12 @@ import Seo from '../../components/Seo'
 import ProductDetail from '../../lib/pages/ProductDetail'
 import { getRichTextEditorQuery, getRichImageQuery } from '../../lib/sanity/components'
 
-export default function Assortment({ detailData, preview, global }) {
+export default function Assortment({ pageData,detailData, preview, global }) {
     return (
         <>
             <Seo seo={detailData.seo}/>
-            <ProductDetail 
+            <ProductDetail
+                pageData={pageData}
                 detailData={detailData} 
                 preview={preview} 
                 global={global}
@@ -15,6 +16,15 @@ export default function Assortment({ detailData, preview, global }) {
         </>
     )
 }
+
+const pageQuery = `
+*[
+    _type == "productDetailPage" &&
+    language->languageCode == $locale][0]{
+        _id,
+        relatedRecipesTitle
+    }
+`
 
 const query =  `
 *[
@@ -63,10 +73,17 @@ export async function getStaticProps(context) {
         detailData = await getClient(context?.preview).fetch(query, { locale: defaultLocale, slug: params.slug })
     }
 
+    var pageData = await getClient(context?.preview).fetch(pageQuery, { locale, slug: params.slug })
+
+    if (!pageData) {
+        pageData = await getClient(context?.preview).fetch(pageQuery, { locale: defaultLocale, slug: params.slug })
+    }
+
     const global = await getGlobalData(context?.preview, locale, defaultLocale)
 
     return {
         props: {
+            pageData,
             detailData,
             global,
             locale,
