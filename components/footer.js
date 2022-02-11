@@ -14,7 +14,7 @@ export default function Footer({ data }) {
 
                     {/* Logo */}
                     <Link href={"/"}>
-                        <a>
+                        <a aria-label="Super Choice Logo" >
                             <Image
                                 className="w-16 h-16 relative mb-4"
                                 loading="eager"

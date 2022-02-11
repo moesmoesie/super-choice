@@ -10,7 +10,7 @@ export default function Header({ data, preview }) {
         <header className="z-50 pointer-events-none w-full">
             <div className='flex z-50 items-center wrapper min-h-[5rem]'>
                 <Link passHref href='/'>
-                    <a className='pointer-events-auto'>
+                    <a aria-label="Super Choice Logo" className='pointer-events-auto'>
                         <Image
                             className="z-50 w-16 h-16 relative"
                             loading='eager' withPlaceholder={false}
