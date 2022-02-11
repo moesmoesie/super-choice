@@ -7,6 +7,9 @@ export default function Document() {
     return (
         <Html>
             <Head>
+
+                <link rel="shortcut icon" href="/favicon.ico"/>
+
                 {bodyFontWeights.map((element,index) => {
                     return <link
                         key={index}
