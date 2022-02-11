@@ -7,6 +7,7 @@ const query = `
     _id,
     title,
     seo,
+    landingVideoUrl,
     ${getRichImageQuery('landingImage')},
     callToAction1{
       text,
