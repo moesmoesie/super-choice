@@ -14,12 +14,12 @@ export default function Image({ id, aspectRatio,imageClassname, image, className
     const sources = []
 
     mediaQueries.forEach((query) => {
-        const src = urlForImage(image.asset).width(query.s).format("webp")
+        const src = urlForImage(image.asset).width(query.s).auto('format')
         sources.push(`${src} ${query.w}w`)
     })
 
     const srcset = sources.join(",")
-    const src = urlForImage(image.asset).format("webp")
+    const src = urlForImage(image.asset).auto('format')
 
     return (
         <div style={{aspectRatio: `${aspectRatio}`}} className={className} id={id}>
