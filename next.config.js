@@ -1,17 +1,17 @@
 module.exports = {
   reactStrictMode: true,
   i18n: {
-    locales: ['nl', 'en', 'fr'],
-    defaultLocale: 'nl',
+    locales: ["nl", "en", "fr", "de"],
+    defaultLocale: "nl",
     localeDetection: false,
   },
   async redirects() {
     return [
       {
-        source: '/recepten',
-        destination: '/recipes',
+        source: "/recepten",
+        destination: "/recipes",
         permanent: true,
       },
-    ]
-  }
-}
+    ];
+  },
+};
